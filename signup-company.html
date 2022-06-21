@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Home | Digitalent</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+</head>
+
+<body>
+    <section class="signup-company">
+        <div class="signup-company-1"></div>
+        <div class="signup-company-2"></div>
+        <div class="card-form">
+            <div class="card-body">
+                <form class="form-box">
+                    <div class="form-group mb-4">
+                        <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
+                        <div class="card-img-box">
+                            <div class="card-img-circle">
+                                <div class="card-img-circle card-img">
+                                    <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
+                                        <img src="assets/img/icon_camera.png" alt="icon_camera">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="companyName">Company Name</label>
+                                <input placeholder="Max 300 Character" type="email" class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyName" aria-describedby="companyName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="companySummary">Summary</label>
+                                <textarea class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companySummary" placeholder="Max 300 Character" required rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="companyEmail">Email</label>
+                                <input placeholder="Max 300 Character" type="email" class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyEmail" aria-describedby="companyEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyTelp">Telephone Number</label>
+                                <input placeholder="Max 300 Character" type="email" class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyTelp" aria-describedby="companyTelp" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyAddress">Address</label>
+                                <input placeholder="Max 300 Character" type="email" class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyAddress" aria-describedby="companyAddress" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary justify-content-end d-block">Continue</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+        crossorigin="anonymous"></script>
+    <script>
+        function search_image() {
+            $('#OpenImgUpload').click(function () { $('#ImgUpload').trigger('click'); });
+        }
+    </script>
+</body>
+
+</html>
