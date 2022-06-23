@@ -17,15 +17,15 @@
     <section class="navbar-section mb-4">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand order-md-1" href="#"><img src="assets/img/logo_talenthub.png" alt=""></a>
+                <a class="navbar-brand order-md-1" href="company-dashboard.html"><img src="assets/img/logo_talenthub.png" alt="logo digitalent hub"></a>
                 <div class="navbar-control-box order-md-3">
-                    <a class="navbar-notification-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-notification-box" data-bs-toggle="popover1" data-bs-placement="bottom"
+                        data-bs-content-id="popover-content" tabindex="0" role="button">
                         <div class="navbar-notification"></div>
 
                     </a>
-                    <a class="navbar-img-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content2" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom"
+                        data-bs-content-id="popover-content2" tabindex="0" role="button">
                         <div class="navbar-img"></div>
                     </a>
                 </div>
@@ -36,10 +36,10 @@
                 <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Find Job</a>
+                            <a class="nav-link" href="company-dashboard.html">Find Job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Find Session</a>
+                            <a class="nav-link" href="talent-session-dashboard.html">Find Session</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Applied Job</a>
@@ -85,11 +85,11 @@
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
                                                 <div class="row align-items-center">
                                                     <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                        <div class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center">
+                                                        <a href="company-aplicant-profile.html" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
                                                             <div id="editProfile" class="btn-icon-text-box">
-                                                                <a href="#" class="text-decoration-none">Details</a>
+                                                                Details
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                     <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                         <div class="activity-status accepted m-0">
@@ -125,11 +125,11 @@
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
                                                 <div class="row align-items-center">
                                                     <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                        <div class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center">
+                                                        <a href="company-aplicant-profile.html" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
                                                             <div id="editProfile" class="btn-icon-text-box">
-                                                                <a href="#" class="text-decoration-none">Details</a>
+                                                                Details
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                     <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                         <div class="activity-status declined m-0">
@@ -165,11 +165,11 @@
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
                                                 <div class="row align-items-center">
                                                     <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                        <div class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center">
+                                                        <a href="company-aplicant-profile.html" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
                                                             <div id="editProfile" class="btn-icon-text-box">
-                                                                <a href="#" class="text-decoration-none">Details</a>
+                                                                Details
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
                                                     <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                         <div class="col-6 col-xl-3 d-flex justify-content-end p-0 mt-2 mt-xl-0 mr-xl-1">
@@ -384,19 +384,24 @@
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
     <script>
-        const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        list.map((el) => {
-            let opts = {
-                animation: false,
+        $('[data-bs-toggle="popover1"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content').html();
             }
-            if (el.hasAttribute('data-bs-content-id')) {
-                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
-                opts.html = true;
-                opts.placement = "bottom";
-
+        }).click(function (e) {
+            $('[data-bs-toggle="popover1"]').not(this).popover('hide');
+        });
+        $('[data-bs-toggle="popover2"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content2').html();
             }
-            new bootstrap.Popover(el, opts);
-        })
+        }).click(function (e) {
+            $('[data-bs-toggle="popover2"]').not(this).popover('hide');
+        });
     </script>
 </body>
 

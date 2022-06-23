@@ -19,13 +19,13 @@
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand order-md-1" href="#"><img src="assets/img/logo_talenthub.png" alt=""></a>
                 <div class="navbar-control-box order-md-3">
-                    <a class="navbar-notification-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-notification-box" data-bs-toggle="popover1" data-bs-placement="left"
+                        data-bs-content-id="popover-content" tabindex="0" role="button">
                         <div class="navbar-notification"></div>
 
                     </a>
-                    <a class="navbar-img-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content2" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="left"
+                        data-bs-content-id="popover-content2" tabindex="0" role="button">
                         <div class="navbar-img"></div>
                     </a>
                 </div>
@@ -36,10 +36,10 @@
                 <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Find Job</a>
+                            <a class="nav-link" href="talent-dashboard.html">Find Job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Find Session</a>
+                            <a class="nav-link" href="talent-session-dashboard.html">Find Session</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Applied Job</a>
@@ -55,6 +55,7 @@
                 <div class="card-body row">
                     <div class="col-12 col-lg-9">
                         <div class="card-text-box">
+                            <p class="card-text mb-3 mb-lg-5">#AD230</p>
                             <p class="card-title d-block blue mb-4 text-justify">UI Designer</p>
                             <p class="card-text">Lorem Ipsum is simply dummy text of the printing and
                                 typesetting industry. Lorem Ipsum has been the industry's standard dummy text
@@ -69,16 +70,16 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="m-auto">
-                            <div class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
+                            <a href="#" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0 d-flex justify-content-center align-items-center">
                                 <div id="editProfile" class="btn-icon-text-box">
-                                    <a href="#">Apply</a>
+                                    Apply
                                 </div>
-                            </div>
-                            <div class="btn btn-primary justify-content-end w-100">
+                            </a>
+                            <a href="talent-dashboard.html" class="btn btn-primary d-flex justify-content-center align-items-center w-100 text-decoration-none">
                                 <div id="editProfile" class="btn-icon-text-box">
-                                    <a href="#" class="text-decoration-none">Back to Dashboard</a>
+                                    Back to Dashboard
                                 </div>
-                            </div>
+                            </a>
                             <div class="card-text-box text-center">
                                 <p class="card-title d-block blue mb-4 mt-2">$10</p>
                                 <p class="card-text mb-2">Registration</p>
@@ -190,7 +191,7 @@
                 <div class="col-md-12">
                     <div class="m-auto">
                         <a class="btn btn-primary d-flex justify-content-center align-items-center w-100 white"
-                            href="#">Lihat Profile</a>
+                            href="talent-profile.html">Lihat Profile</a>
                     </div>
                 </div>
             </div>
@@ -207,7 +208,7 @@
             </div>
             <div class="divider"></div>
             <div class="row mt-2">
-                <a class="col-12 profile-popover-text-light" href="#">Logout</a>
+                <a class="col-12 profile-popover-text-light" href="signup-talent.html">Logout</a>
             </div>
         </div>
     </div>
@@ -219,19 +220,24 @@
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
     <script>
-        const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        list.map((el) => {
-            let opts = {
-                animation: false,
+        $('[data-bs-toggle="popover1"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content').html();
             }
-            if (el.hasAttribute('data-bs-content-id')) {
-                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
-                opts.html = true;
-                opts.placement = "bottom";
-
+        }).click(function (e) {
+            $('[data-bs-toggle="popover1"]').not(this).popover('hide');
+        });
+        $('[data-bs-toggle="popover2"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content2').html();
             }
-            new bootstrap.Popover(el, opts);
-        })
+        }).click(function (e) {
+            $('[data-bs-toggle="popover2"]').not(this).popover('hide');
+        });
     </script>
 </body>
 

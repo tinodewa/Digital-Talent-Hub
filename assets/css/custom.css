@@ -169,7 +169,7 @@ body.white{
     margin-bottom: 25px;
 }
 
-.jumbotron-text-box button {
+.jumbotron-text-box .btn {
     height: 40px;
     width: 140px;
     color: #0264D3;
@@ -180,7 +180,7 @@ body.white{
     font-size: 14px;
 }
 
-.jumbotron-text-box button:hover {
+.jumbotron-text-box .btn:hover {
     color: #ffffff;
     background: none;
     border: 1px solid #ffffff;
@@ -349,7 +349,6 @@ body.white{
 
 .form-box .form-control#password {
     border-right: none;
-    margin-right: 1px;
     width: 283px;
 }
 
@@ -395,6 +394,7 @@ body.white{
     margin-left: 1px;
     background: none;
     border-left: none;
+    background: #ffffff;
 }
 
 .form-box .input-group-text:hover {
@@ -780,8 +780,22 @@ body.white{
     text-align: center;
 }
 
+.card-section a.btn {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: center;
+}
+
+
 .card-section .btn.btn-list-apply {
     width: 122px;
+}
+
+.card-section.talent-file .btn.btn-list-apply {
+    height: 27px;
 }
 
 .card-section.session-dashboard .btn {
@@ -828,6 +842,9 @@ body.white{
     transform: translateY(-100%);
 }
 
+.card-section.card-click a:hover {
+    text-decoration: none;
+}
 .whatsapp {
     background: url("../img/logos_whatsapp.png") no-repeat;
     width: 23px;
@@ -989,6 +1006,10 @@ body.white{
 
 .talent-file.card-section {
     margin-bottom: 30px;
+}
+
+.talent-file.card-section.company-applicant-list {
+    margin-bottom: 80px;
 }
 
 .talent-bio .card-title,
@@ -1372,14 +1393,9 @@ body.white{
     border-radius: 3px;
 }
 
-.input-add-skill {
-    width: auto;
-    border: none;
-}
-
-.input-add-skill:focus {
-    border-color: none;
-    box-shadow: none;
+.card-section.company-post-project .btn {
+    height: 34px;
+    width: 338px;
 }
 
 .input-project-name {
@@ -1717,7 +1733,7 @@ body.white{
         width: 400px;
     }
 
-    .jumbotron-text-box button {
+    .jumbotron-text-box .btn {
         height: 30px;
     }
     .footer-section .footer-title, .footer-section .footer-text {
@@ -1915,7 +1931,7 @@ body.white{
         text-align: center;
     }
     
-    .jumbotron-text-box button {
+    .jumbotron-text-box .btn {
         margin: 0 10px;
     }
 
@@ -1943,6 +1959,10 @@ body.white{
     .card-section.session-dashboard .card-title {
         font-size: 20px;
         text-align: center!important;
+    }
+
+    .card-section.company-post-project .btn {
+        width: 100%;
     }
 }
 

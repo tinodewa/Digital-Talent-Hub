@@ -17,15 +17,15 @@
     <section class="navbar-section mb-4">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand order-md-1" href="#"><img src="assets/img/logo_talenthub.png" alt=""></a>
+                <a class="navbar-brand order-md-1" href="company-dashboard.html"><img src="assets/img/logo_talenthub.png" alt="logo digitalent hub"></a>
                 <div class="navbar-control-box order-md-3">
-                    <a class="navbar-notification-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-notification-box" data-bs-toggle="popover1" data-bs-placement="bottom"
+                        data-bs-content-id="popover-content" tabindex="0" role="button">
                         <div class="navbar-notification"></div>
 
                     </a>
-                    <a class="navbar-img-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content2" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom"
+                        data-bs-content-id="popover-content2" tabindex="0" role="button">
                         <div class="navbar-img"></div>
                     </a>
                 </div>
@@ -36,10 +36,10 @@
                 <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Find Job</a>
+                            <a class="nav-link" href="company-dashboard.html">Find Job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Find Session</a>
+                            <a class="nav-link" href="talent-session-dashboard.html">Find Session</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Applied Job</a>
@@ -74,14 +74,22 @@
                                     <div class="form-control card-item-box">
                                         <div class="activity-skills d-flex align-items-center flex-wrap">
                                             <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                Skill
+                                                Graphic Designer
                                                 <span class="icon-remove"></span>
                                             </div>
-                                            <input placeholder="ex: react" type="text" class="form-control d-inline-block w-auto input-add-skill input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="ProjectNeeded" aria-describedby="ProjectNeeded" required>
+                                            <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
+                                                UI Designer
+                                                <span class="icon-remove"></span>
+                                            </div>
+                                            <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
+                                                <span class="icon-add"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary d-block m-auto w-25">Post Project</button>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary mr-auto ml-auto mt-4 d-flex justify-content-center align-items-center">Post Project</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -211,6 +219,67 @@
         </div>
     </div>
 
+    <!-- Modal Add Skill -->
+    <div class="modal modal-add-skill fade" id="modal3" tabindex="-1" aria-labelledby="modal3" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <section class="card-section talent-file">
+                    <div class="container">
+                        <div class="card w-100 card-no-border">
+                            <div class="card-text-box d-flex justify-content-center align-items-center mb-2">
+                                <p class="card-title d-block blue mb-0 mr-auto">Add Your Skill</p>
+                                <div class="card-btn-box d-flex justify-content-center align-items-center">
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white" onclick="hide_modal3();">
+                                        <a class="text-decoration-none" href="#">Cancel</a>
+                                    </div>
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal3();">
+                                            <a href="#">Save</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divider"></div>
+                            <input type="text" class="form-control input-skill mt-3" id="inputSkill" aria-describedby="inputSkill" placeholder="Input Your Skill">
+                            <div class="card-section mt-3 mb-1">
+                                <div class="card w-100 pt-0 pb-0 mb-3">
+                                    <div class="card-body row">
+                                        <div class="col-md-12">
+                                            <div class="card-desc-title">Recomendation</div>
+                                            <div class="activity-skills d-flex flex-wrap">
+                                                <div class="card-item item-grey mb-2 d-flex align-items-center"><span>Graphic Designer</span></div>
+                                                <div class="card-item item-grey mb-2 d-flex align-items-center"><span>UI Designer</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-text-box d-flex justify-content-center align-items-center mb-2 row">
+                                <div class="col-12">
+                                    <div class="card-subtitle mb-1">Your Skill</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="activity-skills d-flex flex-wrap">
+                                        <div class="card-item item-blue mb-2 d-flex align-items-center">
+                                            <p class="mb-0">Graphic Designer</p>
+                                            <div class="icon-remove">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                        <div class="card-item item-blue mb-2 d-flex align-items-center">
+                                            <p class="mb-0">UI Designer</p>
+                                            <div class="icon-remove">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -218,19 +287,27 @@
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
     <script>    
-        const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        list.map((el) => {
-            let opts = {
-                animation: false,
+        function hide_modal3() {
+            $('#modal3').trigger('click');
+        }
+        $('[data-bs-toggle="popover1"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content').html();
             }
-            if (el.hasAttribute('data-bs-content-id')) {
-                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
-                opts.html = true;
-                opts.placement = "bottom";
-
+        }).click(function (e) {
+            $('[data-bs-toggle="popover1"]').not(this).popover('hide');
+        });
+        $('[data-bs-toggle="popover2"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content2').html();
             }
-            new bootstrap.Popover(el, opts);
-        })
+        }).click(function (e) {
+            $('[data-bs-toggle="popover2"]').not(this).popover('hide');
+        });
     </script>
 </body>
 

@@ -19,13 +19,13 @@
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand order-md-1" href="#"><img src="assets/img/logo_talenthub.png" alt=""></a>
                 <div class="navbar-control-box order-md-3">
-                    <a class="navbar-notification-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-notification-box" data-bs-toggle="popover1" data-bs-placement="left"
+                        data-bs-content-id="popover-content" tabindex="0" role="button">
                         <div class="navbar-notification"></div>
                         
                     </a>
-                    <a class="navbar-img-box" data-bs-toggle="popover" data-bs-placement="left"
-                        data-bs-content-id="popover-content2" tabindex="0" role="button" data-trigger="focus">
+                    <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="left"
+                        data-bs-content-id="popover-content2" tabindex="0" role="button">
                         <div class="navbar-img"></div>
                     </a>
                 </div>
@@ -36,10 +36,10 @@
                 <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Find Job</a>
+                            <a class="nav-link" href="talent-dashboard.html">Find Job</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Find Session</a>
+                            <a class="nav-link" href="talent-session-dashboard.html">Find Session</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Applied Job</a>
@@ -415,7 +415,7 @@
                         </div>
                     </div>
                 </div>
-                <a class="text-center mt-3" href="#">See more ></a>
+                <a class="course-see-more text-center mt-3" href="#">See more ></a>
             </div>
         </div>
     </section>
@@ -519,7 +519,7 @@
                 <div class="col-md-12">
                     <div class="m-auto">
                         <a class="btn btn-primary d-flex justify-content-center align-items-center w-100 white"
-                            href="#">Lihat Profile</a>
+                            href="talent-profile.html">Lihat Profile</a>
                     </div>
                 </div>
             </div>
@@ -536,7 +536,7 @@
             </div>
             <div class="divider"></div>
             <div class="row mt-2">
-                <a class="col-12 profile-popover-text-light" href="#">Logout</a>
+                <a class="col-12 profile-popover-text-light" href="signup-talent.html">Logout</a>
             </div>
         </div>
     </div>
@@ -551,11 +551,11 @@
                             <div class="card-text-box d-flex justify-content-center align-items-center mb-2">
                                 <p class="card-title d-block blue mb-0 mr-auto">File Upload</p>
                                 <div class="card-btn-box d-flex justify-content-center align-items-center">
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white">
-                                        <a class="text-decoration-none" href="#">Cancel</a>
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white" onclick="hide_modal1();">
+                                        <a class="text-decoration-none">Cancel</a>
                                     </div>
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center">
-                                            <a href="#">Save</a>
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal1();">
+                                            <a>Save</a>
                                     </div>
                                 </div>
                             </div>
@@ -657,11 +657,11 @@
                                 <p class="card-title d-block blue mb-0">Delete File</p>
                                 <p class="card-text">Are your sure want to delete this?</p>
                                 <div class="card-btn-box d-flex">
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-auto white text-decoration-none">
-                                        <a class="text-decoration-none" href="#">Cancel</a>
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-auto white text-decoration-none" onclick="hide_modal2();">
+                                        <a class="text-decoration-none">Cancel</a>
                                     </div>
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center">
-                                            <a href="#">Delete</a>
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal2();">
+                                            <a>Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -682,10 +682,10 @@
                             <div class="card-text-box d-flex justify-content-center align-items-center mb-2">
                                 <p class="card-title d-block blue mb-0 mr-auto">Add Your Skill</p>
                                 <div class="card-btn-box d-flex justify-content-center align-items-center">
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white" onclick="hide_modal();">
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white" onclick="hide_modal3();">
                                         <a class="text-decoration-none" href="#">Cancel</a>
                                     </div>
-                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal();">
+                                    <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal3();">
                                             <a href="#">Save</a>
                                     </div>
                                 </div>
@@ -755,22 +755,33 @@
             talent.classList.remove("d-none");
             editTalent.classList.add("d-none");
         }
-        function hide_modal() {
+        function hide_modal1() {
+            $('#modal1').trigger('click');
+        }
+        function hide_modal2() {
+            $('#modal2').trigger('click');
+        }
+        function hide_modal3() {
             $('#modal3').trigger('click');
         }
-        const list = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        list.map((el) => {
-            let opts = {
-                animation: false,
+        $('[data-bs-toggle="popover1"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content').html();
             }
-            if (el.hasAttribute('data-bs-content-id')) {
-                opts.content = document.getElementById(el.getAttribute('data-bs-content-id')).innerHTML;
-                opts.html = true;
-                opts.placement = "bottom";
-
+        }).click(function (e) {
+            $('[data-bs-toggle="popover1"]').not(this).popover('hide');
+        });
+        $('[data-bs-toggle="popover2"]').popover({
+            html: true,
+            placement: "bottom",
+            content: function () {
+                return $('#popover-content2').html();
             }
-            new bootstrap.Popover(el, opts);
-        })
+        }).click(function (e) {
+            $('[data-bs-toggle="popover2"]').not(this).popover('hide');
+        });
     </script>
 </body>
 
