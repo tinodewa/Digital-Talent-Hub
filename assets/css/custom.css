@@ -1,5 +1,11 @@
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-Regular.otf") format("opentype");
+  }
+
 body {
     background: #F7F7F7;
+    font-family: poopins;
 }
 
 body.white{
