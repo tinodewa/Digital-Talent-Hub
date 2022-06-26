@@ -1,7 +1,72 @@
 @font-face {
     font-family: poopins;
     src: url("../font/Poppins-Regular.otf") format("opentype");
-  }
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-Italic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-LightItalic.otf") format("opentype");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-MediumItalic.otf") format("opentype");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-SemiBold.otf") format("opentype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-SemiBoldItalic.otf") format("opentype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: poopins;
+    src: url("../font/Poppins-BoldItalic.otf") format("opentype");
+    font-weight: 700;
+    font-style: italic;
+}
 
 body {
     background: #F7F7F7;
@@ -220,7 +285,6 @@ body.white{
 /* EXPERIENCE */
 .experience-section {
     padding: 50px 0;
-    background: #d9d9d9;
 }
 
 .experience-title {
@@ -241,6 +305,7 @@ body.white{
     width: 500px;
     border-radius: 30px;
     margin: 0 auto;
+    border: none;
 }
 
 .experience-section .card-img-box {
@@ -248,7 +313,7 @@ body.white{
 }
 
 .experience-section .card-img-box .card-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
+    background-image: url("../img/experience.png");
     width: 120px;
     height: 120px;
     border-radius: 20px;
@@ -261,16 +326,16 @@ body.white{
 .experience-section .card-title {
     font-weight: 600;
     font-size: 16px;
-    text-decoration: underline;
     color: #746f6f;
     margin: 0;
 }
 
+.card-text {
+    color: #746f6f;
+}
 .experience-section .card-text {
     font-weight: 400;
-    text-decoration: underline;
     font-size: 14px;
-    color: #746f6f;
     margin: 0;
 }
 
@@ -408,19 +473,19 @@ body.white{
 }
 
 /* ABOUT US */
-.about-section {
-    background: #e5e5e5;
-    margin: 40px;
+.about-section {    
+    background: #c4c4c42B;
+    padding: 40px;
 }
 
 .about-section .card {
     border: none;
     margin: 80px auto;
-    background: #F7F7F7;
+    background: #c4c4c400;
 }
 
 .about-section .card-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
+    background-image: url("../img/about-us.png");
     width: 400px;
     position: relative;
     height: 300px;
@@ -444,10 +509,9 @@ body.white{
 }
 
 .about-section .card-text {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 18px;
-    color: #746f6f;
     text-align: justify;
 }
 
@@ -463,7 +527,7 @@ body.white{
 }
 
 .footer-section img {
-    width: 100px;
+    width: 78px;
     margin-bottom: 20px;
 }
 
@@ -480,6 +544,11 @@ body.white{
     font-weight: 400;
     line-height: 21px;
     color: #ffffff;
+}
+
+.footer-section .footer-digitalent {
+    width:162.71px;
+    height:58.12px;
 }
 
 /* SIGNUP */
@@ -825,7 +894,28 @@ body.white{
 }
 
 .card-section .card-company-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
+    width: 225px;
+    height: 175px;
+    margin: 0 auto;
+    background-origin: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-section .card-company-img.first {
+    background-image: url("../img/company-1.png");
+    width: 225px;
+    height: 175px;
+    margin: 0 auto;
+    background-origin: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-section .card-company-img.second {
+    background-image: url("../img/company-2.png");
     width: 225px;
     height: 175px;
     margin: 0 auto;
@@ -1003,7 +1093,6 @@ body.white{
 .talent-file .card-text {
     font-size: 14px;
     line-height: 21px;
-    color: #746F6F;
 }
 
 .talent-bio .card {
@@ -1319,7 +1408,6 @@ body.white{
     font-weight: 400;
     font-size: 12px;
     line-height: 18px;
-    color: #746F6F;
 }
 
 .card.notification-message .notification-message-sender {
@@ -1579,6 +1667,35 @@ body.white{
     padding: 20px 0;
 }
 
+.partner-section {
+    margin-bottom: 0;
+}
+
+.card-section.partner-section .card-img {
+    background-image: url(../img/gisua-lg.png);
+    width: 300px;
+    position: relative;
+    height: 295px;
+    margin: 0 auto;
+    background-origin: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card-section.partner-section .partner-title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #ABABAB;
+    margin-top: 80px;
+    margin-bottom: 32px;
+}
+
+.card-section.partner-section .card {    
+    box-shadow: 0px 20px 60px rgb(0 0 0 / 8%);
+}
+
 @media (min-width: 1300px) {
     .carousel-indicators {
         margin-right: 25%;
@@ -1675,6 +1792,19 @@ body.white{
     .card-section .icon-edit {
         transform: translateX(25px);
     }
+
+    .card-section.partner-section .card-img {
+        width: 250px;
+        height: 246px;
+    }
+
+    .jumbotron-img-bg {
+        width: 600px;
+    }
+
+    .form-banner .jumbotron-img-person {
+        width: 500px;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -1686,8 +1816,8 @@ body.white{
         font-size: 20px;
     }
 
-    .jumbotron-img-person {
-        width: 425px;
+    .form-banner .jumbotron-img-person {
+        width: 400px;
     }
 
     .jumbotron-header-box button {
@@ -1767,6 +1897,10 @@ body.white{
     .talent-file.talent-activity .card > .card-section .card {
         padding: 0;
     }
+    
+    .card-section.partner-section .card-img {
+        margin-bottom: 32px;
+    }
 }
 
 @media (max-width: 875px) {
@@ -1829,7 +1963,6 @@ body.white{
     }
 
     .footer-section img {
-        margin-bottom: 0;
         width: 75px;
     }
 
@@ -1871,6 +2004,18 @@ body.white{
     .card-section.talent-activity .card-img {
         width: 150px;
         height: 150px;
+    }
+
+    .form-section .form-banner {
+        display: none;
+    }
+
+    .form-section .form-box {
+        margin-top: 40px;
+    }
+
+    .form-box button {
+        margin-right: 0;
     }
 
 }
