@@ -8,8 +8,6 @@ class Company extends CI_Controller {
 			'title' => 'Dashboard | Digitalent',
 		];
 
-<<<<<<< Updated upstream
-=======
 		$dataCompanyDB = $this->M_Company->getCompany();
 		$data['dataCompany'] = array();
 
@@ -21,7 +19,6 @@ class Company extends CI_Controller {
 					$dataSkillDB,
 					array(
 						'NAMA_SKILL' => $ItemDB2->nama_skill
-						
 					)
 				);
 			}
@@ -36,7 +33,6 @@ class Company extends CI_Controller {
 			);
 		}
 
->>>>>>> Stashed changes
 		$this->load->view('layout/company_dashboard', $data);
 	}
 
