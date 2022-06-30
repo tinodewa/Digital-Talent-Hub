@@ -3,10 +3,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Company extends CI_Controller {
 
+	function __construct(){
+
+		parent::__construct();
+		$this->load->model('M_Company');
+		$this->load->helper('url', 'time_ago');
+		$this->load->helper(array('string', 'text'));
+		$this->load->library('form_validation');
+		$this->load->library('session');
+		$this->load->library('pagination');   
+		if ($this->session->userdata('id_user') == null) {
+			redirect('Login');
+		}         
+	}
+
 	public function index() {
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
+
+		$dataCompanyDB = $this->M_Company->getCompany();
+		$data['dataCompany'] = array();
+
+		foreach($dataCompanyDB as $ItemDB1){
+			$dataPskDB = $this->M_Company->getTalentCompany($ItemDB1->id_project);
+			$dataSkillDB = array();
+			foreach($dataPskDB as $ItemDB2){
+				array_push(
+					$dataSkillDB,
+					array(
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
+			array_push(
+				$data['dataCompany'],
+				array(
+					'NAMA_COMPANY' => $ItemDB1->nama_company,
+					'NAMA_PROJECT' => $ItemDB1->nama_project,
+					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
+					'SKILL_PROJECT' => $dataSkillDB
+				)
+			);
+		}
 
 		$this->load->view('layout/company_dashboard', $data);
 	}
@@ -49,5 +88,14 @@ class Company extends CI_Controller {
 		];
 
 		$this->load->view('layout/company_applicant_profile', $data);
+	}
+
+	public function limit_text($text, $limit) {
+		if (str_word_count($text, 0) > $limit) {
+			$words = str_word_count($text, 2);
+			$pos   = array_keys($words);
+			$text  = substr($text, 0, $pos[$limit]) . '...';
+		}
+		return $text;
 	}
 }
