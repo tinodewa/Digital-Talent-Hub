@@ -8,6 +8,35 @@ class Company extends CI_Controller {
 			'title' => 'Dashboard | Digitalent',
 		];
 
+<<<<<<< Updated upstream
+=======
+		$dataCompanyDB = $this->M_Company->getCompany();
+		$data['dataCompany'] = array();
+
+		foreach($dataCompanyDB as $ItemDB1){
+			$dataPskDB = $this->M_Company->getTalentCompany($ItemDB1->id_project);
+			$dataSkillDB = array();
+			foreach($dataPskDB as $ItemDB2){
+				array_push(
+					$dataSkillDB,
+					array(
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+						
+					)
+				);
+			}
+			array_push(
+				$data['dataCompany'],
+				array(
+					'NAMA_COMPANY' => $ItemDB1->nama_company,
+					'NAMA_PROJECT' => $ItemDB1->nama_project,
+					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
+					'SKILL_PROJECT' => $dataSkillDB
+				)
+			);
+		}
+
+>>>>>>> Stashed changes
 		$this->load->view('layout/company_dashboard', $data);
 	}
 
