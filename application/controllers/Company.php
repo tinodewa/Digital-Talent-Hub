@@ -21,7 +21,6 @@ class Company extends CI_Controller {
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
-		
 		$dataCompanyDB = $this->M_Company->getCompany();
 		$data['dataCompany'] = array();
 
@@ -46,7 +45,6 @@ class Company extends CI_Controller {
 				)
 			);
 		}
-		
 		$this->load->view('layout/company_dashboard', $data);
 	}
 
