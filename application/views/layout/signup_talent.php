@@ -20,6 +20,10 @@
             <p class="form-title">Sign Up</p><p class="form-subtitle">Be A Talent</p>
             <form class="d-flex justify-content-centers align-items-start" action="talent-dashboard.html">
                 <div class="form-group mb-3">
+                    <label class="form-label" for="username">Nama Talent</label>
+                    <input placeholder="Nama Talent" type="text" class="form-control" id="nama_talent" required="true">
+                </div>
+                <div class="form-group mb-3">
                     <label class="form-label" for="email">Email</label>
                     <input placeholder="Email" type="text" class="form-control" id="email" required="true">
                 </div>

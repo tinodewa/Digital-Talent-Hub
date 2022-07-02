@@ -10,5 +10,10 @@
                 return $query->row();
             }
         }
+
+
+        function RegistCompany($data){
+            return $this->db->insert('company', $data);
+        }
     }
 ?>

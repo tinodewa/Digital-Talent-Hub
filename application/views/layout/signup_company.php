@@ -20,17 +20,21 @@
             <p class="form-title">Sign Up</p><p class="form-subtitle">Hire A Talent</p>
             <form class="d-flex justify-content-centers align-items-start" action="<?= site_url('company') ?>">
                 <div class="form-group mb-3">
+                    <label class="form-label" for="username">Nama Company</label>
+                    <input placeholder="Nama Company" type="text" class="form-control" id="username" name="nama_company" required="true">
+                </div>
+                <div class="form-group mb-3">
                     <label class="form-label" for="email">Email</label>
-                    <input placeholder="Email" type="text" class="form-control" id="email" required="true">
+                    <input placeholder="Email" type="text" class="form-control" id="email" name="email" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Username</label>
-                    <input placeholder="Username" type="text" class="form-control" id="username" required="true">
+                    <input placeholder="Username" type="text" class="form-control" id="username" name="username" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="password">Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input placeholder="Password" type="password" class="form-control" id="password" required="true">
+                        <input placeholder="Password" type="password" class="form-control" id="password" name="password" required="true">
                         <div class="input-group-append">
                             <span class="input-group-text" onclick="password_show_hide();">
                                 <img src="<?= base_url('assets/img/eye.svg') ?>" id="show_eye" alt="icon show password">

@@ -82,6 +82,35 @@ class Main extends CI_Controller
 
 	public function signuptalent()
 	{
+		$config = array(
+			array('field' => 'nama_company', 'label' => 'nama_company', 'rules' => 'required'),
+			array('field' => 'email', 'label' => 'email', 'rules' => 'required'),
+			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
+			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+		);
+
+		$this->form_validation->set_rules($config);
+
+		if ($this->form_validation->run()) {			
+			$password = $this->encryptIt($_POST['password']);
+			$id_com = $this->generateRandomString($_POST['nama_company']);
+
+			$dataRegistCompany = array(
+				'id_company' => 'Comp_'.$id_com,
+				'nama_company' => $_POST['nama_company'],
+				'email_company' => $_POST["email"],
+				'username_company' => $_POST["username"],
+				'password' => $password
+			);
+			$this->M_Main->RegistCompany($dataRegistCompany);
+			var_dump($dataRegistCompany);
+		} else {
+			$data['meta'] = [
+				'title' => 'Sign Up | Digitalent',
+			];
+	
+			$this->load->view('layout/signup_talent', $data);
+		}
 		$data['meta'] = [
 			'title' => 'Sign Up | Digitalent',
 		];
@@ -91,11 +120,36 @@ class Main extends CI_Controller
 
 	public function signupcompany()
 	{
-		$data['meta'] = [
-			'title' => 'Sign Up | Digitalent',
-		];
+		$config = array(
+			array('field' => 'nama_company', 'label' => 'nama_company', 'rules' => 'required'),
+			array('field' => 'email', 'label' => 'email', 'rules' => 'required'),
+			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
+			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+		);
 
-		$this->load->view('layout/signup_company', $data);
+		$this->form_validation->set_rules($config);
+
+		if ($this->form_validation->run()) {			
+			$password = $this->encryptIt($_POST['password']);
+			$id_com = $this->generateRandomString($_POST['nama_company']);
+
+			$dataRegistCompany = array(
+				'id_company' => 'Comp_'.$id_com,
+				'nama_company' => $_POST['nama_company'],
+				'email_company' => $_POST["email"],
+				'username_company' => $_POST["username"],
+				'password' => $password
+			);
+			$this->M_Main->RegistCompany($dataRegistCompany);
+			var_dump($dataRegistCompany);
+		} else {
+			$data['meta'] = [
+				'title' => 'Sign Up | Digitalent',
+			];
+	
+			$this->load->view('layout/signup_company', $data);
+		}
+		
 	}
 	
     public function encryptIt($q)
@@ -103,4 +157,9 @@ class Main extends CI_Controller
         $qEncoded = base64_encode(md5($q));
         return ($qEncoded);
     }
+
+	public function generateRandomString($string) {
+		$qEncoded = base64_encode($string);
+        return ($qEncoded);
+	}
 }
