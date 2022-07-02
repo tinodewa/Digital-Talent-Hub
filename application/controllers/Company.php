@@ -25,7 +25,7 @@ class Company extends CI_Controller
 		$data['dataCompany'] = array();
 
 		foreach ($dataCompanyDB as $ItemDB1) {
-			$dataPskDB = $this->M_Company->getTalentCompany($ItemDB1->id_project);
+			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
 			$dataSkillDB = array();
 			foreach ($dataPskDB as $ItemDB2) {
 				array_push(
