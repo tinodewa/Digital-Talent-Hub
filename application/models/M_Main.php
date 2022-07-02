@@ -11,9 +11,12 @@
             }
         }
 
-
         function RegistCompany($data){
             return $this->db->insert('company', $data);
+        }
+
+        function RegistTalent($data){
+            return $this->db->insert('talent', $data);
         }
     }
 ?>

@@ -84,7 +84,7 @@ class Main extends CI_Controller
 	public function signuptalent()
 	{
 		$config = array(
-			array('field' => 'nama_company', 'label' => 'nama_company', 'rules' => 'required'),
+			array('field' => 'nama_talent', 'label' => 'nama_talent', 'rules' => 'required'),
 			array('field' => 'email', 'label' => 'email', 'rules' => 'required'),
 			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
 			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
@@ -94,17 +94,16 @@ class Main extends CI_Controller
 
 		if ($this->form_validation->run()) {			
 			$password = $this->encryptIt($_POST['password']);
-			$id_com = $this->generateRandomString($_POST['nama_company']);
+			$id_com = $this->generateRandomString($_POST['nama_talent']);
 
-			$dataRegistCompany = array(
-				'id_company' => 'Comp_'.$id_com,
-				'nama_company' => $_POST['nama_company'],
-				'email_company' => $_POST["email"],
-				'username_company' => $_POST["username"],
+			$dataRegistTalent = array(
+				'id_talent' => 'Talent_'.$id_com,
+				'nama_talent' => $_POST['nama_talent'],
+				'email_talent' => $_POST["email"],
+				'username' => $_POST["username"],
 				'password' => $password
 			);
-			$this->M_Main->RegistCompany($dataRegistCompany);
-			var_dump($dataRegistCompany);
+			$this->M_Main->RegistTalent($dataRegistTalent);
 		} else {
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',
@@ -112,11 +111,6 @@ class Main extends CI_Controller
 	
 			$this->load->view('layout/signup_talent', $data);
 		}
-		$data['meta'] = [
-			'title' => 'Sign Up | Digitalent',
-		];
-
-		$this->load->view('layout/signup_talent', $data);
 	}
 
 	public function signupcompany()
@@ -142,7 +136,6 @@ class Main extends CI_Controller
 				'password' => $password
 			);
 			$this->M_Main->RegistCompany($dataRegistCompany);
-			var_dump($dataRegistCompany);
 		} else {
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',

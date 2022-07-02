@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Talent extends CI_Controller {
 
+	function __construct() {
+
+		parent::__construct();
+		$this->load->model('M_Talent');
+		$this->load->helper(array('string', 'text', 'url'));
+		$this->load->library(array('form_validation', 'session'));
+		if ($this->session->userdata('ID_COMPANY') == null) {
+			redirect('login');
+		}
+
+	}
+
 	public function index() {
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
