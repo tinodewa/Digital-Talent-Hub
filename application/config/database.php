@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'talenthub_db',
+	'hostname' => 'db.badabes.my.id',
+	'username' => 'dth',
+	'password' => '1sampaidth',
+	'database' => 'dth_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

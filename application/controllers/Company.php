@@ -7,14 +7,11 @@ class Company extends CI_Controller {
 
 		parent::__construct();
 		$this->load->model('M_Company');
-		$this->load->helper('url', 'time_ago');
-		$this->load->helper(array('string', 'text'));
-		$this->load->library('form_validation');
-		$this->load->library('session');
-		$this->load->library('pagination');   
-		if ($this->session->userdata('id_user') == null) {
-			redirect('Login');
-		}         
+		$this->load->helper(array('string', 'text', 'url'));
+		$this->load->library(array('form_validation', 'session'));
+        if ($this->session->userdata('ID_COMPANY') == null) {
+            redirect('login');
+        }
 	}
 
 	public function index() {
@@ -41,6 +38,7 @@ class Company extends CI_Controller {
 					'NAMA_COMPANY' => $ItemDB1->nama_company,
 					'NAMA_PROJECT' => $ItemDB1->nama_project,
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
+					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
 					'SKILL_PROJECT' => $dataSkillDB
 				)
 			);

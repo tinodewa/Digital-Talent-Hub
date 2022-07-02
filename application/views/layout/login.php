@@ -18,20 +18,20 @@
         <div class="form-box">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <p class="form-title">Login</p>
-            <form class="d-flex justify-content-center align-items-center align-items-md-start">
+            <?php echo $this->session->flashdata('msg_error_login'); ?>
+            <form action="<?= base_url('Main/login'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Username</label>
-                    <input placeholder="Username" type="text" class="form-control" id="username" required="true">
+                    <input placeholder="Username" type="text" class="form-control" id="username" name="username" required="true">
                 </div>
                 <div class="form-group mb-0">
                     <label class="form-label" for="password">Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input placeholder="Password" type="password" class="form-control" id="password" required="true">
+                        <input placeholder="Password" type="password" class="form-control" id="password" name="password" required="true">
                         <div class="input-group-append">
                             <span class="input-group-text" onclick="password_show_hide();">
                                 <img src="<?= base_url('assets/img/eye.svg') ?>" id="show_eye" alt="icon show password">
-                                <img class="d-none" src="<?= base_url('assets/img/eye-slash.svg') ?>" id="hide_eye"
-                                    alt="icon hide password">
+                                <img class="d-none" src="<?= base_url('assets/img/eye-slash.svg') ?>" id="hide_eye" alt="icon hide password">
                             </span>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             </form>
         </div>
     </section>
-    
+
     <?php $this->load->view('_partials/js.php') ?>
     <script>
         function password_show_hide() {
@@ -66,6 +66,6 @@
             }
         }
     </script>
-</body >
+</body>
 
-</html >
+</html>
