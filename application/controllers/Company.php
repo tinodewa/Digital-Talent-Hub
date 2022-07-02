@@ -76,6 +76,27 @@ class Company extends CI_Controller
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run()) {
+			$SkillData = $_POST['skill'];
+			$id_projc = $this->generateRandomString($_POST['projectName']);
+			
+			$dataNewCompany = array(
+				'id_project' => 'Proj_'.$id_projc,
+				'nama_project' => $_POST['projectName'],
+				'deskripsi_project' => $_POST['projectDesc'],
+				'id_company' => $this->session->userdata('ID_COMPANY')
+			);
+			if ($this->M_Company->InsertProject($dataNewCompany)) {
+				foreach($SkillData as $ItemSkill){
+					$id_pjks = $this->generateRandomString($ItemSkill.$_POST['projectName']);
+					$dataNewCompanySkill = array(
+						'id_project_skill' => 'Pjks_'.$id_pjks,
+						'id_project' => 'Proj_'.$id_projc,
+						'id_skill' => $ItemSkill
+					);
+					$this->M_Company->InsertProjectSkill($dataNewCompanySkill);
+				}
+			}
+			redirect('company');
 		} else {
 			$data['meta'] = [
 				'title' => 'Post Project | Digitalent',
@@ -112,5 +133,10 @@ class Company extends CI_Controller
 			$text  = substr($text, 0, $pos[$limit]) . '...';
 		}
 		return $text;
+	}
+
+	public function generateRandomString($string) {
+		$qEncoded = base64_encode($string);
+        return ($qEncoded);
 	}
 }

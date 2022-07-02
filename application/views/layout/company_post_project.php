@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="card-text-box">
                             <p class="card-title d-block blue mb-4 text-center">Build your team with qualified talents</p>
-                            <form action="<?= site_url('company') ?>">
+                            <form action="<?= base_url('company/post-project'); ?>" method="POST">
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="projectName">Name a Project</label>
                                     <input placeholder="Name a Project" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectName" name="projectName" aria-describedby="projectName" required>
@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="ProjectNeeded">Skill Needed for The Project</label>
-                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple">
+                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
                                         <?php foreach($skill as $dataSkill){ ?>
                                             <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>"><?= $dataSkill->nama_skill; ?></option>
                                         <?php }?>

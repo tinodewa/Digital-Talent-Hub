@@ -22,5 +22,15 @@
             $this->db->select('skill.*');
             return $this->db->get("skill")->result();
         }
+
+        public function InsertProject($data)
+        {
+            return $this->db->insert('project', $data);
+        }
+
+        public function InsertProjectSkill($data)
+        {
+            return $this->db->insert('project_skill', $data);
+        }
     }
 ?>
