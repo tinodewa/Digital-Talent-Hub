@@ -38,7 +38,8 @@ class Main extends CI_Controller
 					array(
 						'ID_COMPANY' => $checking->id_company,
 						'USERNAME_COMPANY' => $checking->username_company,
-						'NAMA_COMPANY' => $checking->nama_company
+						'NAMA_COMPANY' => $checking->nama_company,
+						'PICT_COMPANY' => $checking->profile_pict_company
 					)
 				);
 				redirect('company');
@@ -53,7 +54,8 @@ class Main extends CI_Controller
 						array(
 							'ID_TALENT' => $checking->id_talent,
 							'USERNAME_TALENT' => $checking->username,
-							'NAMA_TALENT' => $checking->nama_talent
+							'NAMA_TALENT' => $checking->nama_talent,
+							'PICT_TALENT' => $checking->profile_pict_talent
 						)
 					);
 					redirect('talent');
@@ -64,7 +66,7 @@ class Main extends CI_Controller
                             <h5>Sorry Your Email and Password Not Match.</h5>
                         </div>'
                     );
-					redirect('');
+					redirect('login');
 				}
 			}
 		} else {

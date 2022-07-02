@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="col-8 d-flex justify-content-start align-items-center p-0 ml-2">
-                <p class="profile-popover-text-bold m-0">Wijaya Gunawan</p>
+                <p class="profile-popover-text-bold m-0">Wijaya</p>
             </div>
         </div>
         <div class="row mt-3">

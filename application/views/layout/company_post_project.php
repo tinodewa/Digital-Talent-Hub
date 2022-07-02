@@ -29,12 +29,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="ProjectNeeded">Skill Needed for The Project</label>
-                                    <select class="form-control card-item-box js-example-basic-multiple">
-
-                                    <?php foreach($skill as $dataSkill){ ?>
-                                        <option>$dataSkill->nama_skill</option>
-                                    <?php }?>
-                                        <!-- <div class="activity-skills d-flex align-items-center flex-wrap ">
+                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple">
+                                        <?php foreach($skill as $dataSkill){ ?>
+                                            <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>"><?= $dataSkill->nama_skill; ?></option>
+                                        <?php }?>
+                                    </select>
+                                    <!-- <div class="form-control card-item-box">
+                                        <div class="activity-skills d-flex align-items-center flex-wrap ">
                                             <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
                                                 Graphic Designer
                                                 <span class="icon-remove"></span>
@@ -46,8 +47,8 @@
                                             <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
                                                 <span class="icon-add"></span>
                                             </div>
-                                        </div> -->
-                                    </select>
+                                        </div>
+                                    </div> -->
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary mr-auto ml-auto mt-4 d-flex justify-content-center align-items-center">Post Project</button>
