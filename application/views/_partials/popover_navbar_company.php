@@ -108,7 +108,7 @@
         </div>
         <div class="divider"></div>
         <div class="row mt-2">
-            <a class="col-12 profile-popover-text-light" href="<?= site_url('login') ?>">Logout</a>
+            <a class="col-12 profile-popover-text-light" href="<?= base_url('Main/logout') ?>">Logout</a>
         </div>
     </div>
 </div>

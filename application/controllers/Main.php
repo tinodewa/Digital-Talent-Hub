@@ -64,6 +64,7 @@ class Main extends CI_Controller
                             <h5>Sorry Your Email and Password Not Match.</h5>
                         </div>'
                     );
+					redirect('');
 				}
 			}
 		} else {
@@ -98,6 +99,12 @@ class Main extends CI_Controller
 		$this->load->view('layout/signup_company', $data);
 	}
 	
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('login');
+	}
+
     public function encryptIt($q)
     {
         $qEncoded = base64_encode(md5($q));

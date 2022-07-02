@@ -1,30 +1,33 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Company extends CI_Controller {
+class Company extends CI_Controller
+{
 
-	function __construct(){
+	function __construct()
+	{
 
 		parent::__construct();
 		$this->load->model('M_Company');
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
-        if ($this->session->userdata('ID_COMPANY') == null) {
-            redirect('login');
-        }
+		if ($this->session->userdata('ID_COMPANY') == null) {
+			redirect('login');
+		}
 	}
 
-	public function index() {
+	public function index()
+	{
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
 		$dataCompanyDB = $this->M_Company->getCompany();
 		$data['dataCompany'] = array();
 
-		foreach($dataCompanyDB as $ItemDB1){
+		foreach ($dataCompanyDB as $ItemDB1) {
 			$dataPskDB = $this->M_Company->getTalentCompany($ItemDB1->id_project);
 			$dataSkillDB = array();
-			foreach($dataPskDB as $ItemDB2){
+			foreach ($dataPskDB as $ItemDB2) {
 				array_push(
 					$dataSkillDB,
 					array(
@@ -46,7 +49,8 @@ class Company extends CI_Controller {
 		$this->load->view('layout/company_dashboard', $data);
 	}
 
-    public function profile() {
+	public function profile()
+	{
 		$data['meta'] = [
 			'title' => 'Profile | Digitalent',
 		];
@@ -54,7 +58,8 @@ class Company extends CI_Controller {
 		$this->load->view('layout/company_profile', $data);
 	}
 
-    public function project() {
+	public function project()
+	{
 		$data['meta'] = [
 			'title' => 'Project | Digitalent',
 		];
@@ -62,15 +67,27 @@ class Company extends CI_Controller {
 		$this->load->view('layout/company_project', $data);
 	}
 
-    public function postproject() {
-		$data['meta'] = [
-			'title' => 'Post Project | Digitalent',
-		];
+	public function postproject()
+	{
+		$config = array(
+			array('field' => 'projectName', 'label' => 'projectName', 'rules' => 'required'),
+			array('field' => 'projectDesc', 'label' => 'projectDesc', 'rules' => 'required'),
+			array('field' => 'projectSalery', 'label' => 'projectSalery', 'rules' => 'required')
+		);
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run()) {
+		} else {
+			$data['meta'] = [
+				'title' => 'Post Project | Digitalent',
+			];
+			$data['skill'] = $this->M_Company->getSkill();
 
-		$this->load->view('layout/company_post_project', $data);
+			$this->load->view('layout/company_post_project', $data);
+		}
 	}
 
-    public function listapplicant() {
+	public function listapplicant()
+	{
 		$data['meta'] = [
 			'title' => 'List Applicant | Digitalent',
 		];
@@ -78,7 +95,8 @@ class Company extends CI_Controller {
 		$this->load->view('layout/company_list_applicant', $data);
 	}
 
-    public function applicantprofile() {
+	public function applicantprofile()
+	{
 		$data['meta'] = [
 			'title' => 'Applicant Profile | Digitalent',
 		];
@@ -86,7 +104,8 @@ class Company extends CI_Controller {
 		$this->load->view('layout/company_applicant_profile', $data);
 	}
 
-	public function limit_text($text, $limit) {
+	public function limit_text($text, $limit)
+	{
 		if (str_word_count($text, 0) > $limit) {
 			$words = str_word_count($text, 2);
 			$pos   = array_keys($words);
