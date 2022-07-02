@@ -17,20 +17,24 @@
                             <form action="<?= site_url('company') ?>">
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="projectName">Name a Project</label>
-                                    <input placeholder="Name a Project" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectName" aria-describedby="projectName" required>
+                                    <input placeholder="Name a Project" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectName" name="projectName" aria-describedby="projectName" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="projectDesc">Descripble More</label>
-                                    <textarea class="form-control input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectDesc" placeholder="Max 300 Character" required rows="4"></textarea>
+                                    <textarea class="form-control input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectDesc" name="projectDesc" placeholder="Max 300 Character" required rows="4"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="projectSalery">Salery</label>
-                                    <input placeholder="Salery" type="text" class="form-control input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectSalery" aria-describedby="projectSalery" required>
+                                    <input placeholder="Salery" type="text" class="form-control input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectSalery" name="projectSalery" aria-describedby="projectSalery" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="ProjectNeeded">Skill Needed for The Project</label>
-                                    <div class="form-control card-item-box">
-                                        <div class="activity-skills d-flex align-items-center flex-wrap">
+                                    <select class="form-control card-item-box js-example-basic-multiple">
+
+                                    <?php foreach($skill as $dataSkill){ ?>
+                                        <option>$dataSkill->nama_skill</option>
+                                    <?php }?>
+                                        <!-- <div class="activity-skills d-flex align-items-center flex-wrap ">
                                             <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
                                                 Graphic Designer
                                                 <span class="icon-remove"></span>
@@ -42,8 +46,8 @@
                                             <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
                                                 <span class="icon-add"></span>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> -->
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary mr-auto ml-auto mt-4 d-flex justify-content-center align-items-center">Post Project</button>
@@ -70,7 +74,7 @@
                                         <a class="text-decoration-none" href="#">Cancel</a>
                                     </div>
                                     <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal3();">
-                                            <a href="#">Save</a>
+                                        <a href="#">Save</a>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +123,11 @@
 
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_company.php') ?>
-    <script>    
+    <script>
+        $('.js-example-basic-multiple').select2({
+            placeholder: 'Select Skill'
+        });
+
         function hide_modal3() {
             $('#modal3').trigger('click');
         }

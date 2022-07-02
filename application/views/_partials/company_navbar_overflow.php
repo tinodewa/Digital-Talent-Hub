@@ -9,7 +9,7 @@
 
                 </a>
                 <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">
-                    <div class="navbar-img"></div>
+                    <div style="background-image: url(https://i.pinimg.com/564x/61/63/ed/6163edc912e4ae0442985c8a7241ddb2.jpg);" class="navbar-img"></div>
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
