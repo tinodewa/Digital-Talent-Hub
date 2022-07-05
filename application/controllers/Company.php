@@ -36,7 +36,7 @@ class Company extends CI_Controller
 				);
 			}
 			array_push(
-				$data['dataCompany'],
+				$data['dataProject'],
 				array(
 					'NAMA_COMPANY' => $ItemDB1->nama_company,
 					'NAMA_PROJECT' => $ItemDB1->nama_project,

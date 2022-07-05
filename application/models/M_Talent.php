@@ -1,11 +1,10 @@
 <?php
     class M_Talent extends CI_Model{       
         
-        public function getproject()
+        public function getProject()
         {
-            $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project');
+            $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project, project.salary');
             $this->db->join('company', 'company.id_company = project.id_company', 'LEFT OUTER');
-            $this->db->where('company.id_company', $this->session->userdata('ID_COMPANY'));
             return $this->db->get("project")->result();
         }
 

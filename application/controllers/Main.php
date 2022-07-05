@@ -52,10 +52,10 @@ class Main extends CI_Controller
 				if ($checking2) {
 					$this->session->set_userdata(
 						array(
-							'ID_TALENT' => $checking->id_talent,
-							'USERNAME_TALENT' => $checking->username,
-							'NAMA_TALENT' => $checking->nama_talent,
-							'PICT_TALENT' => $checking->profile_pict_talent
+							'ID_TALENT' => $checking2->id_talent,
+							'USERNAME_TALENT' => $checking2->username,
+							'NAMA_TALENT' => $checking2->nama_talent,
+							'PICT_TALENT' => $checking2->profile_pict_talent
 						)
 					);
 					redirect('talent');
