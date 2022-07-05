@@ -9,7 +9,7 @@ class Talent extends CI_Controller {
 		$this->load->model('M_Talent');
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
-		if ($this->session->userdata('ID_COMPANY') == null) {
+		if ($this->session->userdata('ID_TALENT') == null) {
 			redirect('login');
 		}
 
