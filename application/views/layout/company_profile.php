@@ -17,11 +17,18 @@
                                 <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
+                                        <!-- new -->
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
-                                        </div>
+                                        </img>
+                                        <!-- old -->
+                                        <!-- <div class="card-img-circle card-img">
+                                            <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
+                                                <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -63,14 +70,20 @@
                         <div class="row w-100 mt-5 m-0 m-ms-2">
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <div class="card-company-img first">
-                                    </div>
+                                    <!-- new -->
+                                    <img src="<?= base_url('assets/img/company-1.png') ?>" class="card-company-img" alt="company picture">
+                                    <!-- old -->
+                                    <!-- <div class="card-company-img first">
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <div class="card-company-img second">
-                                    </div>
+                                    <!-- new -->
+                                    <img src="<?= base_url('assets/img/company-2.png') ?>" class="card-company-img" alt="company picture">
+                                    <!-- old -->
+                                    <!-- <div class="card-company-img second">
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">

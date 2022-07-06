@@ -9,6 +9,9 @@
 
                 </a>
                 <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">
+                    <!-- new -->
+                    <img src="<?php echo $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture">
+                    <!-- old -->
                     <div style="background-image: url(<?php echo $this->session->userdata('PICT_COMPANY'); ?>);" class="navbar-img"></div>
                 </a>
             </div>

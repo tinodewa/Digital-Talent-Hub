@@ -146,14 +146,10 @@ body.white{
 }
 
 .navbar-section .navbar-img-box .navbar-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
     width: 42px;
     height: 42px;
     border-radius: 80px;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .navbar-light .navbar-toggler {
@@ -313,14 +309,10 @@ body.white{
 }
 
 .experience-section .card-img-box .card-img {
-    background-image: url("../img/experience.png");
     width: 120px;
     height: 120px;
     border-radius: 20px;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .experience-section .card-title {
@@ -664,22 +656,18 @@ body.white{
 }
 
 .card-section .card-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
     width: 150px;
     position: relative;
     height: 150px;
-    border: 3px solid #ffffff80;
     margin: 0 auto;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .card-section.session-dashboard .card-img {
     width: 275px;
     height: 350px;
     border-radius: 38px;
+    margin-bottom: 20px;
 }
 
 .card-section.session-profile .card-img {
@@ -693,7 +681,7 @@ body.white{
 .card-section .card-img-subicon {
     position: absolute;
     bottom: -5px;
-    right: 0;
+    right: 10px;
     border: 1px solid #ABABAB;
     background-color: #ffffff;
     border-radius: 80px;
@@ -894,35 +882,10 @@ body.white{
 }
 
 .card-section .card-company-img {
-    width: 225px;
-    height: 175px;
+    width: 250px;
+    height: 200px;
     margin: 0 auto;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.card-section .card-company-img.first {
-    background-image: url("../img/company-1.png");
-    width: 225px;
-    height: 175px;
-    margin: 0 auto;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.card-section .card-company-img.second {
-    background-image: url("../img/company-2.png");
-    width: 225px;
-    height: 175px;
-    margin: 0 auto;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .card-section .card-img-box.empty {
@@ -1129,14 +1092,12 @@ body.white{
 }
 
 .card-section.talent-activity .card-img {
+    background: none;
     width: 90px;
     height: 90px;
     position: relative;
     margin: 0 auto;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .modal .talent-file .card {
@@ -1438,15 +1399,11 @@ body.white{
 }
 
 .profile-popover .navbar-img-box .navbar-img {
-    background-image: url("../img/IMG-20191005-WA0021_compressed\ 1.jpg");
     width: 42px;
     height: 42px;
     border-radius: 80px;
-    background-origin: border-box;
-    background-size: cover;
-    background-position: center;
     margin-left: 10px;
-    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 .card-section.profile-popover .btn {
