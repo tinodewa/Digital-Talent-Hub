@@ -100,11 +100,11 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="m-auto">
-                            <div class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
-                                <div id="editProfile" class="btn-icon-text-box" onclick="close_edit_project();">
+                            <button type="submit" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
+                                <div class="btn-icon-text-box" onclick="close_edit_project();">
                                     <a href="#" class="text-decoration-none">Save</a>
                                 </div>
-                            </div>
+                            </button>
                             <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_project();"><a href="#">Cancel</a>
                             </div>
                             <div class="card-text-box text-center">
@@ -115,10 +115,10 @@
                                 <div class="form-group">
                                     <label class="card-text" for="projectRegistration">Registration</label>
                                     <input placeholder="1 May - 1 June" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectRegistration" aria-describedby="projectRegistration" name="projectRegistration" value="<?php if ($data_detail_project['REGIST_PROJECT'] != "") {
-                                                                                                                                                                                                                                                echo $data_detail_project['REGIST_PROJECT'];
-                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                echo "-";
-                                                                                                                                                                                                                                            } ?>" required>
+                                                                                                                                                                                                                                                                            echo $data_detail_project['REGIST_PROJECT'];
+                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                            echo "-";
+                                                                                                                                                                                                                                                                        } ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -146,6 +146,10 @@
         }
     </script>
     <script>
+        $( "#editProfile" ).click(function() {
+            $( "#CompanyEdit" ).submit();
+        });
+
         $('.js-example-basic-multiple').select2({
             placeholder: 'Select Skill'
         });
