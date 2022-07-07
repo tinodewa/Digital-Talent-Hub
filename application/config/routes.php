@@ -53,7 +53,9 @@ $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login'] = 'main/login';
+$route['login-company'] = 'main/login_company';
+$route['login-talent'] = 'main/login_talent';
+$route['logout'] = 'main/logout';
 $route['sign-up-company'] = 'main/signupcompany';
 $route['sign-up-talent'] = 'main/signuptalent';
 

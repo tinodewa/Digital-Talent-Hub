@@ -20,7 +20,7 @@ class Main extends CI_Controller
 		$this->load->view('layout/main', $data);
 	}
 
-	public function login()
+	public function login_company()
 	{
 		$config = array(
 			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
@@ -44,30 +44,13 @@ class Main extends CI_Controller
 				);
 				redirect('company');
 			}else{
-				$dataLogin2 = array(
-					'username' => $_POST["username"], 
-					'password' => $this->encryptIt($_POST["password"])
+				$this->session->set_flashdata(
+					'msg_error_login',
+					'<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+						<h5>Sorry Your Email and Password Not Match.</h5>
+					</div>'
 				);
-				$checking2 = $this->M_Main->check_login('talent', $dataLogin2);
-				if ($checking2) {
-					$this->session->set_userdata(
-						array(
-							'ID_TALENT' => $checking->id_talent,
-							'USERNAME_TALENT' => $checking->username,
-							'NAMA_TALENT' => $checking->nama_talent,
-							'PICT_TALENT' => $checking->profile_pict_talent
-						)
-					);
-					redirect('talent');
-				}else{
-                    $this->session->set_flashdata(
-                        'msg_error_login',
-                        '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
-                            <h5>Sorry Your Email and Password Not Match.</h5>
-                        </div>'
-                    );
-					redirect('login');
-				}
+				redirect('login_talent');
 			}
 		} else {
 			if ($this->session->userdata('ID_COMPANY') != null) {
@@ -79,7 +62,53 @@ class Main extends CI_Controller
 			$data['meta'] = [
 				'title' => 'Login | Digitalent',
 			];
-			$this->load->view('layout/login', $data);
+			$this->load->view('layout/login_company', $data);
+		}
+	}
+
+	public function login_talent()
+	{
+		$config = array(
+			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
+			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+		);
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run()) {			
+			$dataLogin2 = array(
+				'username' => $_POST["username"], 
+				'password' => $this->encryptIt($_POST["password"])
+			);
+			$checking2 = $this->M_Main->check_login('talent', $dataLogin2);
+			if ($checking2) {
+				$this->session->set_userdata(
+					array(
+						'ID_TALENT' => $checking2->id_talent,
+						'USERNAME_TALENT' => $checking2->username,
+						'NAMA_TALENT' => $checking2->nama_talent,
+						'PICT_TALENT' => $checking2->profile_pict_talent
+					)
+				);
+				redirect('talent');
+			}else{
+				$this->session->set_flashdata(
+					'msg_error_login',
+					'<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+						<h5>Sorry Your Email and Password Not Match.</h5>
+					</div>'
+				);
+				redirect('login_talent');
+			}
+		} else {
+			if ($this->session->userdata('ID_COMPANY') != null) {
+				redirect('Company');
+			}else if ($this->session->userdata('ID_TALENT') != null) {
+				redirect('Talent');
+			}
+	
+			$data['meta'] = [
+				'title' => 'Login | Digitalent',
+			];
+			$this->load->view('layout/login_talent', $data);
 		}
 	}
 
@@ -151,7 +180,7 @@ class Main extends CI_Controller
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		redirect('login');
+		redirect('');
 	}
 
     public function encryptIt($q)

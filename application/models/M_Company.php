@@ -3,7 +3,7 @@
 
         public function getCompany()
         {
-            $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project');
+            $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project, project.salary');
             $this->db->join('company', 'company.id_company = project.id_company', 'LEFT OUTER');
             $this->db->where('company.id_company', $this->session->userdata('ID_COMPANY'));
             return $this->db->get("project")->result();
@@ -31,6 +31,14 @@
         public function InsertProjectSkill($data)
         {
             return $this->db->insert('project_skill', $data);
+        }
+
+        public function getCompanyDetail($id)
+        {
+            $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project, project.salary, project.registration_project');
+            $this->db->join('company', 'company.id_company = project.id_company', 'LEFT OUTER');
+            $this->db->where('project.id_project', $id);
+            return $this->db->get("project")->row();
         }
     }
 ?>

@@ -11,8 +11,9 @@
             <a href="<?= site_url('/') ?>">
                 <img class="justify-content-start" src="<?= base_url('assets/img/logo_talenthub.png') ?>" alt="logo digital talent hub">
             </a>
-            <a class="text-decoration-none" href="<?= site_url('login') ?>">
-                <button href="login.html" type="button" class="btn btn-primary d-flex align-items-center justify-content-center">Login</button>
+            <a class="text-decoration-none d-flex" href="<?= site_url('login-company') ?>">
+                <button type="button" class="btn btn-primary">Login Company</button>
+                <button type="button" class="btn btn-primary">Login Talent</button>
             </a>
         </div>
         <div class="jumbotron-fluid">

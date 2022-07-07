@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="row w-100 mt-5 m-0 m-ms-2">
+                        <div class="row w-100 mt-5 m-0 m-ms-2" id="image_galery">
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
                                     <div class="card-company-img first">
@@ -86,6 +86,7 @@
             </div>
         </div>
     </section>
+
     <section id="companyProfileEdit" class="card-section company-profile-edit d-none">
         <div class="container">
             <div class="card w-100">
@@ -98,8 +99,7 @@
                                     <div class="card-profile-img-box">
                                         <div class="card-img-circle">
                                             <div class="card-img-circle card-img">
-                                                <div id="OpenImgUpload" class="card-img-subicon"
-                                                    onclick="search_image();">
+                                                <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                     <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                                 </div>
                                             </div>
@@ -109,8 +109,7 @@
                                 <div class="col-md-8 col-lg-9">
                                     <div class="card-text-box">
                                         <div class="form-group">
-                                            <input placeholder="Company Name" type="text" class="form-control"
-                                                id="companyName" aria-describedby="companyName">
+                                            <input placeholder="Company Name" type="text" class="form-control" id="companyName" aria-describedby="companyName">
                                         </div>
                                         <div class="form-group w-50">
                                             <div class="input-group">
@@ -119,8 +118,7 @@
                                                         <img src="<?= base_url('assets/img/logos_whatsapp.png') ?>" alt="icon whatsapp">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Whatsapp" type="text" class="form-control"
-                                                    id="companyWhatsapp" aria-describedby="companyWhatsapp">
+                                                <input placeholder="Company Whatsapp" type="text" class="form-control" id="companyWhatsapp" aria-describedby="companyWhatsapp">
                                             </div>
                                         </div>
                                         <div class="form-group w-50">
@@ -130,8 +128,7 @@
                                                         <img src="<?= base_url('assets/img/logos_google-gmail.png') ?>" alt="icon gmail">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Gmail" type="email" class="form-control"
-                                                    id="companyGmail" aria-describedby="companyGmail">
+                                                <input placeholder="Company Gmail" type="email" class="form-control" id="companyGmail" aria-describedby="companyGmail">
                                             </div>
                                         </div>
                                         <div class="form-group w-50">
@@ -141,8 +138,7 @@
                                                         <img src="<?= base_url('assets/img/logos-website.png') ?>" alt="icon website">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Website" type="text" class="form-control"
-                                                    id="companyWebsite" aria-describedby="companyWebsite">
+                                                <input placeholder="Company Website" type="text" class="form-control" id="companyWebsite" aria-describedby="companyWebsite">
                                             </div>
                                         </div>
                                     </div>
@@ -156,8 +152,7 @@
                                         <a href="#">Save</a>
                                     </div>
                                 </div>
-                                <div class="btn btn-primary justify-content-end w-100 white"
-                                    onclick="close_edit_company();"><a href="#">Cancel</a>
+                                <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_company();"><a href="#">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -166,8 +161,7 @@
                                 About Us
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyAbout"
-                                    placeholder="Lorem ipsum" required rows="4"></textarea>
+                                <textarea class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyAbout" placeholder="Lorem ipsum" required rows="4"></textarea>
                             </div>
                         </div>
                     </div>
@@ -175,25 +169,46 @@
             </div>
         </div>
     </section>
-
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_company.php') ?>
     <script>
         function search_image() {
             $('#ImgUpload').trigger('click');
         }
+
         function edit_company() {
             var company = document.getElementById("companyProfile");
             var editcompany = document.getElementById("companyProfileEdit");
             company.classList.add("d-none");
             editcompany.classList.remove("d-none");
         }
+
         function close_edit_company() {
             var company = document.getElementById("companyProfile");
             var editcompany = document.getElementById("companyProfileEdit");
             company.classList.remove("d-none");
             editcompany.classList.add("d-none");
         }
+
+        $("#ImgUpload").on("change", function(e) {
+            var files = e.target.files;
+            var formData = new FormData();
+            formData.append('file',files[0]);
+
+            $.ajax({
+                url: '<?php echo base_url(); ?>Company/ApiUploadImageCompany',
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data:formData,
+                dataType: 'json',
+                success: function(response) {
+                    console.log('Success');
+                    console.log(response);
+                }
+            })
+        });
     </script>
 </body>
 

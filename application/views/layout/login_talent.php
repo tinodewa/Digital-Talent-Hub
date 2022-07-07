@@ -17,9 +17,9 @@
         </div>
         <div class="form-box">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
-            <p class="form-title">Login</p>
+            <p class="form-title">Login Talent</p>
             <?php echo $this->session->flashdata('msg_error_login'); ?>
-            <form action="<?= base_url('Main/login'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
+            <form action="<?= base_url('login-talent'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Username</label>
                     <input placeholder="Username" type="text" class="form-control" id="username" name="username" required="true">
@@ -41,7 +41,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
                 <div class="form-group w-100 text-center">
-                    <span>Not register yet?</span><a class="form-label" href="signup.html">Create Account</a>
+                    <span>Not register yet?</span><a class="form-label" href="<?= base_url('sign-up-talent'); ?>">Create Account</a>
                 </div>
             </form>
         </div>

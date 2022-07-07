@@ -20,16 +20,13 @@
                     </div>
                     <div class="col-12 col-lg-9">
                         <div class="card-text-box">
-                            <p class="card-text mt-3 mt-lg-4 mb-3 mb-lg-5">#AD230</p>
-                            <p class="card-title d-block blue mb-4 text-justify">UI Designer</p>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s, when an -unknown printer took a galley of type and
-                                scrambled it to make a type specimen book</p>
+                            <p class="card-text mt-3 mt-lg-4 mb-3 mb-lg-5">#<?= $data_detail_project['ID_PROJECT']; ?></p>
+                            <p class="card-title d-block blue mb-4 text-justify"><?= $data_detail_project['NAMA_PROJECT']; ?></p>
+                            <p class="card-text"><?= $data_detail_project['DESC_PROJECT']; ?></p>
                             <div class="activity-skills">
-                                <div class="card-item d-inline-block">Figma</div>
-                                <div class="card-item d-inline-block">Web Developer</div>
-                                <div class="card-item d-inline-block">Back-End</div>
+                                <?php foreach ($data_detail_project['SKILL_PROJECT'] as $SkillItem) {
+                                    echo '<div class="card-item d-inline-block">' . $SkillItem['NAMA_SKILL'] . '</div>';
+                                } ?>
                             </div>
                         </div>
                     </div>
@@ -46,9 +43,13 @@
                                 </div>
                             </div>
                             <div class="card-text-box text-center">
-                                <p class="card-title d-block blue mb-4 mt-2">$10</p>
+                                <p class="card-title d-block blue mb-4 mt-2">$<?= $data_detail_project['SALARY_PROJECT']; ?></p>
                                 <p class="card-text mb-2">Registration</p>
-                                <p class="card-text mb-0">1 May - 1 June</p>
+                                <p class="card-text mb-0"><?php if ($data_detail_project['REGIST_PROJECT'] != "") {
+                                                                echo $data_detail_project['REGIST_PROJECT'];
+                                                            } else {
+                                                                echo "-";
+                                                            } ?></p>
                             </div>
                         </div>
                     </div>
@@ -56,30 +57,43 @@
             </div>
         </div>
     </section>
+
     <section id="companyProjectEdit" class="card-section talent-bio company-edit-project d-none">
         <div class="container">
             <div class="card w-100">
-                <div class="card-body row">
+                <form class="card-body row" action="<?= base_url('company/project/' . $data_detail_project['ID_PROJECT']); ?>" method="POST">
                     <div class="col-12 col-lg-9">
                         <div class="card-text-box">
-                            <p class="card-text mt-3 mt-lg-4 mb-3 mb-lg-5">#AD230</p>
+                            <p class="card-text mt-3 mt-lg-4 mb-3 mb-lg-5">#<?= $data_detail_project['ID_PROJECT']; ?></p>
                             <div class="form-group mb-2">
-                                <input placeholder="Project name" type="text" class="form-control input-project-name" id="talentName"
-                                    aria-describedby="talentName">
+                                <input placeholder="Project name" type="text" class="form-control input-project-name" id="talentName" aria-describedby="talentName" name="projectName" value="<?= $data_detail_project['NAMA_PROJECT']; ?>" required>
                             </div>
                             <div class="form-group mb-2">
-                                <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3"
-                                    aria-describedby="talentBio"></textarea>
+                                <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3" aria-describedby="talentBio" name="projectDesc" required><?= $data_detail_project['DESC_PROJECT']; ?></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="form-control card-item-box">
-                                    <div class="activity-skills d-flex align-items-center flex-wrap">
+                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
+                                        <?php
+                                        foreach ($skill as $dataSkill) { ?>
+                                            <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>" <?php
+                                                                                                                                                        foreach ($data_detail_project['SKILL_PROJECT'] as $SkillItem) {
+                                                                                                                                                            if ($dataSkill->id_skill == $SkillItem['ID_SKILL']) {
+                                                                                                                                                                echo 'selected';
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                        ?>>
+                                                <?= $dataSkill->nama_skill; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <!-- <div class="activity-skills d-flex align-items-center flex-wrap">
                                         <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
                                             Skill
                                             <span class="icon-remove"></span>
                                         </div>
                                         <input placeholder="ex:  react" type="text" class="form-control d-inline-block w-auto input-add-skill input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="ProjectNeeded" aria-describedby="ProjectNeeded" required>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -91,22 +105,25 @@
                                     <a href="#" class="text-decoration-none">Save</a>
                                 </div>
                             </div>
-                            <div class="btn btn-primary justify-content-end w-100 white"
-                                    onclick="close_edit_project();"><a href="#">Cancel</a>
-                                </div>
-                            <div class="card-text-box text-center">                                
+                            <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_project();"><a href="#">Cancel</a>
+                            </div>
+                            <div class="card-text-box text-center">
                                 <div class="form-group">
                                     <label class="card-text" for="projectSalary">Salary</label>
-                                    <input placeholder="10" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectSalary" aria-describedby="projectSalary" required>
+                                    <input placeholder="10" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectSalary" aria-describedby="projectSalary" name="projectSalary" value="<?= $data_detail_project['SALARY_PROJECT']; ?>" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text" for="projectRegistration">Registration</label>
-                                    <input placeholder="1 May - 1 June" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectRegistration" aria-describedby="projectRegistration" required>
+                                    <input placeholder="1 May - 1 June" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectRegistration" aria-describedby="projectRegistration" name="projectRegistration" value="<?php if ($data_detail_project['REGIST_PROJECT'] != "") {
+                                                                                                                                                                                                                                                echo $data_detail_project['REGIST_PROJECT'];
+                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                echo "-";
+                                                                                                                                                                                                                                            } ?>" required>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -120,11 +137,21 @@
             project.classList.add("d-none");
             editProject.classList.remove("d-none");
         }
+
         function close_edit_project() {
             var project = document.getElementById("companyProject");
             var editProject = document.getElementById("companyProjectEdit");
             project.classList.remove("d-none");
             editProject.classList.add("d-none");
+        }
+    </script>
+    <script>
+        $('.js-example-basic-multiple').select2({
+            placeholder: 'Select Skill'
+        });
+
+        function hide_modal3() {
+            $('#modal3').trigger('click');
         }
     </script>
 </body>
