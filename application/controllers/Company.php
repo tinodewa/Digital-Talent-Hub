@@ -36,7 +36,7 @@ class Company extends CI_Controller
 				);
 			}
 			array_push(
-				$data['dataProject'],
+				$data['dataCompany'],
 				array(
 					'NAMA_COMPANY' => $ItemDB1->nama_company,
 					'ID_PROJECT' => $ItemDB1->id_project,
@@ -48,6 +48,7 @@ class Company extends CI_Controller
 				)
 			);
 		}
+
 		$this->load->view('layout/company_dashboard', $data);
 	}
 
@@ -74,17 +75,19 @@ class Company extends CI_Controller
 			$dataNewCompany = array(
 				'nama_project' => $_POST['projectName'],
 				'deskripsi_project' => $_POST['projectDesc'],
-				'salary' => $_POST['projectSalery'],
+				'salary' => $_POST['projectSalary'],
 				'id_company' => $this->session->userdata('ID_COMPANY')
 			);
+			
 			if ($this->M_Company->UpdateProject($id, $dataNewCompany)) {
+				$this->M_Company->DeleteProjectSkill($id);
 				foreach ($SkillData as $ItemSkill) {
-					$id_pjks = $this->generateRandomString($ItemSkill . $_POST['projectName']);
 					$dataNewCompanySkill = array(
 						'id_skill' => $ItemSkill
 					);
-					$this->M_Company->UpdateProjectSkill($dataNewCompanySkill);
+					$this->M_Company->UpdateProjectSkill($id, $dataNewCompanySkill);
 				}
+				redirect('company/project/'.$id);
 			}
 		} else {
 			$data['meta'] = [

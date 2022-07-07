@@ -40,5 +40,18 @@
             $this->db->where('project.id_project', $id);
             return $this->db->get("project")->row();
         }
+
+        public function UpdateProjectSkill($id, $data)
+        {
+            $this->db->where('id_project', $id);
+            return $this->db->insert('project_skill', $data);
+        }
+
+        public function DeleteProjectSkill($id)
+        {
+            $this->db->where('id_project', $id);
+            return $this->db->delete('project_skill');
+            ;
+        }
     }
 ?>
