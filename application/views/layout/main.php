@@ -13,6 +13,8 @@
             </a>
             <a class="text-decoration-none d-flex" href="<?= site_url('login-company') ?>">
                 <button type="button" class="btn btn-primary">Login Company</button>
+            </a>
+            <a class="text-decoration-none d-flex" href="<?= site_url('login-talent') ?>">
                 <button type="button" class="btn btn-primary">Login Talent</button>
             </a>
         </div>

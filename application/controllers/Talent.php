@@ -36,6 +36,7 @@ class Talent extends CI_Controller {
 			array_push(
 				$data['dataProject'],
 				array(
+					'ID_PROJECT' => $ItemDB1->id_project,
 					'NAMA_COMPANY' => $ItemDB1->nama_company,
 					'NAMA_PROJECT' => $ItemDB1->nama_project,
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
@@ -56,12 +57,37 @@ class Talent extends CI_Controller {
 		$this->load->view('layout/talent_profile', $data);
 	}
 
-    public function jobdesc() {
+    public function jobdesc($id) {
 		$data['meta'] = [
 			'title' => 'Job Description | Digitalent',
 		];
 
+		$dataProjectDetail = $this->M_Company->getCompanyDetail($id);
+		$dataPskDB = $this->M_Company->getSkillCompany($dataProjectDetail->id_project);
+		$dataSkillDB = array();
+		foreach ($dataPskDB as $ItemDB2) {
+			array_push(
+				$dataSkillDB,
+				array(
+					'ID_SKILL' => $ItemDB2->id_skill,
+					'NAMA_SKILL' => $ItemDB2->nama_skill
+				)
+			);
+		}
+		
+		$data['data_detail_project'] = array(
+			'ID_PROJECT' => $dataProjectDetail->id_project,
+			'NAMA_PROJECT' => $dataProjectDetail->nama_project,
+			'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
+			'SALARY_PROJECT' => $dataProjectDetail->salary,
+			'REGIST_PROJECT' => $dataProjectDetail->registration_project,
+			'SKILL_PROJECT' => $dataSkillDB
+		);
+
+		$data['skill'] = $this->M_Company->getSkill();
+
 		$this->load->view('layout/talent_jobdesc', $data);
+		
 	}
 
     public function session() {

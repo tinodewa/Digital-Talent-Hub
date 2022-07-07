@@ -30,7 +30,7 @@
                             <div class="card w-100 card-no-border p-0">
                                 <?php foreach ($dataProject as $item1) { ?>
                                 <div class="card-section card-click mt-4 mb-0">
-                                    <a href="<?= site_url('talent/job-description') ?>">
+                                    <a href="<?= site_url('talent/job-description/'.$item1['ID_PROJECT']) ?>">
                                         <div class="card w-100 pt-0 pb-0">
                                             <div class="card-body row no-gutters">
                                                 <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
