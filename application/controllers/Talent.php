@@ -9,7 +9,7 @@ class Talent extends CI_Controller {
 		$this->load->model('M_Talent');
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
-		if ($this->session->userdata('ID_COMPANY') == null) {
+		if ($this->session->userdata('ID_TALENT') == null) {
 			redirect('login');
 		}
 
@@ -19,7 +19,32 @@ class Talent extends CI_Controller {
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
+		$dataProject = $this->M_Talent->getProject();
+		$data['dataProject'] = array();
 
+		foreach ($dataProject as $ItemDB1) {
+			$dataPjkDB = $this->M_Talent->getSkillCompany($ItemDB1->id_project);
+			$dataSkillDB = array();
+			foreach ($dataPjkDB as $ItemDB2) {
+				array_push(
+					$dataSkillDB,
+					array(
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
+			array_push(
+				$data['dataProject'],
+				array(
+					'NAMA_COMPANY' => $ItemDB1->nama_company,
+					'NAMA_PROJECT' => $ItemDB1->nama_project,
+					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
+					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
+					'SKILL_PROJECT' => $dataSkillDB,
+					'SALARY_PROJECT' => $ItemDB1->salary
+				)
+			);
+		}
 		$this->load->view('layout/talent_dashboard', $data);
 	}
 
