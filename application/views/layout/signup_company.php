@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-box">
+        <div class="form-box mt-5 mb-5">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <p class="form-title">Sign Up</p><p class="form-subtitle">Hire A Talent</p>
             <form class="d-flex justify-content-centers align-items-start" action="<?= site_url('company') ?>">

@@ -354,6 +354,7 @@ body.white{
 .form-section {
     overflow: hidden;
     position: relative;
+    background: #ffffff;
 }
 
 .form-box {
@@ -361,6 +362,7 @@ body.white{
     margin: auto;
     padding: 20px;
     z-index: 5;
+    width: 364px;
 }
 
 .form-banner {
@@ -410,14 +412,8 @@ body.white{
     width: 325px;
 }
 
-.form-box .form-control#password {
+.form-box .form-control#password, .form-box .form-control#verification_password, .form-box .form-control#password_talent, .form-box .form-control#password_company {
     border-right: none;
-    width: 283px;
-}
-
-.form-box .form-control#verification_password {
-    border-right: none;
-    margin-right: 1px;
     width: 283px;
 }
 
@@ -464,6 +460,52 @@ body.white{
     cursor: pointer;
 }
 
+.login-company, .login-talent {
+    box-shadow: 0px 20px 60px rgb(0 0 0 / 8%);
+    border-radius: 30px;
+    padding: 15px 20px;
+    width: 170px;
+}
+
+.login-company:hover, .login-talent:hover {
+    cursor: pointer;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.212);
+    background: #f0f0f0;
+}
+
+.login-decision {
+    margin-bottom: 40px;
+}
+
+input.form-control::-webkit-input-placeholder {
+    color: #ABABAB;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+input.form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ABABAB;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+input.form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ABABAB;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+input.form-control:-ms-input-placeholder {
+    color: #ABABAB;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
 /* ABOUT US */
 .about-section {    
     background: #c4c4c42B;
@@ -546,6 +588,10 @@ body.white{
 /* SIGNUP */
 .form-banner.signup .jumbotron-img-person {
     left: 0;
+}
+
+.form-banner.signup {
+    height: auto;
 }
 
 /* SIGNUP COMPANY */
