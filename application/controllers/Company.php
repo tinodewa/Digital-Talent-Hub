@@ -80,9 +80,15 @@ class Company extends CI_Controller
 			);
 			
 			if ($this->M_Company->UpdateProject($id, $dataNewCompany)) {
-				$this->M_Company->DeleteProjectSkill($id);
+				$PjksData = $this->M_Company->GetProjectSkill($id);
+				if (!empty($PjksData)) {
+					$this->M_Company->DeleteProjectSkill($id);
+				}
 				foreach ($SkillData as $ItemSkill) {
+					$id_pjks = $this->generateRandomString($ItemSkill . $_POST['projectName']);
 					$dataNewCompanySkill = array(
+						'id_project_skill' => 'Pjks_' . $id_pjks,
+						'id_project' => $id,
 						'id_skill' => $ItemSkill
 					);
 					$this->M_Company->UpdateProjectSkill($id, $dataNewCompanySkill);
