@@ -3,6 +3,7 @@
 
 <head>
     <?php $this->load->view('_partials/head.php'); ?>
+    
 </head>
 
 <body>
@@ -27,7 +28,7 @@
                             </div>
                             <div class="col-sm-6 col-lg-9 d-flex justify-content-center justify-content-sm-start mb-3 mb-sm-0">
                                 <div class="card-text-box text-center text-sm-left">
-                                    <p class="card-title d-block blue mb-2">PT.PERTAMINA</p>
+                                    <p class="card-title d-block blue mb-2"><?= $DetailComp->nama_company; ?></p>
                                     <div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="gmail"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="website"></span></div>
@@ -54,9 +55,7 @@
                             About Us
                         </div>
                         <div class="card-desc-text">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an -unknown printer took
-                            a galley of type and scrambled it to make a type specimen book
+                            <?= $DetailComp->summary_company; ?>
                         </div>
                     </div>
                     <div class="col-md-9">

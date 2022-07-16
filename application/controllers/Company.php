@@ -12,7 +12,7 @@ class Company extends CI_Controller
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
 		if ($this->session->userdata('ID_COMPANY') == null) {
-			redirect('login');
+			redirect('login-company');
 		}
 	}
 
@@ -57,6 +57,8 @@ class Company extends CI_Controller
 		$data['meta'] = [
 			'title' => 'Profile | Digitalent',
 		];
+
+		$data['DetailComp'] = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
 
 		$this->load->view('layout/company_profile', $data);
 	}
