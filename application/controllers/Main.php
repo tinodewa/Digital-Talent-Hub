@@ -3,7 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Main extends CI_Controller
 {
-	function __construct(){
+	function __construct()
+	{
 
 		parent::__construct();
 		$this->load->model('M_Main');
@@ -22,94 +23,69 @@ class Main extends CI_Controller
 
 	public function login_company()
 	{
-		$config = array(
-			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
-			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+		$dataLogin = array(
+			'username_company' => $_POST["username"],
+			'password' => $this->encryptIt($_POST["password"])
 		);
-		$this->form_validation->set_rules($config);
-		if ($this->form_validation->run()) {			
-			$dataLogin = array(
-				'username_company' => $_POST["username"], 
-				'password' => $this->encryptIt($_POST["password"])
+		$checking = $this->M_Main->check_login('company', $dataLogin);
+		if ($checking) {
+			$this->session->set_userdata(
+				array(
+					'ID_COMPANY' => $checking->id_company,
+					'USERNAME_COMPANY' => $checking->username_company,
+					'NAMA_COMPANY' => $checking->nama_company,
+					'PICT_COMPANY' => $checking->profile_pict_company
+				)
 			);
-			$checking = $this->M_Main->check_login('company', $dataLogin);
-			if ($checking) {
-				$this->session->set_userdata(
-					array(
-						'ID_COMPANY' => $checking->id_company,
-						'USERNAME_COMPANY' => $checking->username_company,
-						'NAMA_COMPANY' => $checking->nama_company,
-						'PICT_COMPANY' => $checking->profile_pict_company
-					)
-				);
-				redirect('company');
-			}else{
-				$this->session->set_flashdata(
-					'msg_error_login',
-					'<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
-						<h5>Sorry Your Email and Password Not Match.</h5>
-					</div>'
-				);
-				redirect('login_talent');
-			}
+			redirect('company');
 		} else {
-			if ($this->session->userdata('ID_COMPANY') != null) {
-				redirect('Company');
-			}else if ($this->session->userdata('ID_TALENT') != null) {
-				redirect('Talent');
-			}
-	
-			$data['meta'] = [
-				'title' => 'Login | Digitalent',
-			];
-			$this->load->view('layout/login_company', $data);
+			$this->session->set_flashdata(
+				'msg_error_login',
+				'<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
+					<h5>Sorry Your Email and Password Not Match.</h5>
+				</div>'
+			);
+			redirect('');
 		}
 	}
 
 	public function login_talent()
 	{
-		$config = array(
-			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
-			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+		$dataLogin2 = array(
+			'username' => $_POST["username"],
+			'password' => $this->encryptIt($_POST["password"])
 		);
-		$this->form_validation->set_rules($config);
-		if ($this->form_validation->run()) {			
-			$dataLogin2 = array(
-				'username' => $_POST["username"], 
-				'password' => $this->encryptIt($_POST["password"])
+		$checking2 = $this->M_Main->check_login('talent', $dataLogin2);
+		if ($checking2) {
+			$this->session->set_userdata(
+				array(
+					'ID_TALENT' => $checking2->id_talent,
+					'USERNAME_TALENT' => $checking2->username,
+					'NAMA_TALENT' => $checking2->nama_talent,
+					'PICT_TALENT' => $checking2->profile_pict_talent
+				)
 			);
-			$checking2 = $this->M_Main->check_login('talent', $dataLogin2);
-			if ($checking2) {
-				$this->session->set_userdata(
-					array(
-						'ID_TALENT' => $checking2->id_talent,
-						'USERNAME_TALENT' => $checking2->username,
-						'NAMA_TALENT' => $checking2->nama_talent,
-						'PICT_TALENT' => $checking2->profile_pict_talent
-					)
-				);
-				redirect('talent');
-			}else{
-				$this->session->set_flashdata(
-					'msg_error_login',
-					'<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 20px;">
-						<h5>Sorry Your Email and Password Not Match.</h5>
-					</div>'
-				);
-				redirect('login_talent');
-			}
+			redirect('talent');
 		} else {
-			if ($this->session->userdata('ID_COMPANY') != null) {
-				redirect('Company');
-			}else if ($this->session->userdata('ID_TALENT') != null) {
-				redirect('Talent');
-			}
-	
-			$data['meta'] = [
-				'title' => 'Login | Digitalent',
-			];
-			$this->load->view('layout/login_talent', $data);
+			$this->session->set_flashdata(
+				'msg_error_login',
+				'<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Your Password or Username Wrong!</strong> You should sign in again.
+				<a style="cursor: pointer;" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</a>
+			</div>'
+			);
+			redirect('login');
 		}
+	}
+
+	public function login()
+	{
+		$data['meta'] = [
+			'title' => 'Login | Digitalent',
+		];
+		$this->load->view('layout/login', $data);
 	}
 
 	public function signuptalent()
@@ -123,12 +99,12 @@ class Main extends CI_Controller
 
 		$this->form_validation->set_rules($config);
 
-		if ($this->form_validation->run()) {			
+		if ($this->form_validation->run()) {
 			$password = $this->encryptIt($_POST['password']);
 			$id_com = $this->generateRandomString($_POST['nama_talent']);
 
 			$dataRegistTalent = array(
-				'id_talent' => 'Talent_'.$id_com,
+				'id_talent' => 'Talent_' . $id_com,
 				'nama_talent' => $_POST['nama_talent'],
 				'email_talent' => $_POST["email"],
 				'username' => $_POST["username"],
@@ -139,7 +115,7 @@ class Main extends CI_Controller
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',
 			];
-	
+
 			$this->load->view('layout/signup_talent', $data);
 		}
 	}
@@ -155,12 +131,12 @@ class Main extends CI_Controller
 
 		$this->form_validation->set_rules($config);
 
-		if ($this->form_validation->run()) {			
+		if ($this->form_validation->run()) {
 			$password = $this->encryptIt($_POST['password']);
 			$id_com = $this->generateRandomString($_POST['nama_company']);
 
 			$dataRegistCompany = array(
-				'id_company' => 'Comp_'.$id_com,
+				'id_company' => 'Comp_' . $id_com,
 				'nama_company' => $_POST['nama_company'],
 				'email_company' => $_POST["email"],
 				'username_company' => $_POST["username"],
@@ -171,26 +147,26 @@ class Main extends CI_Controller
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',
 			];
-	
+
 			$this->load->view('layout/signup_company', $data);
 		}
-		
 	}
-	
+
 	public function logout()
 	{
 		$this->session->sess_destroy();
 		redirect('');
 	}
 
-    public function encryptIt($q)
-    {
-        $qEncoded = base64_encode(md5($q));
-        return ($qEncoded);
-    }
+	public function encryptIt($q)
+	{
+		$qEncoded = base64_encode(md5($q));
+		return ($qEncoded);
+	}
 
-	public function generateRandomString($string) {
+	public function generateRandomString($string)
+	{
 		$qEncoded = base64_encode($string);
-        return ($qEncoded);
+		return ($qEncoded);
 	}
 }

@@ -19,6 +19,7 @@
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <div id="loginDecision" class="login-decision row align-items-center justify-content-center">
                 <p class="form-subtitle col-12 text-center mt-5">login</p>
+                <?php echo $this->session->flashdata('msg_error_login'); ?>
                 <div onclick="showFormCompany();" class="login-company mb-4 mb-sm-0 col-8 col-sm-5 mr-sm-3 d-flex align-items-center justify-content-center flex-column">
                     <img src="<?= base_url('assets/img/Office_Bag_Home.png') ?>" alt="icon office bag">
                     <div class="form-label">Company</div>
@@ -28,10 +29,11 @@
                     <div class="form-label">Talent</div>
                 </div>
             </div>
+
             <div id="formLoginTalent" class="form-login-talent d-none">
-                <p class="form-title">Login</p><p class="form-subtitle">As a Talent</p>
-                <?php echo $this->session->flashdata('msg_error_login'); ?>
-                <form action="<?= base_url('Main/login'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
+                <p class="form-title">Login</p>
+                <p class="form-subtitle">As a Talent</p>
+                <form action="<?= base_url('main/login_talent'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
                     <div class="form-group mb-3">
                         <label class="form-label" for="username">Username</label>
                         <input placeholder="Username" type="text" class="form-control" id="username_talent" name="username" required="true">
@@ -58,11 +60,11 @@
                     </div>
                 </form>
             </div>
-            
+
             <div id="formLoginCompany" class="form-login-company d-none">
-                <p class="form-title">Login</p><p class="form-subtitle">As a Company</p>
-                <?php echo $this->session->flashdata('msg_error_login'); ?>
-                <form action="<?= base_url('Main/login'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
+                <p class="form-title">Login</p>
+                <p class="form-subtitle">As a Company</p>
+                <form action="<?= base_url('main/login_company'); ?>" method="POST" class="d-flex justify-content-center align-items-center align-items-md-start">
                     <div class="form-group mb-3">
                         <label class="form-label" for="username">Username</label>
                         <input placeholder="Username" type="text" class="form-control" id="username_company" name="username" required="true">
@@ -100,25 +102,28 @@
             talentForm.classList.add("d-none");
             loginDecision.classList.remove("d-none");
         }
+
         function hideFormCompany() {
             var companyForm = document.getElementById("formLoginCompany");
             var loginDecision = document.getElementById("loginDecision");
             companyForm.classList.add("d-none");
             loginDecision.classList.remove("d-none");
         }
+
         function showFormTalent() {
             var talentForm = document.getElementById("formLoginTalent");
             var loginDecision = document.getElementById("loginDecision");
             loginDecision.classList.add("d-none");
             talentForm.classList.remove("d-none");
         }
+
         function showFormCompany() {
             var companyForm = document.getElementById("formLoginCompany");
             var loginDecision = document.getElementById("loginDecision");
             loginDecision.classList.add("d-none");
             companyForm.classList.remove("d-none");
         }
-        
+
         function password_talent_show_hide() {
             var x = document.getElementById("password_talent");
             var show_eye = document.getElementById("show_eye_talent");
@@ -135,6 +140,7 @@
 
             }
         }
+
         function password_company_show_hide() {
             var x = document.getElementById("password_company");
             var show_eye = document.getElementById("show_eye_company");
