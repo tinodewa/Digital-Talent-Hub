@@ -16,8 +16,7 @@
                             <div class="col-md-3">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img no-border">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img no-border" alt="person picture"/>
                                     </div>
                                 </div>
                             </div>

@@ -21,8 +21,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-12 card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img no-border">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/session-3.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                                 <div class="col-12 card-text-box text-center">
@@ -45,8 +44,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-12 card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img no-border">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/session-3.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                                 <div class="col-12 card-text-box text-center">
@@ -69,8 +67,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-12 card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img no-border">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/session-3.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                                 <div class="col-12 card-text-box text-center">

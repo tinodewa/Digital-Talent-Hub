@@ -85,7 +85,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture"/>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -109,7 +109,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture"/>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -133,7 +133,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture"/>
                                         </div>
                                     </div>
                                     <div class="col-md-8">
