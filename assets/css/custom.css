@@ -146,8 +146,8 @@ body.white{
 }
 
 .navbar-section .navbar-img-box .navbar-img {
-    width: 42px;
-    height: 42px;
+    width: 35px;
+    height: 35px;
     border-radius: 80px;
     object-fit: cover;
 }
@@ -1445,8 +1445,8 @@ input.form-control:-ms-input-placeholder {
 }
 
 .profile-popover .navbar-img-box .navbar-img {
-    width: 42px;
-    height: 42px;
+    width: 30px;
+    height: 30px;
     border-radius: 80px;
     margin-left: 10px;
     object-fit: cover;
@@ -1697,6 +1697,64 @@ input.form-control:-ms-input-placeholder {
 
 .card-section.partner-section .card {    
     box-shadow: 0px 20px 60px rgb(0 0 0 / 8%);
+}
+
+.select2-container--default .select2-selection--multiple {
+    border-color: #ced4da!important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__display {
+    color: #000000!important;
+}
+
+.select2-container--default .select2-results__option--selectable {
+    color: #000000!important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+    color: #ffffff!important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin: 10px!important;
+}
+
+.select2-container--default .select2-selection--multiple {
+    padding-bottom: unset!important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    margin-bottom: 5px!important;
+}
+
+.select2-search__field::-webkit-input-placeholder {
+    color: #ABABAB!important;
+    font-size: 13px!important;
+    line-height: 20px!important;
+    font-weight: 600!important;
+}
+
+.select2-search__field:-moz-placeholder {
+    /* Firefox 18- */
+    color: #ABABAB!important;
+    font-size: 13px!important;
+    line-height: 20px!important;
+    font-weight: 600!important;
+}
+
+.select2-search__field::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #ABABAB!important;
+    font-size: 13px!important;
+    line-height: 20px!important;
+    font-weight: 600!important;
+}
+
+.select2-search__field:-ms-input-placeholder {
+    color: #ABABAB!important;
+    font-size: 13px!important;
+    line-height: 20px!important;
+    font-weight: 600!important;
 }
 
 @media (min-width: 1300px) {
