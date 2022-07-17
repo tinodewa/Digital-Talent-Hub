@@ -15,6 +15,19 @@ class M_Company extends CI_Model
         $this->db->where('company.id_company', $this->session->userdata('ID_COMPANY'));
         return $this->db->get("project")->result();
     }
+    
+    public function getCompanyDetail($id)
+    {
+        $this->db->select('company.*');
+        $this->db->where('company.id_company', $id);
+        return $this->db->get("company")->row();
+    }
+    
+    public function UpdateCompany($id, $data)
+    {
+        $this->db->where('company.id_company', $id);
+        return $this->db->update("company", $data);
+    }
 
     public function getSkillCompany($id)
     {
@@ -33,13 +46,6 @@ class M_Company extends CI_Model
     {
         $this->db->select('skill.*');
         return $this->db->get("skill")->result();
-    }
-
-    public function getCompanyDetail($id)
-    {
-        $this->db->select('company.*');
-        $this->db->where('company.id_company', $id);
-        return $this->db->get("company")->row();
     }
 
     public function getProjectDetail($id)
@@ -83,7 +89,4 @@ class M_Company extends CI_Model
         return $this->db->delete('project_skill');
     }
 
-    public function FunctionName($id)
-    {
-    }
 }

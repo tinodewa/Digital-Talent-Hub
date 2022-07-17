@@ -10,7 +10,7 @@
                 </a>
                 <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="left" data-bs-content-id="popover-content2" tabindex="0" role="button">
                     <!-- new -->
-                    <img src="<?php echo $this->session->userdata('PICT_TALENT'); ?>" class="navbar-img" alt="user picture">
+                    <img src="<?php echo $this->session->userdata('PICT_TALENT'); ?>" class="navbar-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                     <!-- old -->
                     <!-- <div style="background-image: url(<?php echo $this->session->userdata('PICT_TALENT'); ?>);" class="navbar-img"></div> -->
                 </a>

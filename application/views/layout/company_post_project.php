@@ -29,7 +29,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="ProjectNeeded">Skill Needed for The Project</label>
-                                    <select class="form-control select2 select2-hidden-accessible" data-placeholder="Select Skill" name="skill[]" multiple="multiple" style="width: 100%;">
+                                    <select class="form-control input-project select2 select2-hidden-accessible" data-placeholder="Select Skill" name="skill[]" multiple="multiple" style="width: 100%;">
                                         <?php foreach ($skill as $dataSkill) { ?>
                                             <option value="<?= $dataSkill->id_skill; ?>"><?= $dataSkill->nama_skill; ?></option>
                                         <?php } ?>

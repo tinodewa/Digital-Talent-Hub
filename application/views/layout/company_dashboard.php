@@ -45,7 +45,7 @@
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
                                                         <div class="card-profile-img-box">
                                                             <div class="card-img-circle">
-                                                                <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
+                                                                <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                                                             </div>
                                                         </div>
                                                     </div>
