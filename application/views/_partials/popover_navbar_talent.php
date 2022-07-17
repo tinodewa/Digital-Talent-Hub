@@ -81,11 +81,11 @@
         <div class="row">
             <div class="col-3 d-flex justify-content-center align-items-center p-0 ml-2">
                 <div class="navbar-img-box">
-                    <img src="<?= base_url('assets/img/experience.png') ?>" class="navbar-img" alt="user picture">
+                    <img src="<?= $this->session->userdata('PICT_TALENT'); ?>" class="navbar-img" alt="user picture">
                 </div>
             </div>
             <div class="col-8 d-flex justify-content-start align-items-center p-0 ml-2">
-                <p class="profile-popover-text-bold m-0">Wijaya Gunawan</p>
+                <p class="profile-popover-text-bold m-0"><?= $this->session->userdata('NAMA_TALENT'); ?></p>
             </div>
         </div>
         <div class="row mt-3">

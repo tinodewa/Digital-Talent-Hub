@@ -24,15 +24,7 @@ class Talent extends CI_Controller {
 
 		foreach ($dataProject as $ItemDB1) {
 			$dataPjkDB = $this->M_Talent->getSkillCompany($ItemDB1->id_project);
-			$dataSkillDB = array();
-			foreach ($dataPjkDB as $ItemDB2) {
-				array_push(
-					$dataSkillDB,
-					array(
-						'NAMA_SKILL' => $ItemDB2->nama_skill
-					)
-				);
-			}
+			
 			array_push(
 				$data['dataProject'],
 				array(
@@ -41,7 +33,7 @@ class Talent extends CI_Controller {
 					'NAMA_PROJECT' => $ItemDB1->nama_project,
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
 					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
-					'SKILL_PROJECT' => $dataSkillDB,
+					'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPjkDB->id_skill)),
 					'SALARY_PROJECT' => $ItemDB1->salary
 				)
 			);
@@ -50,11 +42,26 @@ class Talent extends CI_Controller {
 	}
 
     public function profile() {
-		$data['meta'] = [
-			'title' => 'Profile | Digitalent',
-		];
+		$config = array(
+			array('field' => 'projectName', 'label' => 'projectName', 'rules' => 'required'),
+			array('field' => 'projectDesc', 'label' => 'projectDesc', 'rules' => 'required'),
+			array('field' => 'projectSalary', 'label' => 'projectSalary', 'rules' => 'required'),
+			array('field' => 'projectRegistration', 'label' => 'projectRegistration', 'rules' => 'required')
+		);
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run()) {
+		} else {
+			$data['meta'] = [
+				'title' => 'Profile | Digitalent',
+			];
 
-		$this->load->view('layout/talent_profile', $data);
+			$dataSkill = $this->M_Talent->getSkillTalent($this->session->userdata('ID_TALENT'));
+	
+			$data['ProfileTal'] = $this->M_Talent->getTalentProfile($this->session->userdata('ID_TALENT'));
+			$data['SKILL_TALENT'] = $this->getTalSkill(explode(';', $dataSkill->id_skill));
+
+			$this->load->view('layout/talent_profile', $data);
+		}
 	}
 
     public function jobdesc($id) {
@@ -62,18 +69,9 @@ class Talent extends CI_Controller {
 			'title' => 'Job Description | Digitalent',
 		];
 
-		$dataProjectDetail = $this->M_Talent->getCompanyDetail($id);
+		$dataProjectDetail = $this->M_Talent->getProjectDetail($id);
 		$dataPskDB = $this->M_Talent->getSkillCompany($dataProjectDetail->id_project);
 		$dataSkillDB = array();
-		foreach ($dataPskDB as $ItemDB2) {
-			array_push(
-				$dataSkillDB,
-				array(
-					'ID_SKILL' => $ItemDB2->id_skill,
-					'NAMA_SKILL' => $ItemDB2->nama_skill
-				)
-			);
-		}
 		
 		$data['data_detail_project'] = array(
 			'ID_PROJECT' => $dataProjectDetail->id_project,
@@ -81,7 +79,7 @@ class Talent extends CI_Controller {
 			'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 			'SALARY_PROJECT' => $dataProjectDetail->salary,
 			'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-			'SKILL_PROJECT' => $dataSkillDB
+			'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 		);
 
 		$data['skill'] = $this->M_Talent->getSkill();
@@ -106,4 +104,39 @@ class Talent extends CI_Controller {
 		$this->load->view('layout/session_profile', $data);
 	}
 
+	public function getProjSkill($dataProjSkill) {
+		$dataSkillDB = array();
+		foreach ($dataProjSkill as $item_skill) {
+			$dataPskDB2 = $this->M_Talent->getSkillById($item_skill);
+			foreach ($dataPskDB2 as $ItemDB2) {
+				array_push(
+					$dataSkillDB,
+					array(
+						'ID_SKILL' => $ItemDB2->id_skill,
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
+		}
+
+		return $dataSkillDB;
+	}
+
+	public function getTalSkill($dataTalSkill) {
+		$dataSkillDB = array();
+		foreach ($dataTalSkill as $item_skill) {
+			$dataPskDB2 = $this->M_Talent->getSkillById($item_skill);
+			foreach ($dataPskDB2 as $ItemDB2) {
+				array_push(
+					$dataSkillDB,
+					array(
+						'ID_SKILL' => $ItemDB2->id_skill,
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
+		}
+
+		return $dataSkillDB;
+	}
 }

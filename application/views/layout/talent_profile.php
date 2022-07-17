@@ -18,7 +18,7 @@
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
                                         <!-- new -->
-                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img" alt="person picture">
+                                        <img src="<?= $ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
@@ -34,18 +34,15 @@
                             </div>
                             <div class="col-md-9">
                                 <div class="card-text-box">
-                                    <p class="card-title d-block blue mb-2">Wijaya Gunawan</p>
+                                    <p class="card-title d-block blue mb-2"><?= $ProfileTal->nama_talent; ?></p>
                                     <div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="gmail"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="website"></span></div>
-                                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an -unknown printer took a galley of type and
-                                        scrambled it to make a type specimen book</p>
+                                    <p class="card-text"><?= $ProfileTal->summary_talent; ?></p>
                                     <div class="activity-skills">
-                                        <div class="card-item d-inline-block">Figma</div>
-                                        <div class="card-item d-inline-block">Web Developer</div>
-                                        <div class="card-item d-inline-block">Back-End</div>
+                                        <?php foreach ($SKILL_TALENT as $item2) { ?>
+                                            <div class="card-item d-inline-block"><?= $item2['NAMA_SKILL']; ?></div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
