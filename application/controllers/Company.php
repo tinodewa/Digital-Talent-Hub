@@ -26,15 +26,7 @@ class Company extends CI_Controller
 
 		foreach ($dataCompanyDB as $ItemDB1) {
 			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
-			$dataSkillDB = array();
-			foreach ($dataPskDB as $ItemDB2) {
-				array_push(
-					$dataSkillDB,
-					array(
-						'NAMA_SKILL' => $ItemDB2->nama_skill
-					)
-				);
-			}
+			
 			array_push(
 				$data['dataCompany'],
 				array(
@@ -44,7 +36,7 @@ class Company extends CI_Controller
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
 					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
 					'SALARY_PROJECT' => $ItemDB1->salary,
-					'SKILL_PROJECT' => $dataSkillDB
+					'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 				)
 			);
 		}
@@ -97,7 +89,7 @@ class Company extends CI_Controller
 					if (!empty($PjksData)) {
 						$this->M_Company->DeleteProjectSkill($id);
 					}
-					
+
 					$id_pjks = $this->generateRandomString($DataSkill[0]);
 					$this->InsertProjectSkill($id_pjks, $id, $_POST['skill']);
 				}
@@ -111,16 +103,6 @@ class Company extends CI_Controller
 
 			$dataProjectDetail = $this->M_Company->getProjectDetail($id);
 			$dataPskDB = $this->M_Company->getSkillCompany($dataProjectDetail->id_project);
-			$dataSkillDB = array();
-			foreach ($dataPskDB as $ItemDB2) {
-				array_push(
-					$dataSkillDB,
-					array(
-						'ID_SKILL' => $ItemDB2->id_skill,
-						'NAMA_SKILL' => $ItemDB2->nama_skill
-					)
-				);
-			}
 
 			$data['data_detail_project'] = array(
 				'ID_PROJECT' => $dataProjectDetail->id_project,
@@ -128,7 +110,7 @@ class Company extends CI_Controller
 				'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 				'SALARY_PROJECT' => $dataProjectDetail->salary,
 				'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-				'SKILL_PROJECT' => $dataSkillDB
+				'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 			);
 
 			$data['skill'] = $this->M_Company->getSkill();
@@ -191,14 +173,23 @@ class Company extends CI_Controller
 		$this->load->view('layout/company_applicant_profile', $data);
 	}
 
-	public function limit_text($text, $limit)
+	public function getProjSkill($dataProjSkill)
 	{
-		if (str_word_count($text, 0) > $limit) {
-			$words = str_word_count($text, 2);
-			$pos   = array_keys($words);
-			$text  = substr($text, 0, $pos[$limit]) . '...';
+		$dataSkillDB = array();
+		foreach ($dataProjSkill as $item_skill) {
+			$dataPskDB2 = $this->M_Company->getSkillById($item_skill);
+			foreach ($dataPskDB2 as $ItemDB2) {
+				array_push(
+					$dataSkillDB,
+					array(
+						'ID_SKILL' => $ItemDB2->id_skill,
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
 		}
-		return $text;
+
+		return $dataSkillDB;
 	}
 
 	public function InsertProjectSkill($id_pjks, $id, $SkillData)

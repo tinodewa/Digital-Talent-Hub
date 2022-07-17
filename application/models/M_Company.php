@@ -18,9 +18,14 @@ class M_Company extends CI_Model
 
     public function getSkillCompany($id)
     {
-        $this->db->select('skill.*');
-        $this->db->join('project_skill', 'skill.id_skill = project_skill.id_skill', 'LEFT OUTER');
         $this->db->where('project_skill.id_project', $id);
+        return $this->db->get("project_skill")->row();
+    }
+
+    public function getSkillById($id)
+    {
+        $this->db->select('skill.*');
+        $this->db->where('id_skill', $id);
         return $this->db->get("skill")->result();
     }
 

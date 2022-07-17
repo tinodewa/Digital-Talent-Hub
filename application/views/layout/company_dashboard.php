@@ -54,8 +54,8 @@
                                                             <p class="card-title d-block blue no-underline mb-2"><?= $item1['NAMA_COMPANY']; ?></p>
                                                             <p class="card-subtitle d-block blue no-underline mb-2">
                                                                 <span><?= $item1['NAMA_PROJECT']; ?></span>
-                                                                -
-                                                                <span><?= $item1['DESC_PROJECT']; ?></span>
+                                                                <br>
+                                                                <span><?= word_limiter($item1['DESC_PROJECT'] , 45, ' ...'); ?></span>
                                                             </p>
                                                             <div class="activity-skills">
                                                                 <?php foreach ($item1['SKILL_PROJECT'] as $item2) { ?>
