@@ -23,7 +23,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="m-auto">
-                                            <a href="<?= site_url('company/post-project') ?>" class="btn btn-primary w-100 d-flex justify-content-center align-items-center text-decoration-none">
+                                            <a href="<?= site_url('company-post-project') ?>" class="btn btn-primary w-100 d-flex justify-content-center align-items-center text-decoration-none">
                                                 <div id="editProfile" class="btn-icon-text-box">
                                                     Post A Project
                                                 </div>
@@ -39,16 +39,13 @@
                             <div class="card w-100 card-no-border p-0">
                                 <?php foreach ($dataCompany as $item1) { ?>
                                     <div class="card-section card-click mt-4 mb-0">
-                                        <a href="<?= site_url('company/project/'.$item1['ID_PROJECT']) ?>">
+                                        <a href="<?= site_url('company-project/'.$item1['ID_PROJECT']) ?>">
                                             <div class="card w-100 pt-0 pb-0">
                                                 <div class="card-body row no-gutters">
                                                     <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
                                                         <div class="card-profile-img-box">
                                                             <div class="card-img-circle">
-                                                                <!-- new -->
                                                                 <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
-                                                                <!-- old -->
-                                                                <!-- <img style="background-image: url(<?php echo $item1['PICT_PROJECT']; ?>);" class="card-img-circle card-img no-border"/> -->
                                                             </div>
                                                         </div>
                                                     </div>

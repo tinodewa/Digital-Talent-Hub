@@ -45,7 +45,7 @@ class Main extends CI_Controller
 					<h5>Sorry Your Email and Password Not Match.</h5>
 				</div>'
 			);
-			redirect('');
+			redirect('login');
 		}
 	}
 

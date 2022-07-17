@@ -59,9 +59,9 @@ $route['sign-up-company'] = 'main/signupcompany';
 $route['sign-up-talent'] = 'main/signuptalent';
 
 $route['company'] = 'company';
-$route['company/profile'] = 'company/profile';
-$route['company/project'] = 'company/project';
-$route['company/post-project'] = 'company/postproject';
+$route['company-profile'] = 'company/profile';
+$route['company-project/(:any)'] = 'company/project/$1';
+$route['company-post-project'] = 'company/postproject';
 $route['company/project/applicant'] = 'company/listapplicant';
 $route['company/project/applicant/profile'] = 'company/applicantprofile';
 

@@ -8,11 +8,8 @@
                     <div class="navbar-notification"></div>
 
                 </a>
-                <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">
-                    <!-- new -->
-                    <img src="<?php echo $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture">
-                    <!-- old -->
-                    <div style="background-image: url(<?php echo $this->session->userdata('PICT_COMPANY'); ?>);" class="navbar-img"></div>
+                <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">                    
+                    <img src="<?= $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

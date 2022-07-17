@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="card-text-box">
                             <p class="card-title d-block blue mb-4 text-center">Build your team with qualified talents</p>
-                            <form action="<?= base_url('company/post-project'); ?>" method="POST">
+                            <form action="<?= base_url('company-post-project'); ?>" method="POST">
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="projectName">Name a Project</label>
                                     <input placeholder="Name a Project" type="text" class="form-control input-project input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="projectName" name="projectName" aria-describedby="projectName" required>
@@ -29,26 +29,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="card-text ml-3" for="ProjectNeeded">Skill Needed for The Project</label>
-                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
-                                        <?php foreach($skill as $dataSkill){ ?>
-                                            <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>"><?= $dataSkill->nama_skill; ?></option>
-                                        <?php }?>
+                                    <select class="form-control select2 select2-hidden-accessible" data-placeholder="Select Skill" name="skill[]" multiple="multiple" style="width: 100%;">
+                                        <?php foreach ($skill as $dataSkill) { ?>
+                                            <option value="<?= $dataSkill->id_skill; ?>"><?= $dataSkill->nama_skill; ?></option>
+                                        <?php } ?>
                                     </select>
-                                    <!-- <div class="form-control card-item-box">
-                                        <div class="activity-skills d-flex align-items-center flex-wrap ">
-                                            <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                Graphic Designer
-                                                <span class="icon-remove"></span>
-                                            </div>
-                                            <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                UI Designer
-                                                <span class="icon-remove"></span>
-                                            </div>
-                                            <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
-                                                <span class="icon-add"></span>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary mr-auto ml-auto mt-4 d-flex justify-content-center align-items-center">Post Project</button>
@@ -72,10 +57,10 @@
                                 <p class="card-title d-block blue mb-0 mr-auto">Add Your Skill</p>
                                 <div class="card-btn-box d-flex justify-content-center align-items-center">
                                     <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-2 white" onclick="hide_modal3();">
-                                        <a class="text-decoration-none" href="#">Cancel</a>
+                                        Cancel
                                     </div>
                                     <div class="btn btn-option btn-primary d-flex align-items-center justify-content-center" onclick="hide_modal3();">
-                                        <a href="#">Save</a>
+                                        Save
                                     </div>
                                 </div>
                             </div>
@@ -125,9 +110,7 @@
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_company.php') ?>
     <script>
-        $('.js-example-basic-multiple').select2({
-            placeholder: 'Select Skill'
-        });
+        $('.select2').select2();
 
         function hide_modal3() {
             $('#modal3').trigger('click');

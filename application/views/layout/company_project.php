@@ -34,7 +34,7 @@
                         <div class="m-auto">
                             <div class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
                                 <div id="editProfile" class="btn-icon-text-box" onclick="edit_project();">
-                                    <a href="#">Edit Project</a>
+                                    Edit Project
                                 </div>
                             </div>
                             <div class="btn btn-primary justify-content-end w-100">
@@ -87,13 +87,6 @@
                                             </option>
                                         <?php } ?>
                                     </select>
-                                    <!-- <div class="activity-skills d-flex align-items-center flex-wrap">
-                                        <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                            Skill
-                                            <span class="icon-remove"></span>
-                                        </div>
-                                        <input placeholder="ex:  react" type="text" class="form-control d-inline-block w-auto input-add-skill input-project mr-auto ml-auto mr-lg-0 ml-lg-0" id="ProjectNeeded" aria-describedby="ProjectNeeded" required>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -102,10 +95,10 @@
                         <div class="m-auto">
                             <button type="submit" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
                                 <div class="btn-icon-text-box" onclick="close_edit_project();">
-                                    <a href="#" class="text-decoration-none">Save</a>
+                                    Save
                                 </div>
                             </button>
-                            <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_project();"><a href="#">Cancel</a>
+                            <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_project();"><a href="">Cancel</a>
                             </div>
                             <div class="card-text-box text-center">
                                 <div class="form-group">
@@ -146,8 +139,8 @@
         }
     </script>
     <script>
-        $( "#editProfile" ).click(function() {
-            $( "#CompanyEdit" ).submit();
+        $("#editProfile").click(function() {
+            $("#CompanyEdit").submit();
         });
 
         $('.js-example-basic-multiple').select2({

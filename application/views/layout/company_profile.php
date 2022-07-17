@@ -19,17 +19,11 @@
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
                                         <!-- new -->
-                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img" alt="person picture">
+                                        <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
                                         </img>
-                                        <!-- old -->
-                                        <!-- <div class="card-img-circle card-img">
-                                            <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
-                                                <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </div>
