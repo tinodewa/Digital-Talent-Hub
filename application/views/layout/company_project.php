@@ -72,22 +72,20 @@
                                 <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3" aria-describedby="talentBio" name="projectDesc" required><?= $data_detail_project['DESC_PROJECT']; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <div class="form-control card-item-box">
-                                    <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
-                                        <?php
-                                        foreach ($skill as $dataSkill) { ?>
-                                            <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>" <?php
-                                                                                                                                                        foreach ($data_detail_project['SKILL_PROJECT'] as $SkillItem) {
-                                                                                                                                                            if ($dataSkill->id_skill == $SkillItem['ID_SKILL']) {
-                                                                                                                                                                echo 'selected';
-                                                                                                                                                            }
+                                <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
+                                    <?php
+                                    foreach ($skill as $dataSkill) { ?>
+                                        <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>" <?php
+                                                                                                                                                    foreach ($data_detail_project['SKILL_PROJECT'] as $SkillItem) {
+                                                                                                                                                        if ($dataSkill->id_skill == $SkillItem['ID_SKILL']) {
+                                                                                                                                                            echo 'selected';
                                                                                                                                                         }
-                                                                                                                                                        ?>>
-                                                <?= $dataSkill->nama_skill; ?>
-                                            </option>
-                                        <?php } ?>
-                                    </select>
-                                </div>
+                                                                                                                                                    }
+                                                                                                                                                    ?>>
+                                            <?= $dataSkill->nama_skill; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -137,7 +135,7 @@
             project.classList.remove("d-none");
             editProject.classList.add("d-none");
         }
-        
+
         $("#editProfile").click(function() {
             $("#CompanyEdit").submit();
         });

@@ -26,7 +26,7 @@ class Company extends CI_Controller
 
 		foreach ($dataCompanyDB as $ItemDB1) {
 			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
-			
+
 			array_push(
 				$data['dataCompany'],
 				array(
@@ -45,7 +45,7 @@ class Company extends CI_Controller
 	}
 
 	public function profile()
-	{		
+	{
 		$data['DetailComp'] = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
 		$id_company = $this->session->userdata('ID_COMPANY');
 		$config = array(
@@ -63,28 +63,32 @@ class Company extends CI_Controller
 			);
 
 			$config_upload = array(
-                'upload_path' => './assets/company_image/',
-                'allowed_types' => 'jpg|jpeg|png',
-                'file_name' => "Image_Profile_" . time()
-            );
+				'upload_path' => './assets/company_image/',
+				'allowed_types' => 'jpg|jpeg|png',
+				'file_name' => "Image_Company_" . $_POST['companyName'] . time()
+			);
 
-			echo json_encode($data['DetailComp']->profile_pict_company);exit;
+			$this->load->library('upload', $config_upload);
+			if ($this->upload->do_upload('ImgUpload')) {
+				$upload_data = $this->upload->data();
+				if (!empty($data['DetailComp']->profile_pict_company)) {
+					unlink('./' . $data['DetailComp']->profile_pict_company);
+				}
+				$file_name = 'assets/company_image/' . $upload_data['file_name'];
 
-            $this->load->library('upload', $config_upload);
-            if ($this->upload->do_upload('Gambar_D')) {
-                $upload_data = $this->upload->data();
-				unlink('./' . $data['DetailComp']->profile_pict_company);
-                $file_name = 'assets/company_image/' . $upload_data['file_name'];
+				$configer =  array(
+					'image_library'   => 'gd2',
+					'source_image'    =>  $file_name,
+					'maintain_ratio'  =>  TRUE,
+					'width'           =>  500
+				);
+				$this->image_lib->clear();
+				$this->image_lib->initialize($configer);
+				$this->image_lib->resize();
 
-                $configer =  array(
-                    'image_library'   => 'gd2',
-                    'source_image'    =>  $file_name,
-                    'maintain_ratio'  =>  TRUE,
-                    'width'           =>  500
-                );
-                $this->image_lib->clear();
-                $this->image_lib->initialize($configer);
-                $this->image_lib->resize();
+				$dataNewCompany['profile_pict_company'] = $file_name;
+			}else{
+				echo $this->upload->display_errors();exit;
 			}
 
 			$this->M_Company->UpdateCompany($id_company, $dataNewCompany);

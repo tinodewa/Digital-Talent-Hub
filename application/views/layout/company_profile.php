@@ -16,15 +16,9 @@
                     <div class="col-md-8 col-lg-9">
                         <div class="row">
                             <div class="col-sm-5 col-lg-3 d-flex justify-content-center">
-                                <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <!-- new -->
-                                        <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="person picture">
-                                        <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
-                                            <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
-                                        </div>
-                                        </img>
+                                        <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'" />
                                     </div>
                                 </div>
                             </div>
@@ -94,14 +88,21 @@
                         <div class="col-md-9 order-1 order-md-1">
                             <div class="row">
                                 <div class="col-md-4 col-lg-3 d-flex justify-content-center">
-                                    <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
-                                    <div class="card-profile-img-box">
+                                    <div class="card-profile-img-box" id="ImageShow">
                                         <div class="card-img-circle">
                                             <div class="card-img-circle card-img">
-                                                <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
-                                                    <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
-                                                </div>
+                                                <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                                             </div>
+                                            <div class="btn btn-primary justify-content-end w-100 white mt-2" onclick="open_input();"><a class="text-decoration-none">Change</a></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-none card-profile-img-box" id="ImageInput">
+                                        <div class="card-img-circle">
+                                            <div class="card-img-circle card-img">
+                                                <input type="file" accept="image/*" class="form-control-file dropify" id="ImgUpload" data-height="140" name="ImgUpload">
+                                            </div>
+                                            <div class="btn btn-primary justify-content-end w-100 white mt-2" onclick="close_input();"><a class="text-decoration-none">Cancel</a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +152,7 @@
                                         Save
                                     </div>
                                 </button>
-                                <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_company();"><a href="#">Cancel</a>
+                                <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_company();"><a class="text-decoration-none">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -172,8 +173,15 @@
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_company.php') ?>
     <script>
-        function search_image() {
-            $('#ImgUpload').trigger('click');
+        function open_input() {
+            $('#ImageShow').addClass("d-none");
+            $('#ImageInput').removeClass("d-none");
+        }
+
+        function close_input() {
+            $('#ImageShow').removeClass("d-none");
+            $('#ImageInput').addClass("d-none");
+            $(".dropify-clear").trigger("click");
         }
 
         function edit_company() {
