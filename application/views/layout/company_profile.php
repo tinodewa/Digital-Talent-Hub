@@ -3,11 +3,12 @@
 
 <head>
     <?php $this->load->view('_partials/head.php'); ?>
-    
+
 </head>
 
 <body>
     <?php $this->load->view('_partials/company_navbar_overflow.php') ?>
+
     <section id="companyProfile" class="card-section company-profile">
         <div class="container">
             <div class="card w-100">
@@ -20,9 +21,9 @@
                                     <div class="card-img-circle">
                                         <!-- new -->
                                         <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="person picture">
-                                            <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
-                                                <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
-                                            </div>
+                                        <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
+                                            <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
+                                        </div>
                                         </img>
                                     </div>
                                 </div>
@@ -88,7 +89,7 @@
     <section id="companyProfileEdit" class="card-section company-profile-edit d-none">
         <div class="container">
             <div class="card w-100">
-                <form action="#">
+                <form action="<?= base_url('company-profile'); ?>" method="POST" enctype="multipart/form-data">
                     <div class="card-body row">
                         <div class="col-md-9 order-1 order-md-1">
                             <div class="row">
@@ -107,7 +108,7 @@
                                 <div class="col-md-8 col-lg-9">
                                     <div class="card-text-box">
                                         <div class="form-group">
-                                            <input placeholder="Company Name" type="text" class="form-control" id="companyName" aria-describedby="companyName">
+                                            <input placeholder="Company Name" type="text" class="form-control" id="companyName" name="companyName" value="<?= $DetailComp->nama_company; ?>" aria-describedby="companyName" required>
                                         </div>
                                         <div class="form-group w-50">
                                             <div class="input-group">
@@ -116,7 +117,7 @@
                                                         <img src="<?= base_url('assets/img/logos_whatsapp.png') ?>" alt="icon whatsapp">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Whatsapp" type="text" class="form-control" id="companyWhatsapp" aria-describedby="companyWhatsapp">
+                                                <input placeholder="Company Whatsapp" type="text" class="form-control" id="companyWhatsapp" name="companyWhatsapp" value="<?= $DetailComp->medsos; ?>" aria-describedby="companyWhatsapp">
                                             </div>
                                         </div>
                                         <div class="form-group w-50">
@@ -126,7 +127,7 @@
                                                         <img src="<?= base_url('assets/img/logos_google-gmail.png') ?>" alt="icon gmail">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Gmail" type="email" class="form-control" id="companyGmail" aria-describedby="companyGmail">
+                                                <input placeholder="Company Gmail" type="email" class="form-control" id="companyGmail" name="companyGmail" value="<?= $DetailComp->email_company; ?>" aria-describedby="companyGmail">
                                             </div>
                                         </div>
                                         <div class="form-group w-50">
@@ -136,7 +137,7 @@
                                                         <img src="<?= base_url('assets/img/logos-website.png') ?>" alt="icon website">
                                                     </span>
                                                 </div>
-                                                <input placeholder="Company Website" type="text" class="form-control" id="companyWebsite" aria-describedby="companyWebsite">
+                                                <input placeholder="Company Website" type="text" class="form-control" id="companyWebsite" name="companyWebsite" value="<?= $DetailComp->website; ?>" aria-describedby="companyWebsite">
                                             </div>
                                         </div>
                                     </div>
@@ -145,11 +146,11 @@
                         </div>
                         <div class="col-md-3 order-3 order-md-2">
                             <div class="m-auto">
-                                <div class="btn btn-primary justify-content-end w-100">
+                                <button type="submit" class="btn btn-primary justify-content-end w-100">
                                     <div class="btn-icon-text-box">
-                                        <a href="#">Save</a>
+                                        Save
                                     </div>
-                                </div>
+                                </button>
                                 <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_company();"><a href="#">Cancel</a>
                                 </div>
                             </div>
@@ -159,7 +160,7 @@
                                 About Us
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyAbout" placeholder="Lorem ipsum" required rows="4"></textarea>
+                                <textarea class="form-control mr-auto ml-auto mr-lg-0 ml-lg-0" id="companyAbout" name="companyAbout" required rows="4" required><?= $DetailComp->summary_company; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -167,6 +168,7 @@
             </div>
         </div>
     </section>
+
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_company.php') ?>
     <script>
@@ -191,7 +193,7 @@
         $("#ImgUpload").on("change", function(e) {
             var files = e.target.files;
             var formData = new FormData();
-            formData.append('file',files[0]);
+            formData.append('file', files[0]);
 
             $.ajax({
                 url: '<?php echo base_url(); ?>Company/ApiUploadImageCompany',
@@ -199,7 +201,7 @@
                 cache: false,
                 contentType: false,
                 processData: false,
-                data:formData,
+                data: formData,
                 dataType: 'json',
                 success: function(response) {
                     console.log('Success');

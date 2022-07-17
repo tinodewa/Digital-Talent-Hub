@@ -10,7 +10,7 @@ class Company extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_Company');
 		$this->load->helper(array('string', 'text', 'url'));
-		$this->load->library(array('form_validation', 'session'));
+		$this->load->library(array('form_validation', 'session', 'image_lib'));
 		if ($this->session->userdata('ID_COMPANY') == null) {
 			redirect('login');
 		}
@@ -45,21 +45,54 @@ class Company extends CI_Controller
 	}
 
 	public function profile()
-	{
+	{		
+		$data['DetailComp'] = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
+		$id_company = $this->session->userdata('ID_COMPANY');
 		$config = array(
-			array('field' => 'projectName', 'label' => 'projectName', 'rules' => 'required'),
-			array('field' => 'projectDesc', 'label' => 'projectDesc', 'rules' => 'required'),
-			array('field' => 'projectSalary', 'label' => 'projectSalary', 'rules' => 'required'),
-			array('field' => 'projectRegistration', 'label' => 'projectRegistration', 'rules' => 'required')
+			array('field' => 'companyName', 'label' => 'companyName', 'rules' => 'required'),
+			array('field' => 'companyAbout', 'label' => 'companyAbout', 'rules' => 'required')
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run()) {
+			$dataNewCompany = array(
+				'nama_company' => $_POST['companyName'],
+				'medsos' => $_POST['companyWhatsapp'],
+				'email_company' => $_POST['companyGmail'],
+				'website' => $_POST['companyWebsite'],
+				'summary_company' => $_POST['companyAbout']
+			);
+
+			$config_upload = array(
+                'upload_path' => './assets/company_image/',
+                'allowed_types' => 'jpg|jpeg|png',
+                'file_name' => "Image_Profile_" . time()
+            );
+
+			echo json_encode($data['DetailComp']->profile_pict_company);exit;
+
+            $this->load->library('upload', $config_upload);
+            if ($this->upload->do_upload('Gambar_D')) {
+                $upload_data = $this->upload->data();
+				unlink('./' . $data['DetailComp']->profile_pict_company);
+                $file_name = 'assets/company_image/' . $upload_data['file_name'];
+
+                $configer =  array(
+                    'image_library'   => 'gd2',
+                    'source_image'    =>  $file_name,
+                    'maintain_ratio'  =>  TRUE,
+                    'width'           =>  500
+                );
+                $this->image_lib->clear();
+                $this->image_lib->initialize($configer);
+                $this->image_lib->resize();
+			}
+
+			$this->M_Company->UpdateCompany($id_company, $dataNewCompany);
+			redirect('company-profile/');
 		} else {
 			$data['meta'] = [
 				'title' => 'Profile | Digitalent',
 			];
-
-			$data['DetailComp'] = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
 
 			$this->load->view('layout/company_profile', $data);
 		}
@@ -75,14 +108,14 @@ class Company extends CI_Controller
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run()) {
-			$dataNewCompany = array(
+			$dataNewProject = array(
 				'nama_project' => $_POST['projectName'],
 				'deskripsi_project' => $_POST['projectDesc'],
 				'salary' => $_POST['projectSalary'],
 				'id_company' => $this->session->userdata('ID_COMPANY')
 			);
 
-			if ($this->M_Company->UpdateProject($id, $dataNewCompany)) {
+			if ($this->M_Company->UpdateProject($id, $dataNewProject)) {
 				$DataSkill = $_POST['projectName'];
 				if (!empty($DataSkill)) {
 					$PjksData = $this->M_Company->GetProjectSkill($id);
@@ -130,14 +163,14 @@ class Company extends CI_Controller
 		if ($this->form_validation->run()) {
 			$id_projc = $this->generateRandomString($_POST['projectName']);
 
-			$dataNewCompany = array(
+			$dataNewProject = array(
 				'id_project' => 'Proj_' . $id_projc,
 				'nama_project' => $_POST['projectName'],
 				'deskripsi_project' => $_POST['projectDesc'],
 				'salary' => $_POST['projectSalery'],
 				'id_company' => $this->session->userdata('ID_COMPANY')
 			);
-			if ($this->M_Company->InsertProject($dataNewCompany)) {
+			if ($this->M_Company->InsertProject($dataNewProject)) {
 				$DataSkill = $_POST['projectName'];
 				if (!empty($DataSkill)) {
 					$id_pjks = $this->generateRandomString($DataSkill[0]);
@@ -195,12 +228,12 @@ class Company extends CI_Controller
 	public function InsertProjectSkill($id_pjks, $id, $SkillData)
 	{
 		$DataSkill = implode(';', $SkillData);
-		$dataNewCompanySkill = array(
+		$dataNewProjectSkill = array(
 			'id_project_skill' => 'Pjks_' . $id_pjks,
 			'id_project' => $id,
 			'id_skill' => $DataSkill
 		);
-		$this->M_Company->InsertProjectSkill($dataNewCompanySkill);
+		$this->M_Company->InsertProjectSkill($dataNewProjectSkill);
 	}
 
 	public function generateRandomString($string)
