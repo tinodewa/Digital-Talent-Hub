@@ -72,9 +72,9 @@ class Company extends CI_Controller
 			if ($this->upload->do_upload('ImgUpload')) {
 				$upload_data = $this->upload->data();
 				if (!empty($data['DetailComp']->profile_pict_company)) {
-					unlink('./' . $data['DetailComp']->profile_pict_company);
+					unlink('../' . $data['DetailComp']->profile_pict_company);
 				}
-				$file_name = 'assets/company_image/' . $upload_data['file_name'];
+				$file_name = base_url() . 'assets/company_image/' . $upload_data['file_name'];
 
 				$configer =  array(
 					'image_library'   => 'gd2',
@@ -87,8 +87,8 @@ class Company extends CI_Controller
 				$this->image_lib->resize();
 
 				$dataNewCompany['profile_pict_company'] = $file_name;
-			}else{
-				echo $this->upload->display_errors();exit;
+
+				$this->session->set_userdata(array('PICT_COMPANY' => $file_name));
 			}
 
 			$this->M_Company->UpdateCompany($id_company, $dataNewCompany);
