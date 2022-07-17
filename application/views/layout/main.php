@@ -11,12 +11,9 @@
             <a href="<?= site_url('/') ?>">
                 <img class="justify-content-start" src="<?= base_url('assets/img/logo_talenthub.png') ?>" alt="logo digital talent hub">
             </a>
-            <a class="text-decoration-none d-flex" href="<?= site_url('login-company') ?>">
-                <button type="button" class="btn btn-primary">Login Company</button>
-            </a>
-            <a class="text-decoration-none d-flex" href="<?= site_url('login-talent') ?>">
-                <button type="button" class="btn btn-primary">Login Talent</button>
-            </a>
+            <form action="<?= base_url('login') ?>" method="post">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
         <div class="jumbotron-fluid">
             <div class="jumbotron-img-box">
@@ -52,7 +49,7 @@
                 <div class="card-body row">
                     <div class="col-12 col-lg-4 d-flex justify-content-center">
                         <div class="card-profile-img-box">
-                                <div class="card-img">
+                            <div class="card-img">
                             </div>
                         </div>
                     </div>
@@ -60,7 +57,8 @@
                         <div class="card-text-box">
                             <p class="card-title d-block blue mb-2 text-decoration-none">GISUA COMPANY</p>
                             <p class="card-text text-justify">We are the most respected outstaffing company in the city with a strong connection with Chernivtsi University. A Ukrainian company under Dutch management, it was founded in 2003 by CEO Edwin Zuydendorp and has been offering custom staffing solutions from the start. We can provide specialists with different technical skills ( .Net, PHP, JavaScript, Android, IOS, Xamarin, Java, Joomla, QA/QC, C#, Magento, Angular, etc.) and seniority levels ( Junior, Middle, Senior, Architect).
-                                <br><br>Global IT Support is a Ukrainian-Dutch outstaffing company, which provides human resources to clients from Europe, the USA, and Canada. We are based in Ukraine and have more than 300 employees in Chernivtsi and Ivano-Frankivsk, Kyiv, and Lviv.</p>
+                                <br><br>Global IT Support is a Ukrainian-Dutch outstaffing company, which provides human resources to clients from Europe, the USA, and Canada. We are based in Ukraine and have more than 300 employees in Chernivtsi and Ivano-Frankivsk, Kyiv, and Lviv.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -87,7 +85,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture" />
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -111,7 +109,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture" />
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -135,7 +133,7 @@
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
                                         <div class="card-img-box">
-                                            <div class="card-img"></div>
+                                            <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img" alt="person picture" />
                                         </div>
                                     </div>
                                     <div class="col-md-8">

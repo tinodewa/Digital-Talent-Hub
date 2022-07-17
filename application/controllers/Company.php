@@ -26,15 +26,7 @@ class Company extends CI_Controller
 
 		foreach ($dataCompanyDB as $ItemDB1) {
 			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
-			$dataSkillDB = array();
-			foreach ($dataPskDB as $ItemDB2) {
-				array_push(
-					$dataSkillDB,
-					array(
-						'NAMA_SKILL' => $ItemDB2->nama_skill
-					)
-				);
-			}
+			
 			array_push(
 				$data['dataCompany'],
 				array(
@@ -44,7 +36,7 @@ class Company extends CI_Controller
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
 					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
 					'SALARY_PROJECT' => $ItemDB1->salary,
-					'SKILL_PROJECT' => $dataSkillDB
+					'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 				)
 			);
 		}
@@ -54,11 +46,23 @@ class Company extends CI_Controller
 
 	public function profile()
 	{
-		$data['meta'] = [
-			'title' => 'Profile | Digitalent',
-		];
+		$config = array(
+			array('field' => 'projectName', 'label' => 'projectName', 'rules' => 'required'),
+			array('field' => 'projectDesc', 'label' => 'projectDesc', 'rules' => 'required'),
+			array('field' => 'projectSalary', 'label' => 'projectSalary', 'rules' => 'required'),
+			array('field' => 'projectRegistration', 'label' => 'projectRegistration', 'rules' => 'required')
+		);
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run()) {
+		} else {
+			$data['meta'] = [
+				'title' => 'Profile | Digitalent',
+			];
 
-		$this->load->view('layout/company_profile', $data);
+			$data['DetailComp'] = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
+
+			$this->load->view('layout/company_profile', $data);
+		}
 	}
 
 	public function project($id)
@@ -71,49 +75,42 @@ class Company extends CI_Controller
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run()) {
-			$SkillData = $_POST['skill'];
 			$dataNewCompany = array(
 				'nama_project' => $_POST['projectName'],
 				'deskripsi_project' => $_POST['projectDesc'],
 				'salary' => $_POST['projectSalary'],
 				'id_company' => $this->session->userdata('ID_COMPANY')
 			);
-			
+
 			if ($this->M_Company->UpdateProject($id, $dataNewCompany)) {
-				$this->M_Company->DeleteProjectSkill($id);
-				foreach ($SkillData as $ItemSkill) {
-					$dataNewCompanySkill = array(
-						'id_skill' => $ItemSkill
-					);
-					$this->M_Company->UpdateProjectSkill($id, $dataNewCompanySkill);
+				$DataSkill = $_POST['projectName'];
+				if (!empty($DataSkill)) {
+					$PjksData = $this->M_Company->GetProjectSkill($id);
+					if (!empty($PjksData)) {
+						$this->M_Company->DeleteProjectSkill($id);
+					}
+
+					$id_pjks = $this->generateRandomString($DataSkill[0]);
+					$this->InsertProjectSkill($id_pjks, $id, $_POST['skill']);
 				}
-				redirect('company/project/'.$id);
+
+				redirect('company-project/' . $id);
 			}
 		} else {
 			$data['meta'] = [
 				'title' => 'Project | Digitalent',
 			];
 
-			$dataProjectDetail = $this->M_Company->getCompanyDetail($id);
+			$dataProjectDetail = $this->M_Company->getProjectDetail($id);
 			$dataPskDB = $this->M_Company->getSkillCompany($dataProjectDetail->id_project);
-			$dataSkillDB = array();
-			foreach ($dataPskDB as $ItemDB2) {
-				array_push(
-					$dataSkillDB,
-					array(
-						'ID_SKILL' => $ItemDB2->id_skill,
-						'NAMA_SKILL' => $ItemDB2->nama_skill
-					)
-				);
-			}
-			
+
 			$data['data_detail_project'] = array(
 				'ID_PROJECT' => $dataProjectDetail->id_project,
 				'NAMA_PROJECT' => $dataProjectDetail->nama_project,
 				'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 				'SALARY_PROJECT' => $dataProjectDetail->salary,
 				'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-				'SKILL_PROJECT' => $dataSkillDB
+				'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 			);
 
 			$data['skill'] = $this->M_Company->getSkill();
@@ -131,7 +128,6 @@ class Company extends CI_Controller
 		);
 		$this->form_validation->set_rules($config);
 		if ($this->form_validation->run()) {
-			$SkillData = $_POST['skill'];
 			$id_projc = $this->generateRandomString($_POST['projectName']);
 
 			$dataNewCompany = array(
@@ -142,14 +138,10 @@ class Company extends CI_Controller
 				'id_company' => $this->session->userdata('ID_COMPANY')
 			);
 			if ($this->M_Company->InsertProject($dataNewCompany)) {
-				foreach ($SkillData as $ItemSkill) {
-					$id_pjks = $this->generateRandomString($ItemSkill . $_POST['projectName']);
-					$dataNewCompanySkill = array(
-						'id_project_skill' => 'Pjks_' . $id_pjks,
-						'id_project' => 'Proj_' . $id_projc,
-						'id_skill' => $ItemSkill
-					);
-					$this->M_Company->InsertProjectSkill($dataNewCompanySkill);
+				$DataSkill = $_POST['projectName'];
+				if (!empty($DataSkill)) {
+					$id_pjks = $this->generateRandomString($DataSkill[0]);
+					$this->InsertProjectSkill($id_pjks, 'Proj_' . $id_projc, $_POST['skill']);
 				}
 			}
 			redirect('company');
@@ -181,25 +173,46 @@ class Company extends CI_Controller
 		$this->load->view('layout/company_applicant_profile', $data);
 	}
 
-	public function limit_text($text, $limit)
+	public function getProjSkill($dataProjSkill)
 	{
-		if (str_word_count($text, 0) > $limit) {
-			$words = str_word_count($text, 2);
-			$pos   = array_keys($words);
-			$text  = substr($text, 0, $pos[$limit]) . '...';
+		$dataSkillDB = array();
+		foreach ($dataProjSkill as $item_skill) {
+			$dataPskDB2 = $this->M_Company->getSkillById($item_skill);
+			foreach ($dataPskDB2 as $ItemDB2) {
+				array_push(
+					$dataSkillDB,
+					array(
+						'ID_SKILL' => $ItemDB2->id_skill,
+						'NAMA_SKILL' => $ItemDB2->nama_skill
+					)
+				);
+			}
 		}
-		return $text;
+
+		return $dataSkillDB;
+	}
+
+	public function InsertProjectSkill($id_pjks, $id, $SkillData)
+	{
+		$DataSkill = implode(';', $SkillData);
+		$dataNewCompanySkill = array(
+			'id_project_skill' => 'Pjks_' . $id_pjks,
+			'id_project' => $id,
+			'id_skill' => $DataSkill
+		);
+		$this->M_Company->InsertProjectSkill($dataNewCompanySkill);
 	}
 
 	public function generateRandomString($string)
 	{
 		$bytes = random_bytes(10);
-		return (bin2hex($string.$bytes));
+		return (bin2hex($string . $bytes));
 	}
 
 	public function ApiUploadImageCompany()
 	{
-		var_dump($_FILES['file']);exit;
+		var_dump($_FILES['file']);
+		exit;
 		return json_encode($_FILES['file']['name']);
 	}
 }

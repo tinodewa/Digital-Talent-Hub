@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-box">
+        <div class="form-box mt-5 mb-5">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <p class="form-title">Sign Up</p><p class="form-subtitle">Be A Talent</p>
             <form class="d-flex justify-content-centers align-items-start" action="talent-dashboard.html">
@@ -59,7 +59,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary justify-content-end mt-2">Sign Up</button>
                 <div class="form-group w-100 text-center">
-                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login-talent'); ?>">Login</a>
+                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login'); ?>">Login</a>
                 </div>
             </form>
         </div>

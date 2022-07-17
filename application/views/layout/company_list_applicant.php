@@ -25,8 +25,7 @@
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-2  d-flex align-items-center justify-content-center">
                                                 <div class="card-profile-img-box">
                                                     <div class="card-img-circle">
-                                                        <div class="card-img-circle card-img no-border">
-                                                        </div>
+                                                            <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,9 +63,8 @@
                                         <div class="card-body row no-gutters">
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-2  d-flex align-items-center justify-content-center">
                                                 <div class="card-profile-img-box">
-                                                    <div class="card-img-circle">
-                                                        <div class="card-img-circle card-img no-border">
-                                                        </div>
+                                                    <div class="card-img-circle">                                                        
+                                                        <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,8 +103,7 @@
                                             <div class="col-12 col-sm-12 col-md-3 col-lg-2  d-flex align-items-center justify-content-center">
                                                 <div class="card-profile-img-box">
                                                     <div class="card-img-circle">
-                                                        <div class="card-img-circle card-img no-border">
-                                                        </div>
+                                                        <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
                                                     </div>
                                                 </div>
                                             </div>

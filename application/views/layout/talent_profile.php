@@ -17,11 +17,18 @@
                                 <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
+                                        <!-- new -->
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
-                                        </div>
+                                        </img>
+                                        <!-- old -->
+                                        <!-- <div class="card-img-circle card-img">
+                                            <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
+                                                <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -274,8 +281,7 @@
                             <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                             </div>
@@ -308,8 +314,7 @@
                             <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                             </div>
@@ -342,8 +347,7 @@
                             <div class="col-12 col-sm-6 col-md-3 col-lg-2 order-1 order-md-1 d-flex align-items-center justify-content-center">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
-                                        </div>
+                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img no-border" alt="person picture">
                                     </div>
                                 </div>
                             </div>

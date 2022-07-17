@@ -3,6 +3,7 @@
 
 <head>
     <?php $this->load->view('_partials/head.php'); ?>
+    
 </head>
 
 <body>
@@ -17,17 +18,18 @@
                                 <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
+                                        <!-- new -->
+                                        <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
-                                        </div>
+                                        </img>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-lg-9 d-flex justify-content-center justify-content-sm-start mb-3 mb-sm-0">
                                 <div class="card-text-box text-center text-sm-left">
-                                    <p class="card-title d-block blue mb-2">PT.PERTAMINA</p>
+                                    <p class="card-title d-block blue mb-2"><?= $DetailComp->nama_company; ?></p>
                                     <div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="gmail"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="website"></span></div>
@@ -39,10 +41,10 @@
                         <div class="m-auto">
                             <div class="btn btn-primary justify-content-end w-100" onclick="edit_company();">
                                 <div class="btn-icon-text-box">
-                                    <span class="icon-edit"></span><a href="#">Edit Profile</a>
+                                    <span class="icon-edit"></span> Edit Profile
                                 </div>
                             </div>
-                            <a href="<?= site_url('company/post-project') ?>" class="btn btn-primary justify-content-end w-100 d-flex justify-content-center align-items-center">
+                            <a href="<?= site_url('company-post-project') ?>" class="btn btn-primary justify-content-end w-100 d-flex justify-content-center align-items-center text-decoration-none">
                                 <div>
                                     Post A Job
                                 </div>
@@ -54,23 +56,19 @@
                             About Us
                         </div>
                         <div class="card-desc-text">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an -unknown printer took
-                            a galley of type and scrambled it to make a type specimen book
+                            <?= $DetailComp->summary_company; ?>
                         </div>
                     </div>
                     <div class="col-md-9">
                         <div class="row w-100 mt-5 m-0 m-ms-2" id="image_galery">
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <div class="card-company-img first">
-                                    </div>
+                                    <img src="<?= base_url('assets/img/company-1.png') ?>" class="card-company-img" alt="company picture">
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <div class="card-company-img second">
-                                    </div>
+                                    <img src="<?= base_url('assets/img/company-2.png') ?>" class="card-company-img" alt="company picture">
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
@@ -147,7 +145,7 @@
                         </div>
                         <div class="col-md-3 order-3 order-md-2">
                             <div class="m-auto">
-                                <div class="btn btn-primary justify-content-end w-100" onclick="close_edit_company();">
+                                <div class="btn btn-primary justify-content-end w-100">
                                     <div class="btn-icon-text-box">
                                         <a href="#">Save</a>
                                     </div>
