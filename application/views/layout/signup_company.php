@@ -18,10 +18,10 @@
         <div class="form-box mt-5 mb-5">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <p class="form-title">Sign Up</p><p class="form-subtitle">Hire A Talent</p>
-            <form class="d-flex justify-content-centers align-items-start" action="<?= site_url('company') ?>">
+            <form class="d-flex justify-content-centers align-items-start" action="<?= base_url('sign-up-company') ?>" method="POST">
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Nama Company</label>
-                    <input placeholder="Nama Company" type="text" class="form-control" id="username" name="nama_company" required="true">
+                    <input placeholder="Nama Company" type="text" class="form-control" id="nama_company" name="nama_company" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="email">Email</label>
@@ -47,7 +47,7 @@
                 <div class="form-group mb-4">
                     <label class="form-label" for="verification-password">Verification Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input placeholder="Password" type="password" class="form-control" id="verification_password" required="true">
+                        <input placeholder="Password" type="password" class="form-control" id="verification_password" name="verification_password" required="true">
                         <div class="input-group-append">
                             <span class="input-group-text" onclick="password_verification_show_hide();">
                                 <img src="<?= base_url('assets/img/eye.svg') ?>" id="verification_show_eye" alt="icon show password">
@@ -59,7 +59,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary justify-content-end mt-2">Sign Up</button>
                 <div class="form-group w-100 text-center">
-                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login-company'); ?>">Login</a>
+                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login'); ?>">Login</a>
                 </div>
             </form>
         </div>

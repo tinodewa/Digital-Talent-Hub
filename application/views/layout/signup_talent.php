@@ -59,7 +59,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary justify-content-end mt-2">Sign Up</button>
                 <div class="form-group w-100 text-center">
-                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login-talent'); ?>">Login</a>
+                    <span>Have a Account</span><a class="form-label" href="<?= base_url('login'); ?>">Login</a>
                 </div>
             </form>
         </div>

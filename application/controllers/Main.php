@@ -126,11 +126,11 @@ class Main extends CI_Controller
 			array('field' => 'nama_company', 'label' => 'nama_company', 'rules' => 'required'),
 			array('field' => 'email', 'label' => 'email', 'rules' => 'required'),
 			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
-			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+			array('field' => 'password', 'label' => 'password', 'rules' => 'required'),
+			array('field' => 'verification_password', 'label' => 'verification_password', 'rules' => 'required')
 		);
 
 		$this->form_validation->set_rules($config);
-
 		if ($this->form_validation->run()) {
 			$password = $this->encryptIt($_POST['password']);
 			$id_com = $this->generateRandomString($_POST['nama_company']);
@@ -143,6 +143,7 @@ class Main extends CI_Controller
 				'password' => $password
 			);
 			$this->M_Main->RegistCompany($dataRegistCompany);
+			redirect('login');			
 		} else {
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',

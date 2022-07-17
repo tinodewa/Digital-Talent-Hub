@@ -41,10 +41,10 @@
                         <div class="m-auto">
                             <div class="btn btn-primary justify-content-end w-100" onclick="edit_company();">
                                 <div class="btn-icon-text-box">
-                                    <span class="icon-edit"></span><a href="#">Edit Profile</a>
+                                    <span class="icon-edit"></span> Edit Profile
                                 </div>
                             </div>
-                            <a href="<?= site_url('company/post-project') ?>" class="btn btn-primary justify-content-end w-100 d-flex justify-content-center align-items-center">
+                            <a href="<?= site_url('company-post-project') ?>" class="btn btn-primary justify-content-end w-100 d-flex justify-content-center align-items-center text-decoration-none">
                                 <div>
                                     Post A Job
                                 </div>
@@ -63,20 +63,12 @@
                         <div class="row w-100 mt-5 m-0 m-ms-2" id="image_galery">
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <!-- new -->
                                     <img src="<?= base_url('assets/img/company-1.png') ?>" class="card-company-img" alt="company picture">
-                                    <!-- old -->
-                                    <!-- <div class="card-company-img first">
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
                                 <div class="card-img-box">
-                                    <!-- new -->
                                     <img src="<?= base_url('assets/img/company-2.png') ?>" class="card-company-img" alt="company picture">
-                                    <!-- old -->
-                                    <!-- <div class="card-company-img second">
-                                    </div> -->
                                 </div>
                             </div>
                             <div class="col-sm-4 d-flex justify-content-center mb-3">
@@ -153,7 +145,7 @@
                         </div>
                         <div class="col-md-3 order-3 order-md-2">
                             <div class="m-auto">
-                                <div class="btn btn-primary justify-content-end w-100" onclick="close_edit_company();">
+                                <div class="btn btn-primary justify-content-end w-100">
                                     <div class="btn-icon-text-box">
                                         <a href="#">Save</a>
                                     </div>

@@ -94,7 +94,7 @@
                     <div class="col-12 col-lg-3">
                         <div class="m-auto">
                             <button type="submit" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0">
-                                <div class="btn-icon-text-box" onclick="close_edit_project();">
+                                <div class="btn-icon-text-box">
                                     Save
                                 </div>
                             </button>
@@ -137,8 +137,7 @@
             project.classList.remove("d-none");
             editProject.classList.add("d-none");
         }
-    </script>
-    <script>
+        
         $("#editProfile").click(function() {
             $("#CompanyEdit").submit();
         });
