@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-3 d-flex justify-content-center align-items-center p-0 ml-2">
                 <div class="navbar-img-box">
-                    <div class="navbar-img"></div>
+                    <div style="background-image: url(<?php echo $this->session->userdata('PICT_TALENT'); ?>);" class="navbar-img"></div>
                 </div>
             </div>
             <div class="col-8 d-flex justify-content-start align-items-center p-0 ml-2">

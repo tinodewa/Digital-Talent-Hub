@@ -12,7 +12,7 @@ class Company extends CI_Controller
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
 		if ($this->session->userdata('ID_COMPANY') == null) {
-			redirect('login');
+			redirect('');
 		}
 	}
 

@@ -13,16 +13,13 @@
                 <div class="card-body row">
                     <div class="col-12 col-lg-9">
                         <div class="card-text-box">
-                            <p class="card-text mb-3 mb-lg-5">#AD230</p>
-                            <p class="card-title d-block blue mb-4 text-justify">UI Designer</p>
-                            <p class="card-text">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                ever since the 1500s, when an -unknown printer took a galley of type and
-                                scrambled it to make a type specimen book</p>
+                            <p class="card-text mb-3 mb-lg-5"><?= $data_detail_project['ID_PROJECT'] ?></p>
+                            <p class="card-title d-block blue mb-4 text-justify"><?= $data_detail_project['NAMA_PROJECT'] ?></p>
+                            <p class="card-text"><?= $data_detail_project['DESC_PROJECT'] ?></p>
                             <div class="activity-skills">
-                                <div class="card-item d-inline-block">Figma</div>
-                                <div class="card-item d-inline-block">Web Developer</div>
-                                <div class="card-item d-inline-block">Back-End</div>
+                                    <?php foreach ($data_detail_project['SKILL_PROJECT'] as $SkillItem) {
+                                        echo '<div class="card-item d-inline-block">' . $SkillItem['NAMA_SKILL'] . '</div>';
+                                    } ?>
                             </div>
                         </div>
                     </div>
@@ -39,7 +36,7 @@
                                 </div>
                             </a>
                             <div class="card-text-box text-center">
-                                <p class="card-title d-block blue mb-4 mt-2">$10</p>
+                                <p class="card-title d-block blue mb-4 mt-2">$<?= $data_detail_project['SALARY_PROJECT'] ?></p>
                                 <p class="card-text mb-2">Registration</p>
                                 <p class="card-text mb-0">1 May - 1 June</p>
                             </div>

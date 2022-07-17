@@ -10,7 +10,7 @@ class Talent extends CI_Controller {
 		$this->load->helper(array('string', 'text', 'url'));
 		$this->load->library(array('form_validation', 'session'));
 		if ($this->session->userdata('ID_TALENT') == null) {
-			redirect('login');
+			redirect('');
 		}
 
 	}
@@ -62,8 +62,8 @@ class Talent extends CI_Controller {
 			'title' => 'Job Description | Digitalent',
 		];
 
-		$dataProjectDetail = $this->M_Company->getCompanyDetail($id);
-		$dataPskDB = $this->M_Company->getSkillCompany($dataProjectDetail->id_project);
+		$dataProjectDetail = $this->M_Talent->getCompanyDetail($id);
+		$dataPskDB = $this->M_Talent->getSkillCompany($dataProjectDetail->id_project);
 		$dataSkillDB = array();
 		foreach ($dataPskDB as $ItemDB2) {
 			array_push(
@@ -84,8 +84,8 @@ class Talent extends CI_Controller {
 			'SKILL_PROJECT' => $dataSkillDB
 		);
 
-		$data['skill'] = $this->M_Company->getSkill();
-
+		$data['skill'] = $this->M_Talent->getSkill();
+		
 		$this->load->view('layout/talent_jobdesc', $data);
 		
 	}

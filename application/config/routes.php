@@ -67,7 +67,7 @@ $route['company/project/applicant'] = 'company/listapplicant';
 $route['company/project/applicant/profile'] = 'company/applicantprofile';
 
 $route['talent'] = 'talent';
-$route['talent/job-description'] = 'talent/jobdesc';
+$route['talent/jobdesc'] = 'talent/jobdesc';
 $route['talent/profile'] = 'talent/profile';
 $route['talent/session'] = 'talent/session';
 $route['talent/session/profile'] = 'talent/sessionprofile';
