@@ -9,7 +9,7 @@
 
                 </a>
                 <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">
-                    <img src="<?php echo $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture">
+                    <img src="<?php echo $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
