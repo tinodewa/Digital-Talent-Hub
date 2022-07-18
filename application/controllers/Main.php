@@ -100,7 +100,8 @@ class Main extends CI_Controller
 			array('field' => 'nama_talent', 'label' => 'nama_talent', 'rules' => 'required'),
 			array('field' => 'email', 'label' => 'email', 'rules' => 'required'),
 			array('field' => 'username', 'label' => 'username', 'rules' => 'required'),
-			array('field' => 'password', 'label' => 'password', 'rules' => 'required')
+			array('field' => 'password', 'label' => 'password', 'rules' => 'required'),
+			array('field' => 'verification_password', 'label' => 'verification_password', 'rules' => 'required')
 		);
 
 		$this->form_validation->set_rules($config);
@@ -117,6 +118,7 @@ class Main extends CI_Controller
 				'password' => $password
 			);
 			$this->M_Main->RegistTalent($dataRegistTalent);
+			redirect('login');
 		} else {
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',
