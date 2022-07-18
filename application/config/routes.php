@@ -62,8 +62,10 @@ $route['company'] = 'company';
 $route['company-profile'] = 'company/profile';
 $route['company-project/(:any)'] = 'company/project/$1';
 $route['company-post-project'] = 'company/postproject';
-$route['company/project/applicant'] = 'company/listapplicant';
-$route['company/project/applicant/profile'] = 'company/applicantprofile';
+$route['company-project-applicant/(:any)'] = 'company/listapplicant/$1';
+$route['company-project-applicant/profile'] = 'company/applicantprofile';
+$route['applicant-approve'] = 'company/AcceptApplicant';
+$route['applicant-declined'] = 'company/DeclinedApplicant';
 
 $route['talent'] = 'talent';
 $route['talent/job-description'] = 'talent/jobdesc';

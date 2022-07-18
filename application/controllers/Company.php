@@ -16,6 +16,7 @@ class Company extends CI_Controller
 		}
 	}
 
+	// Main Function
 	public function index()
 	{
 		$data['meta'] = [
@@ -36,7 +37,7 @@ class Company extends CI_Controller
 					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
 					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
 					'SALARY_PROJECT' => $ItemDB1->salary,
-					'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
+					'SKILL_PROJECT' => $this->getSkill(explode(';', $dataPskDB->id_skill))
 				)
 			);
 		}
@@ -65,16 +66,16 @@ class Company extends CI_Controller
 			$config_upload = array(
 				'upload_path' => './assets/company_image/',
 				'allowed_types' => 'jpg|jpeg|png',
-				'file_name' => "Image_Company_" . $_POST['companyName'] . time()
+				'file_name' => "Image_Company_". time()
 			);
 
 			$this->load->library('upload', $config_upload);
 			if ($this->upload->do_upload('ImgUpload')) {
 				$upload_data = $this->upload->data();
 				if (!empty($data['DetailComp']->profile_pict_company)) {
-					unlink('../' . $data['DetailComp']->profile_pict_company);
+					unlink($data['DetailComp']->profile_pict_company);
 				}
-				$file_name = base_url() . 'assets/company_image/' . $upload_data['file_name'];
+				$file_name = 'assets/company_image/' . $upload_data['file_name'];
 
 				$configer =  array(
 					'image_library'   => 'gd2',
@@ -88,7 +89,7 @@ class Company extends CI_Controller
 
 				$dataNewCompany['profile_pict_company'] = $file_name;
 
-				$this->session->set_userdata(array('PICT_COMPANY' => $file_name));
+				$this->session->set_userdata(array('PICT_COMPANY' => base_url().$file_name));
 			}
 
 			$this->M_Company->UpdateCompany($id_company, $dataNewCompany);
@@ -147,7 +148,7 @@ class Company extends CI_Controller
 				'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 				'SALARY_PROJECT' => $dataProjectDetail->salary,
 				'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-				'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
+				'SKILL_PROJECT' => $this->getSkill(explode(';', $dataPskDB->id_skill))
 			);
 
 			$data['skill'] = $this->M_Company->getSkill();
@@ -192,11 +193,28 @@ class Company extends CI_Controller
 		}
 	}
 
-	public function listapplicant()
+	public function listapplicant($id)
 	{
 		$data['meta'] = [
 			'title' => 'List Applicant | Digitalent',
 		];
+
+		$dataApplicant = $this->M_Company->getAllApplicant($id);
+
+		$data['applicant'] = array();
+		foreach($dataApplicant as $applicantItem){
+			array_push(
+				$data['applicant'],
+				array(
+					'nama_talent' => $applicantItem->nama_talent,
+					'profile_pict_talent' => $applicantItem->nama_talent,
+					'id_detail_project' => $applicantItem->nama_talent,
+					'id_project' => $applicantItem->nama_talent,
+					'status' => $applicantItem->nama_talent,
+					'skill' => $this->getSkill(explode(';', $applicantItem->id_skill))
+				)
+			);
+		}
 
 		$this->load->view('layout/company_list_applicant', $data);
 	}
@@ -210,7 +228,26 @@ class Company extends CI_Controller
 		$this->load->view('layout/company_applicant_profile', $data);
 	}
 
-	public function getProjSkill($dataProjSkill)
+	// Custom Function
+	public function AcceptApplicant()
+	{
+		$data = array(
+			'status' => 1
+		);
+		$this->M_Company->UpdateApplicant($_POST['id_detail_project'], $data);		
+		redirect('company-project-applicant/'.$_POST['id_project']);
+	}
+
+	public function DeclinedApplicant()
+	{
+		$data = array(
+			'status' => 2
+		);
+		$this->M_Company->UpdateApplicant($_POST['id_detail_project'], $data);		
+		redirect('company-project-applicant/'.$_POST['id_project']);
+	}
+
+	public function getSkill($dataProjSkill)
 	{
 		$dataSkillDB = array();
 		foreach ($dataProjSkill as $item_skill) {
@@ -231,11 +268,10 @@ class Company extends CI_Controller
 
 	public function InsertProjectSkill($id_pjks, $id, $SkillData)
 	{
-		$DataSkill = implode(';', $SkillData);
 		$dataNewProjectSkill = array(
 			'id_project_skill' => 'Pjks_' . $id_pjks,
 			'id_project' => $id,
-			'id_skill' => $DataSkill
+			'id_skill' => implode(';', $SkillData)
 		);
 		$this->M_Company->InsertProjectSkill($dataNewProjectSkill);
 	}

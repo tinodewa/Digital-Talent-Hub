@@ -88,5 +88,19 @@ class M_Company extends CI_Model
         $this->db->where('id_project', $id);
         return $this->db->delete('project_skill');
     }
+    
+    public function getAllApplicant($projectID)
+    {
+        $this->db->select('talent.*, detail_project.id_detail_project, detail_project.id_project, detail_project.status, talent_skill.id_skill');
+        $this->db->join('talent', 'talent.id_talent = detail_project.id_talent', 'LEFT');
+        $this->db->join('talent_skill', 'talent_skill.id_talent = detail_project.id_talent', 'LEFT');
+        $this->db->where('detail_project.id_project', $projectID);
+        return $this->db->get("detail_project")->result();
+    }
 
+    public function UpdateApplicant($id, $data)
+    {
+        $this->db->where('id_detail_project', $id);
+        return $this->db->update('detail_project', $data);        
+    }
 }
