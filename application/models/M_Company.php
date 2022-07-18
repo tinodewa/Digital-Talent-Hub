@@ -98,6 +98,14 @@ class M_Company extends CI_Model
         return $this->db->get("detail_project")->result();
     }
 
+    public function getApplicantById($talentID)
+    {
+        $this->db->select('talent.*, talent_skill.id_skill');
+        $this->db->join('talent_skill', 'talent_skill.id_talent = talent.id_talent', 'LEFT');
+        $this->db->where('talent.id_talent', $talentID);
+        return $this->db->get("talent")->row();
+    }
+
     public function UpdateApplicant($id, $data)
     {
         $this->db->where('id_detail_project', $id);

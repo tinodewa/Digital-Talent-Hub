@@ -5,8 +5,8 @@
     <?php $this->load->view('_partials/head.php'); ?>
 </head>
 
-<body>    
-    <?php $this->load->view('_partials/company_navbar.php') ?>
+<body>
+    <?php $this->load->view('_partials/company_navbar_overflow.php') ?>
     <section id="talentBio" class="card-section talent-bio">
         <div class="container">
             <div class="card w-100">
@@ -16,24 +16,21 @@
                             <div class="col-md-3">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <img src="<?= base_url('assets/img/experience.png') ?>" class="card-img-circle card-img no-border" alt="person picture"/>
+                                        <img src="<?= base_url($applicant['profile_pict_talent']) ?>" class="card-img-circle card-img no-border" alt="person picture" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-9">
                                 <div class="card-text-box">
-                                    <p class="card-title d-block blue mb-2">Wijaya Gunawan</p>
+                                    <p class="card-title d-block blue mb-2"><?= $applicant['nama_talent']; ?></p>
                                     <div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="gmail"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="website"></span></div>
-                                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                                        ever since the 1500s, when an -unknown printer took a galley of type and
-                                        scrambled it to make a type specimen book</p>
+                                    <p class="card-text"><?= $applicant['summary_talent']; ?></p>
                                     <div class="activity-skills">
-                                        <div class="card-item d-inline-block">Figma</div>
-                                        <div class="card-item d-inline-block">Web Developer</div>
-                                        <div class="card-item d-inline-block">Back-End</div>
+                                        <?php foreach ($applicant['skill'] as $talentSkill) { ?>
+                                            <div class="card-item d-inline-block"><?= $talentSkill['NAMA_SKILL']; ?></div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

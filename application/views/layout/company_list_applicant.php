@@ -43,7 +43,7 @@
                                                 <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
                                                     <div class="row align-items-center">
                                                         <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                            <a href="<?= base_url('company/project/applicant/profile') ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
+                                                            <a href="<?= base_url('company-project-applicant/profile/'.$ItemApplicant['id_talent']) ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
                                                                 <div id="editProfile" class="btn-icon-text-box">
                                                                     Details
                                                                 </div>

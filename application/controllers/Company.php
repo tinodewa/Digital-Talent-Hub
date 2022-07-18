@@ -206,6 +206,7 @@ class Company extends CI_Controller
 			array_push(
 				$data['applicant'],
 				array(
+					'id_talent' => $applicantItem->id_talent,
 					'nama_talent' => $applicantItem->nama_talent,
 					'profile_pict_talent' => $applicantItem->profile_pict_talent,
 					'id_detail_project' => $applicantItem->id_detail_project,
@@ -219,11 +220,21 @@ class Company extends CI_Controller
 		$this->load->view('layout/company_list_applicant', $data);
 	}
 
-	public function applicantprofile()
+	public function applicantprofile($id)
 	{
 		$data['meta'] = [
 			'title' => 'Applicant Profile | Digitalent',
 		];
+
+		$DataTalent= $this->M_Company->getApplicantById($id);
+		$data['applicant'] = array(
+			'id_talent' => $DataTalent->id_talent,
+			'nama_talent' => $DataTalent->nama_talent,
+			'summary_talent' => $DataTalent->summary_talent,
+			'profile_pict_talent' => $DataTalent->profile_pict_talent,
+			'profile_pict_talent' => $DataTalent->profile_pict_talent,
+			'skill' => $this->getSkill(explode(';', $DataTalent->id_skill))
+		);
 
 		$this->load->view('layout/company_applicant_profile', $data);
 	}
