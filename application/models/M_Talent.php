@@ -20,10 +20,12 @@
             return $this->db->get("project_skill")->row();
         }
 
-        public function getProjectDetail($id)
+        public function getProjectDetail($id, $id_talent)
         {
-            $this->db->select('project.*');
+            $this->db->select('project.*, detail_project.status');
+            $this->db->join('detail_project', 'detail_project.id_project = project.id_project');
             $this->db->where('project.id_project', $id);
+            $this->db->where('detail_project.id_talent', $id_talent);
             return $this->db->get("project")->row();
         }
 
@@ -81,6 +83,11 @@
         {
             $this->db->where('id_talent', $id);
             return $this->db->delete('talent_skill');
+        }
+
+        public function InsertApply($data)
+        {
+            return $this->db->insert('detail_project', $data);    
         }
     }
 ?>

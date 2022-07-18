@@ -25,11 +25,19 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="m-auto">
-                            <a href="#" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0 d-flex justify-content-center align-items-center">
-                                <div id="editProfile" class="btn-icon-text-box">
-                                    Apply
-                                </div>
-                            </a>
+                            <?php if ($data_detail_project['STATUS'] == null || empty($data_detail_project['STATUS'])) { ?>
+                                <a href="<?= base_url().'apply-project/'.$data_detail_project['ID_PROJECT'] ?>" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0 d-flex justify-content-center align-items-center">
+                                    <div id="editProfile" class="btn-icon-text-box">
+                                        Apply
+                                    </div>
+                                </a>
+                            <?php } else {?>
+                                <div class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0 d-flex justify-content-center align-items-center">
+                                    <div id="editProfile" class="btn-icon-text-box">
+                                        Applied
+                                    </div>
+                            </div>
+                            <?php }?>
                             <a href="<?= site_url('talent') ?>" class="btn btn-primary d-flex justify-content-center align-items-center w-100 text-decoration-none">
                                 <div id="editProfile" class="btn-icon-text-box">
                                     Back to Dashboard
@@ -46,6 +54,34 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Accept -->
+    <div class="modal modal-delete-file fade" id="modal1" tabindex="-1" aria-labelledby="modal1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <section class="card-section talent-file">
+                    <div class="container">
+                        <div class="card w-100 card-no-border">
+                            <div class="card-text-box mb-2">
+                                <p class="card-title d-block blue mb-0">Accept</p>
+                                <p class="card-text">Are your sure want to Accept</p>
+                                <div class="card-btn-box d-flex">
+                                    <div onclick="hide_modal1();" class="btn btn-option btn-primary d-flex align-items-center justify-content-center mr-auto white text-decoration-none">
+                                        <a class="text-decoration-none" href="#">Cancel</a>
+                                    </div>
+                                    <form action="<?= base_url('applicant-approve/') ?>" method="POST">
+                                        <input type="hidden" name="id_detail_project" value="<?= $ItemApplicant['id_detail_project']; ?>">
+                                        <input type="hidden" name="id_project" value="<?= $ItemApplicant['id_project']; ?>">
+                                        <button type="submit" class="btn btn-option btn-primary d-flex align-items-center justify-content-center">Accept</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
 
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_talent.php') ?>

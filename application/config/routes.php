@@ -72,3 +72,4 @@ $route['talent/jobdesc'] = 'talent/jobdesc';
 $route['talent/profile'] = 'talent/profile';
 $route['talent/session'] = 'talent/session';
 $route['talent/session/profile'] = 'talent/sessionprofile';
+$route['apply-project/(:any)'] = 'talent/ApplyProject/$1';

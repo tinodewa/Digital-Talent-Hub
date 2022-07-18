@@ -126,18 +126,23 @@ class Talent extends CI_Controller {
 		$data['meta'] = [
 			'title' => 'Job Description | Digitalent',
 		];
+		
 
-		$dataProjectDetail = $this->M_Talent->getProjectDetail($id);
+		$dataProjectDetail = $this->M_Talent->getProjectDetail($id, $this->session->userdata('ID_TALENT'));
 		$dataPskDB = $this->M_Talent->getSkillCompany($dataProjectDetail->id_project);
 		$dataSkillDB = array();
 		
+		if(empty($dataProjectDetail)){	
+			
+		}
 		$data['data_detail_project'] = array(
 			'ID_PROJECT' => $dataProjectDetail->id_project,
 			'NAMA_PROJECT' => $dataProjectDetail->nama_project,
 			'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 			'SALARY_PROJECT' => $dataProjectDetail->salary,
 			'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-			'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
+			'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill)),
+			'STATUS' => $dataProjectDetail->status
 		);
 
 		$data['skill'] = $this->M_Talent->getSkill();
@@ -220,5 +225,18 @@ class Talent extends CI_Controller {
 	{
 		$bytes = random_bytes(10);
 		return (bin2hex($string . $bytes));
+	}
+
+	public function ApplyProject($id_project)
+	{
+		$id_talent = $this->session->userdata('ID_TALENT');
+
+		$data = array(
+			'id_project' => $id_project,
+			'id_talent' => $id_talent,
+			'status' => 0
+		);
+		$this->M_Talent->InsertApply($data);		
+		redirect('talent/jobdesc/'.$id_project);
 	}
 }
