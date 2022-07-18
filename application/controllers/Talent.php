@@ -47,10 +47,11 @@ class Talent extends CI_Controller {
 		];
 		$id_talent = $this->session->userdata('ID_TALENT');
 
-		$dataSkill = $this->M_Talent->getSkillTalent($this->session->userdata('ID_TALENT'));
+		$dataSkill = $this->M_Talent->getSkillTalent($id_talent);
 
-		$data['ProfileTal'] = $this->M_Talent->getTalentProfile($this->session->userdata('ID_TALENT'));
+		$data['ProfileTal'] = $this->M_Talent->getTalentProfile($id_talent);
 		$data['SKILL_TALENT'] = $this->getTalSkill(explode(';', $dataSkill->id_skill));
+		$data['skill'] = $this->M_Talent->getSkill();
 		
 		$config = array(
 			array('field' => 'talentName', 'label' => 'talentName', 'rules' => 'required'),
@@ -61,7 +62,9 @@ class Talent extends CI_Controller {
 		if ($this->form_validation->run()) {
 			$dataNewTalent = array(
 				'nama_talent' => $_POST['talentName'],
-				'email_talent' => $_POST['talentEmail'],
+				'email_talent' => $_POST['talentGmail'],
+				'website_talent' => $_POST['talentWebsite'],
+				'no_talent' => $_POST['talentWhatsapp'],
 				'summary_talent' => $_POST['talentBio']
 			);
 
@@ -75,9 +78,9 @@ class Talent extends CI_Controller {
 			if ($this->upload->do_upload('ImgUpload')) {
 				$upload_data = $this->upload->data();
 				if (!empty($data['ProfileTal']->profile_pict_talent)) {
-					unlink('../' . $data['ProfileTal']->profile_pict_talent);
+					unlink($data['ProfileTal']->profile_pict_talent);
 				}
-				$file_name = base_url() . 'assets/talent_image/' . $upload_data['file_name'];
+				$file_name = 'assets/talent_image/' . $upload_data['file_name'];
 
 				$configer =  array(
 					'image_library'   => 'gd2',
@@ -93,9 +96,22 @@ class Talent extends CI_Controller {
 
 				$this->session->set_userdata(array('PICT_TALENT' => $file_name));
 			}
+			
+			if ($this->M_Talent->UpdateTalent($id_talent, $dataNewTalent)) {
+				$DataSkill = $_POST['talentName'];
+				if (!empty($DataSkill)) {
+					$TalsData = $this->M_Talent->GetTalentSkill($id_talent);
+					if (!empty($TalsData)) {
+						$this->M_Talent->DeleteTalentSkill($id_talent);
+					}
 
-			$this->M_Talent->UpdateTalent($id_talent, $dataNewTalent);
-			redirect('talent/profile');
+					$id_tals = $this->generateRandomString($DataSkill[0]);
+					$this->InsertTalentSkill($id_tals, $id_talent, $_POST['skill']);
+				}
+
+				redirect('talent/profile');
+			}
+			
 		} else {
 			$data['meta'] = [
 				'title' => 'Profile | Digitalent',
@@ -187,5 +203,22 @@ class Talent extends CI_Controller {
 		var_dump($_FILES['file']);
 		exit;
 		return json_encode($_FILES['file']['name']);
+	}
+
+	public function InsertTalentSkill($id_tals, $id, $SkillData)
+	{
+		$DataSkill = implode(';', $SkillData);
+		$dataNewTalentSkill = array(
+			'id_talent_skill' => 'TalS_' . $id_tals,
+			'id_talent' => $id,
+			'id_skill' => $DataSkill
+		);
+		$this->M_Talent->InsertTalentSkill($dataNewTalentSkill);
+	}
+
+	public function generateRandomString($string)
+	{
+		$bytes = random_bytes(10);
+		return (bin2hex($string . $bytes));
 	}
 }

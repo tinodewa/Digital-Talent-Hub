@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <?php $this->load->view('_partials/talent_navbar.php') ?>
+    <?php $this->load->view('_partials/talent_navbar_overflow.php') ?>
     <section id="talentBio" class="card-section talent-bio">
         <div class="container">
             <div class="card w-100">
@@ -18,7 +18,7 @@
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
                                         <!-- new -->
-                                        <img src="<?= $ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="person picture">
+                                        <img src="<?= base_url().$ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="person picture">
                                             <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
                                                 <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
                                             </div>
@@ -35,7 +35,7 @@
                             <div class="col-md-9">
                                 <div class="card-text-box">
                                     <p class="card-title d-block blue mb-2"><?= $ProfileTal->nama_talent; ?></p>
-                                    <div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div>
+                                    <a href="<?= "https://wa.me/$ProfileTal->no_talent"; ?>"><div class="card-icon-box d-inline-block"><span class="whatsapp"></span></div></a>
                                     <div class="card-icon-box  d-inline-block"><span class="gmail"></span></div>
                                     <div class="card-icon-box  d-inline-block"><span class="website"></span></div>
                                     <p class="card-text"><?= $ProfileTal->summary_talent; ?></p>
@@ -72,7 +72,7 @@
                                     <div class="card-profile-img-box" id="ImageShow">
                                         <div class="card-img-circle">
                                             <div class="card-img-circle card-img">
-                                                <img src="<?= $ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
+                                                <img src="<?= base_url().$ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                                             </div>
                                             <div class="btn btn-primary justify-content-end w-100 white mt-2" onclick="open_input();"><a class="text-decoration-none">Change</a></div>
                                         </div>
@@ -93,34 +93,55 @@
                                             <input placeholder="Name" type="text" class="form-control" id="talentName"
                                                 aria-describedby="talentName" name="talentName" value="<?= $ProfileTal->nama_talent; ?>">
                                         </div>
-                                        <div class="form-group mb-1">
-                                            <input placeholder="Email" type="email" class="form-control" id="talentEmail"
-                                                aria-describedby="talentEmail" name="talentEmail" value="<?= $ProfileTal->email_talent; ?>">
+                                        <div class="form-group w-50">
+                                            <div class="input-group">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <img src="<?= base_url('assets/img/logos_whatsapp.png') ?>" alt="icon whatsapp">
+                                                    </span>
+                                                </div>
+                                                <input placeholder="Talent Whatsapp" type="text" class="form-control" id="talentWhatsapp" name="talentWhatsapp" value="<?= $ProfileTal->no_talent; ?>" aria-describedby="talentWhatsapp">
+                                            </div>
+                                        </div>
+                                        <div class="form-group w-50">
+                                            <div class="input-group">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <img src="<?= base_url('assets/img/logos_google-gmail.png') ?>" alt="icon gmail">
+                                                    </span>
+                                                </div>
+                                                <input placeholder="Talent Gmail" type="email" class="form-control" id="talentGmail" name="talentGmail" value="<?= $ProfileTal->email_talent; ?>" aria-describedby="talentGmail">
+                                            </div>
+                                        </div>
+                                        <div class="form-group w-50">
+                                            <div class="input-group">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <img src="<?= base_url('assets/img/logos-website.png') ?>" alt="icon website">
+                                                    </span>
+                                                </div>
+                                                <input placeholder="Talent Website" type="text" class="form-control" id="talentWebsite" name="talentWebsite" value="<?= $ProfileTal->website_talent; ?>" aria-describedby="talentWebsite">
+                                            </div>
                                         </div>
                                         <div class="form-group mb-1">
                                             <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3"
                                                 aria-describedby="talentBio" name="talentBio" ><?= $ProfileTal->summary_talent; ?></textarea>
                                         </div>
                                         <div class="form-group mb-1">
-                                            <div class="form-control card-item-box">
-                                                <div class="activity-skills d-flex align-items-center flex-wrap">
-                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                        Figma
-                                                        <span class="icon-remove"></span>
-                                                    </div>
-                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                        Web Developer
-                                                        <span class="icon-remove"></span>
-                                                    </div>
-                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                        Back-End
-                                                        <span class="icon-remove"></span>
-                                                    </div>
-                                                    <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
-                                                        <span class="icon-add"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <select class="form-control card-item-box js-example-basic-multiple" name="skill[]" multiple="multiple" style="width: 100%;">
+                                                <?php
+                                                foreach ($skill as $dataSkill) { ?>
+                                                    <option class="card-item card-item-remove mb-2 mb-md-0 d-inline-block" value="<?= $dataSkill->id_skill; ?>" <?php
+                                                        foreach ($SKILL_TALENT as $SkillItem) {
+                                                            if ($dataSkill->id_skill == $SkillItem['ID_SKILL']) {
+                                                                echo 'selected';
+                                                            }
+                                                        }
+                                                        ?>>
+                                                        <?= $dataSkill->nama_skill; ?>
+                                                    </option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -610,6 +631,10 @@
         function hide_modal3() {
             $('#modal3').trigger('click');
         }
+
+        $('.js-example-basic-multiple').select2({
+            placeholder: 'Select Skill'
+        });
 
         $("#ImgUpload").on("change", function(e) {
             var files = e.target.files;

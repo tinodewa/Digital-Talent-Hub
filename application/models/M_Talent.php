@@ -53,6 +53,12 @@
             return $this->db->get("talent")->row();
         }
 
+        public function GetTalentSkill($id)
+        {
+            $this->db->where('talent_skill.id_talent', $id);
+            return $this->db->get("talent_skill")->result();
+        }
+
         public function getSkillById($id)
         {
             $this->db->select('skill.*');
@@ -64,6 +70,17 @@
         {
             $this->db->where('talent.id_talent', $id);
             return $this->db->update("talent", $data);
+        }
+
+        public function InsertTalentSkill($data)
+        {
+            return $this->db->insert('talent_skill', $data);
+        }
+
+        public function DeleteTalentSkill($id)
+        {
+            $this->db->where('id_talent', $id);
+            return $this->db->delete('talent_skill');
         }
     }
 ?>

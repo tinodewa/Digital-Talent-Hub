@@ -37,7 +37,7 @@
                                                     <div class="card-profile-img-box">
                                                         <div class="card-img-circle">
                                                             <!-- new -->
-                                                            <img src="<?php echo $item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
+                                                            <img src="<?php echo base_url().$item1['PICT_PROJECT']; ?>" class="card-img-circle card-img no-border" alt="person picture">
                                                             <!-- old -->
                                                             <!-- <img style="background-image: url(<?php echo $item1['PICT_PROJECT']; ?>);" class="card-img-circle card-img no-border"/> -->
                                                         </div>

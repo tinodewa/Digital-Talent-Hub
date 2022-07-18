@@ -55,9 +55,9 @@ class M_Company extends CI_Model
         return $this->db->get("project")->row();
     }
 
-    public function GetProjectSkill($id)
+    public function GetProjectSkill($id_talent)
     {
-        $this->db->where('project_skill.id_project', $id);
+        $this->db->where('project_skill.id_project', $id_talent);
         return $this->db->get("project_skill")->result();
     }
 
