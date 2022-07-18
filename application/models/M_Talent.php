@@ -20,13 +20,17 @@
             return $this->db->get("project_skill")->row();
         }
 
-        public function getProjectDetail($id, $id_talent)
+        public function getProjectDetail($id)
         {
-            $this->db->select('project.*, detail_project.status');
-            $this->db->join('detail_project', 'detail_project.id_project = project.id_project');
+            $this->db->select('project.*');            
             $this->db->where('project.id_project', $id);
-            $this->db->where('detail_project.id_talent', $id_talent);
             return $this->db->get("project")->row();
+        }
+
+        public function CheckStatus()
+        {
+            $this->db->select('detail_project.*');
+            return $this->db->get("detail_project")->result();
         }
 
         public function getSkillTalent($id)

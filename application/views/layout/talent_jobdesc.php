@@ -13,7 +13,7 @@
                 <div class="card-body row">
                     <div class="col-12 col-lg-9">
                         <div class="card-text-box">
-                            <p class="card-text mb-3 mb-lg-5"><?= $data_detail_project['ID_PROJECT'] ?></p>
+                            <p class="card-text mb-3 mb-lg-5"><?= $data_detail_project['ID_PROJECT']?></p>
                             <p class="card-title d-block blue mb-4 text-justify"><?= $data_detail_project['NAMA_PROJECT'] ?></p>
                             <p class="card-text"><?= $data_detail_project['DESC_PROJECT'] ?></p>
                             <div class="activity-skills">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="m-auto">
-                            <?php if ($data_detail_project['STATUS'] == null || empty($data_detail_project['STATUS'])) { ?>
+                            <?php if (!$data_detail_project['STATUS']) { ?>
                                 <a href="<?= base_url().'apply-project/'.$data_detail_project['ID_PROJECT'] ?>" class="btn btn-primary justify-content-end w-100 mt-4 mt-lg-0 d-flex justify-content-center align-items-center">
                                     <div id="editProfile" class="btn-icon-text-box">
                                         Apply

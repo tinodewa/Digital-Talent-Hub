@@ -1,9 +1,11 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Talent extends CI_Controller {
+class Talent extends CI_Controller
+{
 
-	function __construct() {
+	function __construct()
+	{
 
 		parent::__construct();
 		$this->load->model('M_Talent');
@@ -12,10 +14,10 @@ class Talent extends CI_Controller {
 		if ($this->session->userdata('ID_TALENT') == null) {
 			redirect('');
 		}
-
 	}
 
-	public function index() {
+	public function index()
+	{
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
@@ -24,7 +26,7 @@ class Talent extends CI_Controller {
 
 		foreach ($dataProject as $ItemDB1) {
 			$dataPjkDB = $this->M_Talent->getSkillCompany($ItemDB1->id_project);
-			
+
 			array_push(
 				$data['dataProject'],
 				array(
@@ -41,7 +43,8 @@ class Talent extends CI_Controller {
 		$this->load->view('layout/talent_dashboard', $data);
 	}
 
-    public function profile() {
+	public function profile()
+	{
 		$data['meta'] = [
 			'title' => 'Profile | Digitalent',
 		];
@@ -52,7 +55,7 @@ class Talent extends CI_Controller {
 		$data['ProfileTal'] = $this->M_Talent->getTalentProfile($id_talent);
 		$data['SKILL_TALENT'] = $this->getTalSkill(explode(';', $dataSkill->id_skill));
 		$data['skill'] = $this->M_Talent->getSkill();
-		
+
 		$config = array(
 			array('field' => 'talentName', 'label' => 'talentName', 'rules' => 'required'),
 			array('field' => 'talentBio', 'label' => 'talentBio', 'rules' => 'required')
@@ -96,7 +99,7 @@ class Talent extends CI_Controller {
 
 				$this->session->set_userdata(array('PICT_TALENT' => $file_name));
 			}
-			
+
 			if ($this->M_Talent->UpdateTalent($id_talent, $dataNewTalent)) {
 				$DataSkill = $_POST['talentName'];
 				if (!empty($DataSkill)) {
@@ -111,7 +114,6 @@ class Talent extends CI_Controller {
 
 				redirect('talent/profile');
 			}
-			
 		} else {
 			$data['meta'] = [
 				'title' => 'Profile | Digitalent',
@@ -119,39 +121,43 @@ class Talent extends CI_Controller {
 
 			$this->load->view('layout/talent_profile', $data);
 		}
-		
 	}
 
-    public function jobdesc($id) {
+	public function jobdesc($id)
+	{
 		$data['meta'] = [
 			'title' => 'Job Description | Digitalent',
 		];
-		
 
-		$dataProjectDetail = $this->M_Talent->getProjectDetail($id, $this->session->userdata('ID_TALENT'));
+		$dataProjectDetail = $this->M_Talent->getProjectDetail($id);
 		$dataPskDB = $this->M_Talent->getSkillCompany($dataProjectDetail->id_project);
-		$dataSkillDB = array();
-		
-		if(empty($dataProjectDetail)){	
-			
-		}
 		$data['data_detail_project'] = array(
 			'ID_PROJECT' => $dataProjectDetail->id_project,
 			'NAMA_PROJECT' => $dataProjectDetail->nama_project,
 			'DESC_PROJECT' => $dataProjectDetail->deskripsi_project,
 			'SALARY_PROJECT' => $dataProjectDetail->salary,
 			'REGIST_PROJECT' => $dataProjectDetail->registration_project,
-			'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill)),
-			'STATUS' => $dataProjectDetail->status
+			'SKILL_PROJECT' => $this->getProjSkill(explode(';', $dataPskDB->id_skill))
 		);
 
-		$data['skill'] = $this->M_Talent->getSkill();
-		
+		$dataCheck = $this->M_Talent->CheckStatus();
+		if (empty($dataCheck)) {
+			$data['data_detail_project']['STATUS'] = false;
+		} else {
+			foreach ($dataCheck as $check) {
+				if ($check->id_talent == $this->session->userdata('ID_TALENT') && $check->id_project == $dataProjectDetail->id_project) {
+					$data['data_detail_project']['STATUS'] = true;
+				} else {
+					$data['data_detail_project']['STATUS'] = false;
+				}
+			}
+		}
+
 		$this->load->view('layout/talent_jobdesc', $data);
-		
 	}
 
-    public function session() {
+	public function session()
+	{
 		$data['meta'] = [
 			'title' => 'Session | Digitalent',
 		];
@@ -159,7 +165,8 @@ class Talent extends CI_Controller {
 		$this->load->view('layout/session_dashboard', $data);
 	}
 
-    public function sessionprofile() {
+	public function sessionprofile()
+	{
 		$data['meta'] = [
 			'title' => 'Session Profile | Digitalent',
 		];
@@ -167,7 +174,8 @@ class Talent extends CI_Controller {
 		$this->load->view('layout/session_profile', $data);
 	}
 
-	public function getProjSkill($dataProjSkill) {
+	public function getProjSkill($dataProjSkill)
+	{
 		$dataSkillDB = array();
 		foreach ($dataProjSkill as $item_skill) {
 			$dataPskDB2 = $this->M_Talent->getSkillById($item_skill);
@@ -185,7 +193,8 @@ class Talent extends CI_Controller {
 		return $dataSkillDB;
 	}
 
-	public function getTalSkill($dataTalSkill) {
+	public function getTalSkill($dataTalSkill)
+	{
 		$dataSkillDB = array();
 		foreach ($dataTalSkill as $item_skill) {
 			$dataPskDB2 = $this->M_Talent->getSkillById($item_skill);
@@ -236,7 +245,7 @@ class Talent extends CI_Controller {
 			'id_talent' => $id_talent,
 			'status' => 0
 		);
-		$this->M_Talent->InsertApply($data);		
-		redirect('talent/jobdesc/'.$id_project);
+		$this->M_Talent->InsertApply($data);
+		redirect('talent/jobdesc/' . $id_project);
 	}
 }
