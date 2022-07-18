@@ -34,22 +34,22 @@
                                                     <div class="card-text-box">
                                                         <p class="card-title d-block blue no-underline mb-2"><?= $ItemApplicant['nama_talent']; ?></p>
                                                         <div class="activity-skills">
-                                                            <?php foreach($ItemApplicant['skill'] as $talentSkill){ ?>
+                                                            <?php foreach ($ItemApplicant['skill'] as $talentSkill) { ?>
                                                                 <div class="card-item d-inline-block"><?= $talentSkill['NAMA_SKILL']; ?></div>
-                                                            <?php }?>
+                                                            <?php } ?>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php if ($ItemApplicant['status'] == 0) { ?>
-                                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                                <a href="<?= base_url('company/project/applicant/profile') ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
-                                                                    <div id="editProfile" class="btn-icon-text-box">
-                                                                        Details
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
+                                                            <a href="<?= base_url('company/project/applicant/profile') ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
+                                                                <div id="editProfile" class="btn-icon-text-box">
+                                                                    Details
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                        <?php if ($ItemApplicant['status'] == 0) { ?>
                                                             <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                                 <div class="col-6 col-xl-3 d-flex justify-content-end p-0 mt-2 mt-xl-0 mr-xl-1">
                                                                     <a class="card-item card-item-accept mb-2 mb-md-0 mr-1 d-inline-block" data-toggle="modal" data-target="#modal1">
@@ -62,48 +62,23 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-
-                                                <?php if ($ItemApplicant['status'] == 1) { ?>
-                                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                                <a href="<?= site_url('company/project/applicant/profile') ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
-                                                                    <div id="editProfile" class="btn-icon-text-box">
-                                                                        Details
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if ($ItemApplicant['status'] == 1) { ?>
                                                             <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                                 <div class="activity-status accepted m-0">
                                                                     <div>Accepted</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                <?php } ?>
-
-                                                <?php if ($ItemApplicant['status'] == 2) { ?>
-                                                    <div class="col-12 col-sm-12 col-md-3 col-lg-3 mt-2 mt-md-0 d-flex align-items-center justify-content-center">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-12 col-xl-6 m-0 d-flex justify-content-center">
-                                                                <a href="<?= site_url('company/project/applicant/profile') ?>" class="btn btn-primary btn-list-apply mb-0 d-flex justify-content-center align-items-center text-decoration-none">
-                                                                    <div id="editProfile" class="btn-icon-text-box">
-                                                                        Details
-                                                                    </div>
-                                                                </a>
-                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if ($ItemApplicant['status'] == 2) { ?>
                                                             <div class="col-12 col-xl-6 d-flex justify-content-center align-items-center mt-2 mt-xl-0">
                                                                 <div class="activity-status declined m-0">
                                                                     <div>Declined</div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        <?php } ?>
                                                     </div>
-                                                <?php } ?>
-
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -131,8 +106,8 @@
                                         <a class="text-decoration-none" href="#">Cancel</a>
                                     </div>
                                     <form action="<?= base_url('applicant-approve/') ?>" method="POST">
-                                        <input type="hidden" name="id_detail_project" value="<?= $ItemApplicant->id_detail_project; ?>">
-                                        <input type="hidden" name="id_project" value="<?= $ItemApplicant->id_project; ?>">
+                                        <input type="hidden" name="id_detail_project" value="<?= $ItemApplicant['id_detail_project']; ?>">
+                                        <input type="hidden" name="id_project" value="<?= $ItemApplicant['id_project']; ?>">
                                         <button type="submit" class="btn btn-option btn-primary d-flex align-items-center justify-content-center">Accept</button>
                                     </form>
                                 </div>
@@ -159,8 +134,8 @@
                                         <a class="text-decoration-none" href="#">Cancel</a>
                                     </div>
                                     <form action="<?= base_url('applicant-declined/') ?>" method="POST">
-                                        <input type="hidden" name="id_detail_project" value="<?= $ItemApplicant->id_detail_project; ?>">
-                                        <input type="hidden" name="id_project" value="<?= $ItemApplicant->id_project; ?>">
+                                        <input type="hidden" name="id_detail_project" value="<?= $ItemApplicant['id_detail_project']; ?>">
+                                        <input type="hidden" name="id_project" value="<?= $ItemApplicant['id_project']; ?>">
                                         <button type="submit" class="btn btn-option btn-primary d-flex align-items-center justify-content-center">Declined</button>
                                     </form>
                                 </div>

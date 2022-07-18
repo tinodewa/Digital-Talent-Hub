@@ -207,10 +207,10 @@ class Company extends CI_Controller
 				$data['applicant'],
 				array(
 					'nama_talent' => $applicantItem->nama_talent,
-					'profile_pict_talent' => $applicantItem->nama_talent,
-					'id_detail_project' => $applicantItem->nama_talent,
-					'id_project' => $applicantItem->nama_talent,
-					'status' => $applicantItem->nama_talent,
+					'profile_pict_talent' => $applicantItem->profile_pict_talent,
+					'id_detail_project' => $applicantItem->id_detail_project,
+					'id_project' => $applicantItem->id_project,
+					'status' => $applicantItem->status,
 					'skill' => $this->getSkill(explode(';', $applicantItem->id_skill))
 				)
 			);
