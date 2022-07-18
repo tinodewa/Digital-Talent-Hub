@@ -12,7 +12,7 @@
             <div class="card w-100">
                 <div class="card-body row">
                     <div class="col-12">
-                        <a href="<?= site_url('company/project/applicant') ?>" class="btn btn-primary btn-list-apply d-flex justify-content-center align-items-center mt-4 mt-lg-0 text-decoration-none">
+                        <a href="<?= site_url('company-project-applicant/'.$data_detail_project['ID_PROJECT']) ?>" class="btn btn-primary btn-list-apply d-flex justify-content-center align-items-center mt-4 mt-lg-0 text-decoration-none">
                             <div id="editProfile" class="btn-icon-text-box">
                                 List Applicant
                             </div>

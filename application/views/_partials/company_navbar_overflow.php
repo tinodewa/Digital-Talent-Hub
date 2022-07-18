@@ -9,7 +9,7 @@
 
                 </a>
                 <a class="navbar-img-box" data-bs-toggle="popover2" data-bs-placement="bottom" data-bs-content-id="popover-content2" tabindex="0" role="button">                    
-                    <img src="<?= $this->session->userdata('PICT_COMPANY'); ?>" class="navbar-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
+                    <img src="<?= base_url($this->session->userdata('PICT_COMPANY')); ?>" class="navbar-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                 </a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,14 +18,14 @@
             <div class="collapse navbar-collapse order-md-2" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('company') ?>">Find Job</a>
+                        <a class="nav-link" href="<?= site_url('company') ?>">List Project</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= site_url('company/session') ?>">Find Session</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Applied Job</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </nav>

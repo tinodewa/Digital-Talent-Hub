@@ -82,10 +82,16 @@ class Main extends CI_Controller
 
 	public function login()
 	{
-		$data['meta'] = [
-			'title' => 'Login | Digitalent',
-		];
-		$this->load->view('layout/login', $data);
+		if ($this->session->userdata('ID_COMPANY') != null) {
+			redirect('Company');
+		} else if ($this->session->userdata('ID_TALENT') != null) {
+			redirect('Talent');
+		} else {
+			$data['meta'] = [
+				'title' => 'Login | Digitalent',
+			];
+			$this->load->view('layout/login', $data);
+		}
 	}
 
 	public function signuptalent()
@@ -145,7 +151,7 @@ class Main extends CI_Controller
 				'password' => $password
 			);
 			$this->M_Main->RegistCompany($dataRegistCompany);
-			redirect('login');			
+			redirect('login');
 		} else {
 			$data['meta'] = [
 				'title' => 'Sign Up | Digitalent',

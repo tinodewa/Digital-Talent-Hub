@@ -18,7 +18,7 @@
                             <div class="col-sm-5 col-lg-3 d-flex justify-content-center">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <img src="<?= $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'" />
+                                        <img src="<?= base_url().$DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'" />
                                     </div>
                                 </div>
                             </div>
