@@ -59,5 +59,11 @@
             $this->db->where('id_skill', $id);
             return $this->db->get("skill")->result();
         }
+        
+        public function UpdateTalent($id, $data)
+        {
+            $this->db->where('talent.id_talent', $id);
+            return $this->db->update("talent", $data);
+        }
     }
 ?>

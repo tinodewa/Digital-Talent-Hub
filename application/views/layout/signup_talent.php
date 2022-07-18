@@ -18,23 +18,23 @@
         <div class="form-box mt-5 mb-5">
             <img class="form-logo" src="<?= base_url('assets/img/logo_text_digitalenthub.svg') ?>" alt="logo Digitalent hub">
             <p class="form-title">Sign Up</p><p class="form-subtitle">Be A Talent</p>
-            <form class="d-flex justify-content-centers align-items-start" action="talent-dashboard.html">
+            <form class="d-flex justify-content-centers align-items-start" action="<?= base_url('sign-up-talent') ?>" method="POST">
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Nama Talent</label>
-                    <input placeholder="Nama Talent" type="text" class="form-control" id="nama_talent" required="true">
+                    <input placeholder="Nama Talent" type="text" class="form-control" name="nama_talent" id="nama_talent" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="email">Email</label>
-                    <input placeholder="Email" type="text" class="form-control" id="email" required="true">
+                    <input placeholder="Email" type="text" class="form-control" id="email" name="email" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="username">Username</label>
-                    <input placeholder="Username" type="text" class="form-control" id="username" required="true">
+                    <input placeholder="Username" type="text" class="form-control" id="username" name="username" required="true">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label" for="password">Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input placeholder="Password" type="password" class="form-control" id="password" required="true">
+                        <input placeholder="Password" type="password" class="form-control" id="password" name="password" required="true">
                         <div class="input-group-append">
                             <span class="input-group-text" onclick="password_show_hide();">
                                 <img src="<?= base_url('assets/img/eye.svg') ?>" id="show_eye" alt="icon show password">
@@ -47,7 +47,7 @@
                 <div class="form-group mb-4">
                     <label class="form-label" for="verification-password">Verification Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input placeholder="Password" type="password" class="form-control" id="verification_password" required="true">
+                        <input placeholder="Password" type="password" class="form-control" id="verification_password" name="verification_password" required="true">
                         <div class="input-group-append">
                             <span class="input-group-text" onclick="password_verification_show_hide();">
                                 <img src="<?= base_url('assets/img/eye.svg') ?>" id="verification_show_eye" alt="icon show password">

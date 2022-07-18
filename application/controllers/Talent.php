@@ -8,7 +8,7 @@ class Talent extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_Talent');
 		$this->load->helper(array('string', 'text', 'url'));
-		$this->load->library(array('form_validation', 'session'));
+		$this->load->library(array('form_validation', 'session', 'image_lib'));
 		if ($this->session->userdata('ID_TALENT') == null) {
 			redirect('');
 		}
@@ -42,26 +42,68 @@ class Talent extends CI_Controller {
 	}
 
     public function profile() {
+		$data['meta'] = [
+			'title' => 'Profile | Digitalent',
+		];
+		$id_talent = $this->session->userdata('ID_TALENT');
+
+		$dataSkill = $this->M_Talent->getSkillTalent($this->session->userdata('ID_TALENT'));
+
+		$data['ProfileTal'] = $this->M_Talent->getTalentProfile($this->session->userdata('ID_TALENT'));
+		$data['SKILL_TALENT'] = $this->getTalSkill(explode(';', $dataSkill->id_skill));
+		
 		$config = array(
-			array('field' => 'projectName', 'label' => 'projectName', 'rules' => 'required'),
-			array('field' => 'projectDesc', 'label' => 'projectDesc', 'rules' => 'required'),
-			array('field' => 'projectSalary', 'label' => 'projectSalary', 'rules' => 'required'),
-			array('field' => 'projectRegistration', 'label' => 'projectRegistration', 'rules' => 'required')
+			array('field' => 'talentName', 'label' => 'talentName', 'rules' => 'required'),
+			array('field' => 'talentBio', 'label' => 'talentBio', 'rules' => 'required')
 		);
 		$this->form_validation->set_rules($config);
+
 		if ($this->form_validation->run()) {
+			$dataNewTalent = array(
+				'nama_talent' => $_POST['talentName'],
+				'email_talent' => $_POST['talentEmail'],
+				'summary_talent' => $_POST['talentBio']
+			);
+
+			$config_upload = array(
+				'upload_path' => './assets/talent_image/',
+				'allowed_types' => 'jpg|jpeg|png',
+				'file_name' => "Image_Talent_" . $_POST['talentName'] . time()
+			);
+
+			$this->load->library('upload', $config_upload);
+			if ($this->upload->do_upload('ImgUpload')) {
+				$upload_data = $this->upload->data();
+				if (!empty($data['ProfileTal']->profile_pict_talent)) {
+					unlink('../' . $data['ProfileTal']->profile_pict_talent);
+				}
+				$file_name = base_url() . 'assets/talent_image/' . $upload_data['file_name'];
+
+				$configer =  array(
+					'image_library'   => 'gd2',
+					'source_image'    =>  $file_name,
+					'maintain_ratio'  =>  TRUE,
+					'width'           =>  500
+				);
+				$this->image_lib->clear();
+				$this->image_lib->initialize($configer);
+				$this->image_lib->resize();
+
+				$dataNewTalent['profile_pict_talent'] = $file_name;
+
+				$this->session->set_userdata(array('PICT_TALENT' => $file_name));
+			}
+
+			$this->M_Talent->UpdateTalent($id_talent, $dataNewTalent);
+			redirect('talent/profile');
 		} else {
 			$data['meta'] = [
 				'title' => 'Profile | Digitalent',
 			];
 
-			$dataSkill = $this->M_Talent->getSkillTalent($this->session->userdata('ID_TALENT'));
-	
-			$data['ProfileTal'] = $this->M_Talent->getTalentProfile($this->session->userdata('ID_TALENT'));
-			$data['SKILL_TALENT'] = $this->getTalSkill(explode(';', $dataSkill->id_skill));
-
 			$this->load->view('layout/talent_profile', $data);
 		}
+		
 	}
 
     public function jobdesc($id) {
@@ -138,5 +180,12 @@ class Talent extends CI_Controller {
 		}
 
 		return $dataSkillDB;
+	}
+
+	public function ApiUploadImageTalent()
+	{
+		var_dump($_FILES['file']);
+		exit;
+		return json_encode($_FILES['file']['name']);
 	}
 }

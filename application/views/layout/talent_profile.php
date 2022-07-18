@@ -64,52 +64,61 @@
     <section id="talentBioEdit" class="card-section talent-bio talent-bio-edit d-none">
         <div class="container">
             <div class="card w-100">
-                <div class="card-body row">
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
-                                <div class="card-profile-img-box">
-                                    <div class="card-img-circle">
-                                        <div class="card-img-circle card-img">
-                                            <div id="OpenImgUpload" class="card-img-subicon" onclick="search_image();">
-                                                <img src="<?= base_url('assets/img/icon_camera.png') ?>" alt="icon_camera">
+                <form action="<?= base_url('talent/profile'); ?>" method="POST" enctype="multipart/form-data">
+                    <div class="card-body row">
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3 d-flex justify-content-center">
+                                    <div class="card-profile-img-box" id="ImageShow">
+                                        <div class="card-img-circle">
+                                            <div class="card-img-circle card-img">
+                                                <img src="<?= $ProfileTal->profile_pict_talent; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'">
                                             </div>
+                                            <div class="btn btn-primary justify-content-end w-100 white mt-2" onclick="open_input();"><a class="text-decoration-none">Change</a></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-none card-profile-img-box" id="ImageInput">
+                                        <div class="card-img-circle">
+                                            <div class="card-img-circle card-img">
+                                                <input type="file" accept="image/*" class="form-control-file dropify" id="ImgUpload" data-height="140" name="ImgUpload">
+                                            </div>
+                                            <div class="btn btn-primary justify-content-end w-100 white mt-2" onclick="close_input();"><a class="text-decoration-none">Cancel</a></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="card-text-box">
-                                    <div class="form-group mb-1">
-                                        <input placeholder="Name" type="text" class="form-control" id="talentName"
-                                            aria-describedby="talentName">
-                                    </div>
-                                    <div class="form-group mb-1">
-                                        <input placeholder="Email" type="email" class="form-control" id="talentEmail"
-                                            aria-describedby="talentEmail">
-                                    </div>
-                                    <div class="form-group mb-1">
-                                        <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3"
-                                            aria-describedby="talentBio"></textarea>
-                                    </div>
-                                    <div class="form-group mb-1">
-                                        <div class="form-control card-item-box">
-                                            <div class="activity-skills d-flex align-items-center flex-wrap">
-                                                <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                    Figma
-                                                    <span class="icon-remove"></span>
-                                                </div>
-                                                <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                    Web Developer
-                                                    <span class="icon-remove"></span>
-                                                </div>
-                                                <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
-                                                    Back-End
-                                                    <span class="icon-remove"></span>
-                                                </div>
-                                                <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
-                                                    <span class="icon-add"></span>
+                                <div class="col-md-9">
+                                    <div class="card-text-box">
+                                        <div class="form-group mb-1">
+                                            <input placeholder="Name" type="text" class="form-control" id="talentName"
+                                                aria-describedby="talentName" name="talentName" value="<?= $ProfileTal->nama_talent; ?>">
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <input placeholder="Email" type="email" class="form-control" id="talentEmail"
+                                                aria-describedby="talentEmail" name="talentEmail" value="<?= $ProfileTal->email_talent; ?>">
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <textarea placeholder="Bio" class="form-control" id="talentBio" rows="3"
+                                                aria-describedby="talentBio" name="talentBio" ><?= $ProfileTal->summary_talent; ?></textarea>
+                                        </div>
+                                        <div class="form-group mb-1">
+                                            <div class="form-control card-item-box">
+                                                <div class="activity-skills d-flex align-items-center flex-wrap">
+                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
+                                                        Figma
+                                                        <span class="icon-remove"></span>
+                                                    </div>
+                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
+                                                        Web Developer
+                                                        <span class="icon-remove"></span>
+                                                    </div>
+                                                    <div class="card-item card-item-remove mb-2 mb-md-0 d-inline-block">
+                                                        Back-End
+                                                        <span class="icon-remove"></span>
+                                                    </div>
+                                                    <div class="card-item card-item-add mb-2 mb-md-0 d-inline-block" data-toggle="modal" data-target="#modal3">
+                                                        <span class="icon-add"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,20 +126,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="m-auto">
-                            <div id="closeEditProfile" class="btn btn-primary w-100 mt-3 mt-md-0"
-                                onclick="close_edit_profile();">
-                                <div class="btn-icon-text-box">
-                                    <a href="#">Save</a>
-                                </div>
+                        <div class="col-md-3">
+                            <div class="m-auto">
+                                <button type="submit" class="btn btn-primary justify-content-end w-100">
+                                    <div class="btn-icon-text-box">
+                                        Save
+                                    </div>
+                                </button>
+                                <div class="btn btn-primary justify-content-end w-100 white" onclick="close_edit_profile();"><a class="text-decoration-none">Cancel</a>
                             </div>
-                            <div id="closeEditProfile" class="btn btn-primary w-100 white"
-                                onclick="close_edit_profile();"><a href="#">Cancel</a></div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -571,9 +578,17 @@
     <?php $this->load->view('_partials/js.php') ?>
     <?php $this->load->view('_partials/popover_navbar_talent.php') ?>
     <script>
-        function search_file() {
-            $('#FileUpload').trigger('click');
+        function open_input() {
+            $('#ImageShow').addClass("d-none");
+            $('#ImageInput').removeClass("d-none");
         }
+
+        function close_input() {
+            $('#ImageShow').removeClass("d-none");
+            $('#ImageInput').addClass("d-none");
+            $(".dropify-clear").trigger("click");
+        }
+
         function edit_profile() {
             var talent = document.getElementById("talentBio");
             var editTalent = document.getElementById("talentBioEdit");
@@ -595,6 +610,26 @@
         function hide_modal3() {
             $('#modal3').trigger('click');
         }
+
+        $("#ImgUpload").on("change", function(e) {
+            var files = e.target.files;
+            var formData = new FormData();
+            formData.append('file', files[0]);
+
+            $.ajax({
+                url: '<?php echo base_url(); ?>Company/ApiUploadImageCompany',
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    console.log('Success');
+                    console.log(response);
+                }
+            })
+        });
     </script>
 </body>
 
