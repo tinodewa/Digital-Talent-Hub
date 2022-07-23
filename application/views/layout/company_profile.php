@@ -18,7 +18,7 @@
                             <div class="col-sm-5 col-lg-3 d-flex justify-content-center">
                                 <div class="card-profile-img-box">
                                     <div class="card-img-circle">
-                                        <img src="<?= base_url().$DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'" />
+                                        <img src="<?= base_url() . $DetailComp->profile_pict_company; ?>" class="card-img-circle card-img" alt="user picture" onerror="this.src='<?= base_url('assets/img/iconmonstr_user.png') ?>'" />
                                     </div>
                                 </div>
                             </div>
@@ -55,18 +55,19 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        <div class="row w-100 mt-5 m-0 m-ms-2" id="image_galery">
-                            <div class="col-sm-4 d-flex justify-content-center mb-3">
-                                <div class="card-img-box">
-                                    <img src="<?= base_url('assets/img/company-1.png') ?>" class="card-company-img" alt="company picture">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center mb-3">
-                                <div class="card-img-box">
-                                    <img src="<?= base_url('assets/img/company-2.png') ?>" class="card-company-img" alt="company picture">
-                                </div>
-                            </div>
-                            <div class="col-sm-4 d-flex justify-content-center mb-3">
+                        <div class="row w-100 mt-5 m-0 m-ms-2">
+                            <?php
+                            $Image = explode(';', $DetailComp->foto_company);
+                            foreach ($Image as $dataImage) {
+                                if (!empty($dataImage)) {
+                            ?>
+                                    <div class="col-sm-4 d-flex justify-content-center mb-3">
+                                        <div class="card-img-box"><img src="<?= $dataImage; ?>" class="card-company-img" name="foto" alt="company picture"></div>
+                                    </div>
+                            <?php }
+                            } ?>
+                            <div id="image_galery"></div>
+                            <div class="col-sm-4 d-flex justify-content-center mb-3" id="ImgInputData">
                                 <input class="d-none" type="file" class="form-control-file" id="ImgUpload">
                                 <div id="OpenImgUpload" class="card-img-box empty" onclick="search_image();">
                                     <div class="card-company-img">
@@ -198,24 +199,35 @@
             editcompany.classList.add("d-none");
         }
 
+        function search_image() {
+            $("#ImgUpload").trigger("click")
+        }
+
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
         $("#ImgUpload").on("change", function(e) {
             var files = e.target.files;
-            var formData = new FormData();
-            formData.append('file', files[0]);
-
-            $.ajax({
-                url: '<?php echo base_url(); ?>Company/ApiUploadImageCompany',
-                type: 'POST',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    console.log('Success');
-                    console.log(response);
-                }
-            })
+            getBase64(files[0]).then(
+                data =>
+                $.ajax({
+                    url: '<?php echo base_url(); ?>Company/ApiUploadImageCompany',
+                    type: 'POST',
+                    data: {
+                        "Image_Temp": data,
+                        "Id_Company": "<?= $this->session->userdata('ID_COMPANY'); ?>"
+                    },
+                    success: function(response) {
+                        $('#image_galery').before(response)
+                    }
+                })
+            );
         });
     </script>
 </body>

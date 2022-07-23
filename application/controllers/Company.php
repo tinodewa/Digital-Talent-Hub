@@ -275,9 +275,23 @@ class Company extends CI_Controller
 
 	public function ApiUploadImageCompany()
 	{
-		var_dump($_FILES['file']);
-		exit;
-		return json_encode($_FILES['file']['name']);
+		$DetailCompany = $this->M_Company->getCompanyDetail($this->session->userdata('ID_COMPANY'));
+		$data = $_POST['Image_Temp'];
+		$id_company =  $_POST['Id_Company'];
+		list($type, $data) = explode(';', $data);
+		list(, $data)      = explode(',', $data);
+		$data2 = base64_decode($data);
+		$imageName = 'assets/company_image/company_profile/file_'.$id_company.'_'.time().'.png';
+		
+		$dataNewCompany = array(
+			'foto_company' => $DetailCompany->foto_company.$imageName.';'
+		);
+		$this->M_Company->UpdateCompany($id_company, $dataNewCompany);
+
+		file_put_contents('./'.$imageName, $data2);
+		echo '<div class="col-sm-4 d-flex justify-content-center mb-3">
+		<div class="card-img-box"><img src="'.base_url().$imageName.'" class="card-company-img" name="foto" alt="company picture"></div>
+		</div>';
 	}
 
 	public function ApiGetAllCompany()
