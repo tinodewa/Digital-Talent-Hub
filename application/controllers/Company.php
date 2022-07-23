@@ -22,27 +22,7 @@ class Company extends CI_Controller
 		$data['meta'] = [
 			'title' => 'Dashboard | Digitalent',
 		];
-		$dataCompanyDB = $this->M_Company->getCompany();
-		$data['dataCompany'] = array();
-
-		foreach ($dataCompanyDB as $ItemDB1) {
-			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
-
-			array_push(
-				$data['dataCompany'],
-				array(
-					'NAMA_COMPANY' => $ItemDB1->nama_company,
-					'ID_PROJECT' => $ItemDB1->id_project,
-					'NAMA_PROJECT' => $ItemDB1->nama_project,
-					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
-					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
-					'SALARY_PROJECT' => $ItemDB1->salary,
-					'SKILL_PROJECT' => $this->getSkill(explode(';', $dataPskDB->id_skill))
-				)
-			);
-		}
-
-		$this->load->view('layout/company_dashboard', $data);
+		$this->load->view('layout/company_dashboard');
 	}
 
 	public function profile()
@@ -298,5 +278,31 @@ class Company extends CI_Controller
 		var_dump($_FILES['file']);
 		exit;
 		return json_encode($_FILES['file']['name']);
+	}
+
+	public function ApiGetAllCompany()
+	{
+		$keyword = $_GET['Keyword'];
+		$dataCompanyDB = $this->M_Company->getCompany($keyword);
+		$data['dataCompany'] = array();
+
+		foreach ($dataCompanyDB as $ItemDB1) {
+			$dataPskDB = $this->M_Company->getSkillCompany($ItemDB1->id_project);
+
+			array_push(
+				$data['dataCompany'],
+				array(
+					'NAMA_COMPANY' => $ItemDB1->nama_company,
+					'ID_PROJECT' => $ItemDB1->id_project,
+					'NAMA_PROJECT' => $ItemDB1->nama_project,
+					'DESC_PROJECT' => $ItemDB1->deskripsi_project,
+					'PICT_PROJECT' => $ItemDB1->profile_pict_company,
+					'SALARY_PROJECT' => $ItemDB1->salary,
+					'SKILL_PROJECT' => $this->getSkill(explode(';', $dataPskDB->id_skill))
+				)
+			);
+		}
+
+		return $this->load->view('layout/company_dashboard_item', $data);
 	}
 }

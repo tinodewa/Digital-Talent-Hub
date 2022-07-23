@@ -8,11 +8,12 @@ class M_Company extends CI_Model
         $this->db->query('SET FOREIGN_KEY_CHECKS = 0');
     }
 
-    public function getCompany()
+    public function getCompany($keyword)
     {
         $this->db->select('company.*, project.id_project, project.nama_project, project.deskripsi_project, project.salary');
         $this->db->join('company', 'company.id_company = project.id_company', 'LEFT OUTER');
         $this->db->where('company.id_company', $this->session->userdata('ID_COMPANY'));
+        $this->db->like('project.nama_project', $keyword, 'both');
         return $this->db->get("project")->result();
     }
     
