@@ -35,7 +35,7 @@
                     <section class="card-section talent-file talent-activity">
                         <div class="container p-0">
                             <div class="card w-100 card-no-border p-0">
-                                <img src="https://acegif.com/wp-content/uploads/loading-45.gif" class="loading w-25 rounded mx-auto">
+                                <img src="https://acegif.com/wp-content/uploads/loading-45.gif" class="loading rounded mx-auto" style="width: 10%;">
                                 <div id="company_item"></div>
                             </div>
                         </div>
